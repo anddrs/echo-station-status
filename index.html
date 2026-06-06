@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echo-Station – Projektbericht</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=boska@400,500,700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ART DIRECTION: Intern / sachlich / warm-neutral
+   Display: Boska (serif, warm)  |  Body: Satoshi (sans)
+   Palette: Nexus (beige/teal)   |  Density: ausgewogen
+   ============================================================ */
+
+:root, [data-theme="light"] {
+  --font-display: 'Boska', Georgia, serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+  --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+  --color-bg:             #f7f6f2;
+  --color-surface:        #f9f8f5;
+  --color-surface-2:      #fbfbf9;
+  --color-surface-offset: #f0ede8;
+  --color-surface-dynamic:#e6e4df;
+  --color-divider:        #dcd9d5;
+  --color-border:         #d0cdc6;
+  --color-text:           #28251d;
+  --color-text-muted:     #6a6863;
+  --color-text-faint:     #aaa9a4;
+  --color-primary:        #01696f;
+  --color-primary-hover:  #0c4e54;
+  --color-primary-light:  #e0eded;
+  --color-success:        #437a22;
+  --color-success-bg:     #eaf3e3;
+  --color-warning:        #8a5200;
+  --color-warning-bg:     #fef3e0;
+  --color-error:          #9e2b2b;
+  --color-error-bg:       #fdeaea;
+  --color-neutral-badge:  #7a7974;
+  --color-neutral-bg:     #f0ede8;
+
+  --radius-sm: .375rem; --radius-md: .5rem;
+  --radius-lg: .75rem;  --radius-xl: 1rem;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / .06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / .08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / .12);
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --content-default: 960px;
+  --content-wide: 1180px;
+}
+
+[data-theme="dark"] {
+  --color-bg:             #171614;
+  --color-surface:        #1c1b19;
+  --color-surface-2:      #201f1d;
+  --color-surface-offset: #1d1c1a;
+  --color-surface-dynamic:#2d2c2a;
+  --color-divider:        #2a2927;
+  --color-border:         #393836;
+  --color-text:           #cdccca;
+  --color-text-muted:     #8a8986;
+  --color-text-faint:     #5a5957;
+  --color-primary:        #4f98a3;
+  --color-primary-hover:  #227f8b;
+  --color-primary-light:  #1f3335;
+  --color-success:        #6daa45;
+  --color-success-bg:     #1e2f16;
+  --color-warning:        #d4902a;
+  --color-warning-bg:     #2a2010;
+  --color-error:          #d16060;
+  --color-error-bg:       #2e1212;
+  --color-neutral-badge:  #797876;
+  --color-neutral-bg:     #242321;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / .2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / .3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / .4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
+    --color-surface-offset: #1d1c1a; --color-surface-dynamic: #2d2c2a;
+    --color-divider: #2a2927; --color-border: #393836;
+    --color-text: #cdccca; --color-text-muted: #8a8986; --color-text-faint: #5a5957;
+    --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-light: #1f3335;
+    --color-success: #6daa45; --color-success-bg: #1e2f16;
+    --color-warning: #d4902a; --color-warning-bg: #2a2010;
+    --color-error: #d16060; --color-error-bg: #2e1212;
+    --color-neutral-badge: #797876; --color-neutral-bg: #242321;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-font-smoothing: antialiased; }
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+}
+img { display: block; max-width: 100%; height: auto; }
+p, li { text-wrap: pretty; max-width: 72ch; }
+h1,h2,h3,h4 { text-wrap: balance; line-height: 1.15; font-family: var(--font-display); }
+a, button { transition: color var(--transition), background var(--transition), box-shadow var(--transition); }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+::selection { background: oklch(from var(--color-primary) l c h / .2); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* LAYOUT */
+.container { max-width: var(--content-default); margin-inline: auto; padding-inline: var(--space-6); }
+.container--wide { max-width: var(--content-wide); margin-inline: auto; padding-inline: var(--space-6); }
+
+/* HEADER */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: oklch(from var(--color-bg) l c h / .92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-divider);
+  transition: box-shadow var(--transition);
+}
+.site-header.scrolled { box-shadow: var(--shadow-sm); }
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-block: var(--space-3);
+}
+.logo {
+  display: flex; align-items: center; gap: var(--space-3);
+  text-decoration: none; color: var(--color-text);
+}
+.logo-mark {
+  width: 36px; height: 36px; flex-shrink: 0;
+}
+.logo-text { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); letter-spacing: -.01em; }
+.logo-sub { font-size: var(--text-xs); color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400; }
+
+.header-nav { display: flex; align-items: center; gap: var(--space-6); }
+.header-nav a {
+  font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none; font-weight: 500;
+}
+.header-nav a:hover { color: var(--color-text); }
+.theme-toggle {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border-radius: var(--radius-md); color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+.theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+/* HERO */
+.hero {
+  padding-block: clamp(var(--space-16), 10vw, var(--space-24));
+  border-bottom: 1px solid var(--color-divider);
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--color-primary); margin-bottom: var(--space-5);
+}
+.hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary); }
+.hero h1 {
+  font-size: var(--text-2xl); font-weight: 700; letter-spacing: -.02em;
+  color: var(--color-text); margin-bottom: var(--space-5); line-height: 1.1;
+}
+.hero-lead {
+  font-size: var(--text-lg); color: var(--color-text-muted); max-width: 58ch; line-height: 1.6;
+  margin-bottom: var(--space-8);
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4);
+  font-size: var(--text-xs); color: var(--color-text-faint);
+}
+.hero-meta span { display: flex; align-items: center; gap: var(--space-2); }
+
+/* STATUS BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: var(--text-xs); font-weight: 600; padding: .2rem .6rem;
+  border-radius: var(--radius-full, 9999px); line-height: 1.4;
+}
+.badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.badge--done   { background: var(--color-success-bg); color: var(--color-success); }
+.badge--done   .badge-dot { background: var(--color-success); }
+.badge--partial { background: var(--color-warning-bg); color: var(--color-warning); }
+.badge--partial .badge-dot { background: var(--color-warning); }
+.badge--open   { background: var(--color-error-bg); color: var(--color-error); }
+.badge--open   .badge-dot { background: var(--color-error); }
+.badge--info   { background: var(--color-primary-light); color: var(--color-primary); }
+.badge--info   .badge-dot { background: var(--color-primary); }
+.badge--neutral{ background: var(--color-neutral-bg); color: var(--color-neutral-badge); }
+
+/* SECTION LAYOUT */
+.section { padding-block: clamp(var(--space-12), 8vw, var(--space-20)); }
+.section + .section { border-top: 1px solid var(--color-divider); }
+.section-header { margin-bottom: var(--space-10); }
+.section-label {
+  font-size: var(--text-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--color-primary); margin-bottom: var(--space-3);
+}
+.section-title { font-size: var(--text-xl); font-weight: 700; letter-spacing: -.01em; margin-bottom: var(--space-3); }
+.section-desc { font-size: var(--text-base); color: var(--color-text-muted); max-width: 60ch; }
+
+/* CARDS */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+.card-title { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-2); font-family: var(--font-display); }
+.card-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+/* STATUS GRID */
+.status-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.status-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex; flex-direction: column; gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+.status-card:hover { box-shadow: var(--shadow-md); }
+.status-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-2); }
+.status-card-title { font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display); line-height: 1.3; }
+.status-card-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; }
+
+/* DONE LIST */
+.done-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.done-item {
+  display: flex; align-items: flex-start; gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+}
+.done-icon {
+  width: 28px; height: 28px; border-radius: var(--radius-md);
+  background: var(--color-success-bg); color: var(--color-success);
+  display: grid; place-items: center; flex-shrink: 0; font-size: 14px; margin-top: 2px;
+}
+.done-content { flex: 1; }
+.done-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-1); }
+.done-note { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* OPEN LIST */
+.open-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.open-item {
+  display: flex; align-items: flex-start; gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+}
+.open-icon {
+  width: 28px; height: 28px; border-radius: var(--radius-md);
+  display: grid; place-items: center; flex-shrink: 0; font-size: 14px; margin-top: 2px;
+}
+.open-icon--high  { background: var(--color-error-bg);   color: var(--color-error); }
+.open-icon--med   { background: var(--color-warning-bg); color: var(--color-warning); }
+.open-icon--low   { background: var(--color-neutral-bg); color: var(--color-neutral-badge); }
+.open-content { flex: 1; }
+.open-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-1); }
+.open-note { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* ROADMAP */
+.roadmap { display: flex; flex-direction: column; gap: 0; }
+.roadmap-item {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 0 var(--space-6); position: relative;
+}
+.roadmap-item:not(:last-child)::before {
+  content: ''; position: absolute;
+  left: calc(80px + var(--space-6) / 2 - 1px);
+  top: 44px; bottom: -var(--space-4);
+  width: 2px; background: var(--color-divider);
+}
+.roadmap-side {
+  padding-top: var(--space-1); text-align: right;
+  padding-bottom: var(--space-10);
+}
+.roadmap-phase {
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--color-primary);
+}
+.roadmap-body {
+  padding-bottom: var(--space-10);
+  border-left: 2px solid var(--color-divider);
+  padding-left: var(--space-6); position: relative;
+}
+.roadmap-body::before {
+  content: ''; position: absolute;
+  left: -7px; top: 8px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--color-primary); border: 2px solid var(--color-bg);
+}
+.roadmap-title { font-size: var(--text-base); font-weight: 700; font-family: var(--font-display); margin-bottom: var(--space-2); }
+.roadmap-desc { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+.roadmap-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* RISKS */
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px,100%),1fr)); gap: var(--space-4); }
+.risk-card {
+  padding: var(--space-5); background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.risk-head { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+.risk-icon { font-size: 20px; }
+.risk-title { font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display); }
+.risk-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.55; }
+
+/* FEATURE GRID */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px,100%),1fr)); gap: var(--space-4); }
+.feature-card {
+  padding: var(--space-5); background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; gap: var(--space-3);
+  box-shadow: var(--shadow-sm); transition: box-shadow var(--transition);
+}
+.feature-card:hover { box-shadow: var(--shadow-md); }
+.feature-icon { font-size: 22px; }
+.feature-title { font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display); }
+.feature-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.55; flex: 1; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--color-divider); border: none; }
+
+/* FOOTER */
+.site-footer {
+  padding-block: var(--space-10);
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-faint);
+  font-size: var(--text-xs);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4); }
+
+/* SCROLL REVEAL */
+.fade-in { opacity: 1; }
+@supports (animation-timeline: scroll()) {
+  .fade-in {
+    opacity: 0;
+    animation: reveal-fade linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+  @keyframes reveal-fade { to { opacity: 1; } }
+}
+
+/* PRINT */
+@media print {
+  .site-header, .theme-toggle { display: none !important; }
+  .section { padding-block: var(--space-8); }
+  .status-card, .done-item, .open-item, .feature-card, .risk-card { box-shadow: none; border: 1px solid #ddd; }
+  body { background: white; color: #111; }
+  a { color: inherit; text-decoration: none; }
+  .roadmap-body::before { background: #333; }
+  .roadmap-body { border-left-color: #ccc; }
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .header-nav .nav-links { display: none; }
+  .hero h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
+  .roadmap-item { grid-template-columns: 1fr; }
+  .roadmap-side { text-align: left; padding-bottom: var(--space-2); }
+  .roadmap-body::before { display: none; }
+  .roadmap-body { border-left: 2px solid var(--color-divider); }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a class="logo" href="#top">
+        <svg class="logo-mark" viewBox="0 0 36 36" fill="none" aria-label="Echo-Station Logo">
+          <rect width="36" height="36" rx="8" fill="var(--color-primary)"/>
+          <circle cx="18" cy="18" r="8" stroke="white" stroke-width="2" fill="none"/>
+          <circle cx="18" cy="18" r="3" fill="white"/>
+          <path d="M18 6 C10 6 4 11.4 4 18" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".5"/>
+          <path d="M18 30 C26 30 32 24.6 32 18" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".5"/>
+        </svg>
+        <div>
+          <div class="logo-text">Echo-Station</div>
+          <div class="logo-sub">Projektbericht</div>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <div class="nav-links" style="display:flex;gap:var(--space-6)">
+          <a href="#status">Status</a>
+          <a href="#erledigt">Erledigt</a>
+          <a href="#offen">Offen</a>
+          <a href="#fahrplan">Fahrplan</a>
+        </div>
+        <button class="theme-toggle" data-theme-toggle aria-label="Farbschema wechseln">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<main id="top">
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Interner Projektbericht
+    </div>
+    <h1>Echo-Station</h1>
+    <p class="hero-lead">
+      Eine stationäre Hör- und Kopierstation für Predigten und andere Audiobeiträge der Gemeinde. Besucher suchen, hören und kopieren Inhalte am Touchscreen – ohne technische Vorkenntnisse.
+    </p>
+    <div class="hero-meta">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Stand: 6. Juni 2026
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Technischer MVP aktiv
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Andreas Driss
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS OVERVIEW -->
+<section class="section" id="status">
+  <div class="container--wide">
+    <div class="section-header">
+      <div class="section-label">Aktueller Stand</div>
+      <h2 class="section-title">Funktionsübersicht</h2>
+      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Grün = fertig, Gelb = teilweise umgesetzt, Rot = noch offen.</p>
+    </div>
+
+    <div class="status-grid">
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">📋 Inhaltsliste anzeigen</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+        </div>
+        <div class="status-card-desc">Besucher sehen eine vollständige Liste verfügbarer Audiobeiträge mit Titel, Sprecher, Kategorie und Datum.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🔍 Suche &amp; Filter</div>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+        </div>
+        <div class="status-card-desc">Volltextsuche im Hintergrund fertig. Kategorie, Filter und Sortierung im Frontend bereits aktiv. Suche über das Eingabefeld steht noch aus.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🔊 Audio-Wiedergabe</div>
+          <span class="badge badge--open"><span class="badge-dot"></span>Offen</span>
+        </div>
+        <div class="status-card-desc">Besucher sollen Beiträge direkt am Kiosk anhören können. Noch kein Audio-Player eingebaut.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">💾 USB-Stick kopieren</div>
+          <span class="badge badge--open"><span class="badge-dot"></span>Offen</span>
+        </div>
+        <div class="status-card-desc">Kernfunktion für Besucher: Inhalte auf eigenen USB-Stick kopieren. USB-Erkennung, Kopierjobs und Fortschrittsanzeige fehlen noch vollständig.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🔄 Daten-Synchronisation</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+        </div>
+        <div class="status-card-desc">Audiodateien werden aus lokalem Ordner und NAS eingelesen, ausgewertet und in der Datenbank gespeichert. Produktiv verifiziert.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🗄️ NAS als Quelle</div>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+        </div>
+        <div class="status-card-desc">Ein enger NAS-Unterordner wurde auf dem Pi erfolgreich getestet. Breite Jahresbäume noch nicht als stabiler Weg freigegeben.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🏷️ Inhaltstypen</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+        </div>
+        <div class="status-card-desc">Predigt, Lied, Bibelarbeit, Zeugnis, Moderation und weitere werden automatisch erkannt und in der Datenbank gespeichert.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🖥️ Kiosk-Betrieb</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+        </div>
+        <div class="status-card-desc">Der Raspberry Pi startet automatisch im Vollbild-Kiosk-Modus. Besucher sehen nur die Anwendung, kein Betriebssystem.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🧹 Cache-Verwaltung</div>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+        </div>
+        <div class="status-card-desc">Endpunkt zum Aufräumen alter Dateien ist vorhanden. Automatischer Timer für regelmäßige Ausführung fehlt noch.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🔧 Wartung &amp; Fernzugriff</div>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+        </div>
+        <div class="status-card-desc">Fernwartung via Tailscale dokumentiert und teilweise eingerichtet. Deployment-Ablauf für Updates ist klar definiert.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">💿 Backup</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+        </div>
+        <div class="status-card-desc">Automatisches Backup der Datenbank per Script und Timer ist eingerichtet. Wiederherstellung nach Fehler ist möglich.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🔐 Admin-Bereich</div>
+          <span class="badge badge--open"><span class="badge-dot"></span>Offen</span>
+        </div>
+        <div class="status-card-desc">Schutzfunktionen für Sync und Verwaltung sind technisch vorbereitet. Admin-Oberfläche und PIN-Schutz noch nicht umgesetzt.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Was das System kann</h2>
+      <p class="section-desc">Übersicht der vorhandenen und geplanten Funktionen in Kurzform.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🗂️</div>
+        <div class="feature-title">Medienkatalog</div>
+        <div class="feature-desc">Alle Audiodateien werden automatisch eingelesen. Titel, Sprecher, Datum, Dauer und Kategorie werden aus den Datei-Informationen ausgelesen und gespeichert.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔎</div>
+        <div class="feature-title">Volltextsuche</div>
+        <div class="feature-desc">Schnelle Suche über Titel und Sprecher. Auch Teilbegriffe werden gefunden. Technisch fertig, im Frontend noch nicht vollständig eingebunden.</div>
+        <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📂</div>
+        <div class="feature-title">Kategorien &amp; Filter</div>
+        <div class="feature-desc">Predigt, Lied, Bibelarbeit, Zeugnis, Moderation, Geschichte, Gedicht, Einleitung, Familienvortrag. Kategoriefilter im Frontend bereits nutzbar.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔉</div>
+        <div class="feature-title">Audio-Wiedergabe</div>
+        <div class="feature-desc">Besucher wählen einen Beitrag und hören ihn direkt am Kiosk an. Stream-Endpunkt und Player noch nicht eingebaut.</div>
+        <span class="badge badge--open"><span class="badge-dot"></span>Geplant</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📤</div>
+        <div class="feature-title">USB-Export</div>
+        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Fortschrittsanzeige und Fehlerbehandlung inklusive.</div>
+        <span class="badge badge--open"><span class="badge-dot"></span>Geplant</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">NAS-Integration</div>
+        <div class="feature-desc">Die NAS bleibt die Hauptquelle aller Aufnahmen. Der Raspberry Pi hält lokale Kopien als schnellen Cache.</div>
+        <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONE -->
+<section class="section" id="erledigt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Erledigte Arbeiten</div>
+      <h2 class="section-title">Was bisher umgesetzt wurde</h2>
+      <p class="section-desc">Alle abgeschlossenen Arbeitsschritte seit Projektbeginn – chronologisch und sachlich.</p>
+    </div>
+    <div class="done-list">
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Projektstruktur angelegt</div>
+          <div class="done-note">Backend, Frontend, Infrastruktur und Dokumentation klar getrennt. Qualitätsregeln eingerichtet (TypeScript, Linting, Tests, Git-Hooks).</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Backend aufgebaut</div>
+          <div class="done-note">API-Server mit Fehlerbehandlung, Logging und Validierung. Läuft stabil auf dem Raspberry Pi.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Datenbank erstellt</div>
+          <div class="done-note">SQLite mit Migrationen für Grundmodell, Volltextsuche, Cache-Felder und Inhaltstypen. Automatisches Backup eingerichtet.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Synchronisation implementiert</div>
+          <div class="done-note">Audiodateien aus lokalem Ordner und NAS werden eingelesen, analysiert und in der Datenbank gespeichert. Duplikate werden erkannt.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">NAS produktiv verifiziert</div>
+          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft. Ein enger Unterordner erfolgreich synchronisiert. Erste reale Datenstichprobe erhoben und dokumentiert.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Inhaltstypen (v1) eingeführt</div>
+          <div class="done-note">Fachliche Zuordnung festgelegt und umgesetzt: Predigt, Lied, Bibelarbeit, Zeugnis, Moderation, Geschichte, Gedicht, Einleitung, Familienvortrag. Mit Tests abgesichert.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Frontend-Basis umgesetzt</div>
+          <div class="done-note">Inhaltsliste mit Kategoriefilter, Sortierung und Kategorieanzeige. Filter-Verhalten stabilisiert und verifiziert.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Kiosk-Betrieb eingerichtet</div>
+          <div class="done-note">Raspberry Pi startet automatisch in den Vollbild-Kiosk-Modus. Systemd-Konfigurationen versioniert und dokumentiert.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Deployment-Ablauf definiert</div>
+          <div class="done-note">Klarer Prozess für Updates: Entwicklung auf Mac → Git Push → Pull und Build auf dem Pi → Neustart. Übergabedokumentation gepflegt.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Projektdokumentation aufgebaut</div>
+          <div class="done-note">Backlog, Architektur, Handover, NAS-Analyse und Mapping-Entscheidungen als eigene Dokumente gepflegt.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN -->
+<section class="section" id="offen">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Offene Punkte</div>
+      <h2 class="section-title">Was noch aussteht</h2>
+      <p class="section-desc">Punkte, die für einen vollen Besucherbetrieb noch fehlen, geordnet nach Priorität.</p>
+    </div>
+    <div class="open-list">
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--high">!</div>
+        <div class="open-content">
+          <div class="open-title">Finales Besucher-Frontend</div>
+          <div class="open-note">Die aktuelle Oberfläche ist ein technischer Startpunkt. Für den echten Betrieb am Touchscreen braucht es eine einfache, fehlerfreundliche Bedienoberfläche.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--high">!</div>
+        <div class="open-content">
+          <div class="open-title">Audio-Wiedergabe</div>
+          <div class="open-note">Stream-Endpunkt im Backend und Audio-Player im Frontend fehlen noch. Kernfunktion für den Besucherbetrieb.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--high">!</div>
+        <div class="open-content">
+          <div class="open-title">USB-Kopierfunktion</div>
+          <div class="open-note">USB-Erkennung, Kopierjobs, Fortschrittsanzeige und Fehlerbehandlung fehlen vollständig. Ursprünglich geplanter Kernnutzen des Kiosks.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--med">~</div>
+        <div class="open-content">
+          <div class="open-title">Breite NAS-Jahrespfade</div>
+          <div class="open-note">Vollständiges Einlesen größerer NAS-Ordner noch nicht verifiziert. Performance und Traversal-Verhalten müssen geprüft werden, bevor das als stabiler Weg gilt.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--med">~</div>
+        <div class="open-content">
+          <div class="open-title">Cache-Cleanup automatisieren</div>
+          <div class="open-note">Endpunkt vorhanden, automatischer Timer fehlt noch. Nötig, damit der Speicher auf dem Pi langfristig nicht voll läuft.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--med">~</div>
+        <div class="open-content">
+          <div class="open-title">Datenmodell schärfen</div>
+          <div class="open-note">Ursprünglicher NAS-Begriff, interner Typ, Herkunft und Verfügbarkeit sauber trennen. Regeln für unklare Begriffe wie „Gebet" und „Abschluss" festlegen.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--low">○</div>
+        <div class="open-content">
+          <div class="open-title">Admin-Bereich</div>
+          <div class="open-note">Wartungsfunktionen für das Technikteam. PIN-Schutz erst sinnvoll, wenn schützenswerte Funktionen vorhanden sind.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--low">○</div>
+        <div class="open-content">
+          <div class="open-title">Betriebsregeln finalisieren</div>
+          <div class="open-note">Langfristige Strategie für Speicher, Archiv, On-demand-Abruf von der NAS und Retention noch nicht ausgearbeitet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="fahrplan">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Fahrplan</div>
+      <h2 class="section-title">Nächste Schritte</h2>
+      <p class="section-desc">Phasenbasierter Plan ohne feste Termine. Reihenfolge orientiert sich am Nutzwert für Besucher und Betrieb.</p>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 1</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">Dokumentation &amp; Katalogwahrheit</div>
+          <div class="roadmap-desc">Alle Beteiligten auf denselben Stand bringen. Ist-Stand und geplante Funktionen klar trennen. NAS-Analyse-Dokumente konsolidieren.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--info"><span class="badge-dot"></span>Doku</span>
+            <span class="badge badge--info"><span class="badge-dot"></span>NAS-Mapping v1</span>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 2</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">Breite NAS-Daten untersuchen</div>
+          <div class="roadmap-desc">Echte NAS-Jahresordner analysieren. Performance prüfen. Neue Begriffe sammeln und zuordnen. Klären, wie große Datenmengen sicher eingelesen werden.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--neutral"><span class="badge-dot"></span>NAS inspect</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Performance</span>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 3</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">Datenmodell festigen</div>
+          <div class="roadmap-desc">Rohen NAS-Begriff separat speichern. Herkunft, Cache und Verfügbarkeit sauber unterscheiden. Grundlage für langfristigen Katalog legen.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Datenmodell</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>raw_category</span>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 4</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">Besucher-Frontend &amp; Audio</div>
+          <div class="roadmap-desc">Touchscreen-taugliche Oberfläche. Detailansicht für Inhalte. Audio-Player einbauen. Fehlerzustände verständlich anzeigen.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--partial"><span class="badge-dot"></span>Frontend</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Audio-Player</span>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 5</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">USB-Kopierfunktion</div>
+          <div class="roadmap-desc">USB-Stick erkennen, Dateien kopieren, Fortschritt anzeigen. Fehler wie volle oder zu langsame Sticks sicher abfangen.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--open"><span class="badge-dot"></span>USB</span>
+            <span class="badge badge--open"><span class="badge-dot"></span>Copy-Jobs</span>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 6</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">Betrieb, Wartung &amp; Langzeit</div>
+          <div class="roadmap-desc">Admin-Bereich ausbauen. Cache-Cleanup aktivieren. Backup- und Restore-Ablauf absichern. Betriebscheckliste fertigstellen.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Admin</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Wartung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section class="section" id="risiken">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Risiken</div>
+      <h2 class="section-title">Offene Fragen &amp; Risiken</h2>
+      <p class="section-desc">Bekannte Unsicherheiten, die den weiteren Verlauf beeinflussen können.</p>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">Breite NAS-Pfade</div>
+        </div>
+        <div class="risk-desc">Vollständiges Einlesen großer NAS-Jahresordner noch nicht belastbar geprüft. Wichtigstes technisches Risiko für einen vollständigen Medienkatalog.</div>
+      </div>
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">Datenqualität NAS</div>
+        </div>
+        <div class="risk-desc">Bisherige Stichproben sind hilfreich strukturiert. Ältere Dateien können abweichen. „Unbekannt" bleibt nötig als sicherer Fallback für nicht erkannte Begriffe.</div>
+      </div>
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">USB-Robustheit</div>
+        </div>
+        <div class="risk-desc">USB-Kopieren ist für Besucher wichtig, aber fehleranfällig. Zu langsame, volle oder falsch formatierte Sticks sowie Abziehen während des Kopiervorgangs müssen abgefangen werden.</div>
+      </div>
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">Besucherbedienung</div>
+        </div>
+        <div class="risk-desc">Das aktuelle Frontend ist noch kein finales Kiosk-Interface. Für den echten Betrieb braucht es klare Abläufe für den Touchscreen und verständliche Fehlermeldungen.</div>
+      </div>
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">Inhalt-Verfügbarkeit</div>
+        </div>
+        <div class="risk-desc">Klar unterscheiden: Liegt ein Inhalt lokal vor, ist er nur auf der NAS bekannt, oder ist er im Cache? Diese Unterscheidung ist wichtig für Wiedergabe und Kopierfunktion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT IN SCOPE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Bewusst ausgeklammert</div>
+      <h2 class="section-title">Nicht Teil des Projekts</h2>
+      <p class="section-desc">Folgende Punkte sind kein Ziel – jetzt und auf absehbare Zeit nicht.</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(min(260px,100%),1fr)); gap: var(--space-3);">
+      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
+        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Online-Streaming</strong>
+        Inhalte bleiben lokal. Kein Cloud-Zugriff, kein öffentlicher Stream.
+      </div>
+      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
+        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Benutzerkonten</strong>
+        Für einen lokalen Kiosk nicht nötig. Keine Logins für Besucher.
+      </div>
+      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
+        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Cloud-Synchronisation</strong>
+        Die NAS bleibt die einzige Quelle. Kein Sync mit externen Diensten.
+      </div>
+      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
+        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Mobile App</strong>
+        Keine separate App. Alles läuft am stationären Kiosk-Touchscreen.
+      </div>
+      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
+        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Termine / Kalender</strong>
+        Tabelle in der Datenbank vorbereitet, aber kein Ziel des aktuellen Projekts.
+      </div>
+      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
+        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Video-Inhalte</strong>
+        Ausschließlich Audio. Keine Video-Dateien oder -Streams geplant.
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 6. Juni 2026</div>
+      <div>Internes Dokument &middot; Nicht zur Veröffentlichung</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  let d = mq.matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  function setIcon(mode) {
+    if (!t) return;
+    t.innerHTML = mode === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    t.setAttribute('aria-label', 'Wechseln zu ' + (mode === 'dark' ? 'hellem' : 'dunklem') + ' Modus');
+  }
+  setIcon(d);
+  t && t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    setIcon(d);
+  });
+
+  // Sticky header shadow
+  const h = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    h && h.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
