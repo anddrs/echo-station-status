@@ -428,7 +428,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     </div>
     <h1>Echo-Station</h1>
     <p class="hero-lead">
-      Eine stationäre Hör- und Kopierstation für Predigten und andere Audiobeiträge der Gemeinde. Besucher suchen, hören und kopieren Inhalte am Touchscreen – ohne technische Vorkenntnisse.
+      Eine stationäre Such- und Kopierstation für Predigten und andere Audiobeiträge der Gemeinde. Besucher suchen, filtern und kopieren Inhalte am Touchscreen auf einen USB-Stick – ohne technische Vorkenntnisse.
     </p>
     <div class="hero-meta">
       <span>
@@ -477,17 +477,17 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🔊 Audio-Wiedergabe</div>
-          <span class="badge badge--open"><span class="badge-dot"></span>Offen</span>
+          <span class="badge badge--neutral"><span class="badge-dot"></span>Nicht im MVP</span>
         </div>
-        <div class="status-card-desc">Besucher sollen Beiträge direkt am Kiosk anhören können. Noch kein Audio-Player eingebaut.</div>
+        <div class="status-card-desc">Direktes Anhören am Kiosk ist bewusst aus dem aktuellen MVP gestrichen. Kein Stream-Endpunkt, kein Player. Fokus liegt auf Suchen und USB-Export.</div>
       </div>
 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">💾 USB-Stick kopieren</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
         </div>
-        <div class="status-card-desc">MVP technisch umgesetzt: Inhalte können auf einen konfigurierten USB-Zielpfad kopiert werden. Echte Vor-Ort-Verifikation mit eingestecktem USB-Stick und Hardware-Verifikation im Live-Betrieb stehen noch aus.</div>
+        <div class="status-card-desc">USB-Export-Flow im Repo umgesetzt: Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling. Offen bleibt nur der Pi-Smoke-Test mit echtem USB-Stick und produktiver Mount-Konfiguration.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -588,14 +588,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">🔉</div>
         <div class="feature-title">Audio-Wiedergabe</div>
-        <div class="feature-desc">Besucher wählen einen Beitrag und hören ihn direkt am Kiosk an. Stream-Endpunkt und Player noch nicht eingebaut.</div>
-        <span class="badge badge--open"><span class="badge-dot"></span>Geplant</span>
+        <div class="feature-desc">Direktes Anhören am Kiosk ist nicht Teil des aktuellen MVP. Stream-Endpunkt und Player sind bewusst aus dem Scope genommen.</div>
+        <span class="badge badge--neutral"><span class="badge-dot"></span>Nicht im MVP</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">📤</div>
         <div class="feature-title">USB-Export</div>
-        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Fortschrittsanzeige und Fehlerbehandlung inklusive.</div>
-        <span class="badge badge--open"><span class="badge-dot"></span>Geplant</span>
+        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und Fehlerbehandlung im Repo umgesetzt.</div>
+        <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
@@ -686,6 +686,13 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="done-note">Backlog, Architektur, Handover, NAS-Analyse und Mapping-Entscheidungen als eigene Dokumente gepflegt.</div>
         </div>
       </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">USB-Export-Flow umgesetzt</div>
+          <div class="done-note">Backend-Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling im Repo umgesetzt. Audio-Wiedergabe bewusst aus dem MVP gestrichen.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -702,22 +709,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--high">!</div>
         <div class="open-content">
-          <div class="open-title">Finales Besucher-Frontend</div>
-          <div class="open-note">Die aktuelle Oberfläche ist ein technischer Startpunkt. Für den echten Betrieb am Touchscreen braucht es eine einfache, fehlerfreundliche Bedienoberfläche.</div>
+          <div class="open-title">Echte Besucheroberfläche sichtbar schalten</div>
+          <div class="open-note">Am Kiosk ist aktuell noch eine Baustellenseite aktiv, die echte App liegt im Hintergrund. Nächster Schritt: produktiven Besucher-Flow als Standardansicht sichtbar machen und Touchscreen-UX schärfen.</div>
         </div>
       </div>
       <div class="open-item fade-in">
         <div class="open-icon open-icon--high">!</div>
         <div class="open-content">
-          <div class="open-title">Audio-Wiedergabe</div>
-          <div class="open-note">Stream-Endpunkt im Backend und Audio-Player im Frontend fehlen noch. Kernfunktion für den Besucherbetrieb.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">!</div>
-        <div class="open-content">
-          <div class="open-title">USB-Kopierfunktion</div>
-          <div class="open-note">USB-Erkennung, Kopierjobs, Fortschrittsanzeige und Fehlerbehandlung fehlen vollständig. Ursprünglich geplanter Kernnutzen des Kiosks.</div>
+          <div class="open-title">USB-Export am echten Pi verifizieren</div>
+          <div class="open-note">USB-Export-Flow ist im Repo umgesetzt. Offen ist der Pi-Smoke-Test: echter USB-Stick, produktive Mount-Konfiguration, Mehrfachkopie und Abziehen während des Kopiervorgangs.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -813,11 +813,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 4</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Besucher-Frontend &amp; Audio</div>
-          <div class="roadmap-desc">Touchscreen-taugliche Oberfläche. Detailansicht für Inhalte. Audio-Player einbauen. Fehlerzustände verständlich anzeigen.</div>
+          <div class="roadmap-title">Besucher-Frontend sichtbar &amp; touch-tauglich</div>
+          <div class="roadmap-desc">Baustellenseite ablösen, echte App als Standard zeigen. Such-Eingabefeld anbinden. Auswahl- und Fehlerzustände am Touchscreen verständlich anzeigen.</div>
           <div class="roadmap-tags">
             <span class="badge badge--partial"><span class="badge-dot"></span>Frontend</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Audio-Player</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Touch-UX</span>
           </div>
         </div>
       </div>
@@ -826,11 +826,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 5</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">USB-Kopierfunktion</div>
-          <div class="roadmap-desc">USB-Stick erkennen, Dateien kopieren, Fortschritt anzeigen. Fehler wie volle oder zu langsame Sticks sicher abfangen.</div>
+          <div class="roadmap-title">USB-Export am Kiosk abnehmen</div>
+          <div class="roadmap-desc">Copy-Job-Flow ist im Repo umgesetzt. Jetzt am echten Pi mit realem USB-Stick verifizieren: Mehrfachkopie, Speicherprüfung, Stick-Abziehen und Mount-Konfiguration.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--open"><span class="badge-dot"></span>USB</span>
-            <span class="badge badge--open"><span class="badge-dot"></span>Copy-Jobs</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>USB</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Pi-Smoke-Test</span>
           </div>
         </div>
       </div>
