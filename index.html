@@ -433,7 +433,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="hero-meta">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 6. Juni 2026
+        Stand: 9. Juni 2026
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -487,7 +487,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">💾 USB-Stick kopieren</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
         </div>
-        <div class="status-card-desc">USB-Export-Flow im Repo umgesetzt: Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling. Offen bleibt nur der Pi-Smoke-Test mit echtem USB-Stick und produktiver Mount-Konfiguration.</div>
+        <div class="status-card-desc">USB-Export-Flow im Repo umgesetzt: Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling. Der Frontend-Auswahl-Bug im USB-Status-Polling ist behoben; offen bleibt der Pi-Smoke-Test mit echtem USB-Stick und produktiver Mount-Konfiguration.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -503,7 +503,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🗄️ NAS als Quelle</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
         </div>
-        <div class="status-card-desc">Ein enger NAS-Unterordner wurde auf dem Pi erfolgreich getestet. Breite Jahresbäume noch nicht als stabiler Weg freigegeben.</div>
+        <div class="status-card-desc">Index funktioniert; das Übertragen der NAS-Aufnahmen in den lokalen Cache ist noch offen. Breite Jahresbäume sind weiterhin nicht als stabiler Weg freigegeben.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -527,7 +527,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🧹 Cache-Verwaltung</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
         </div>
-        <div class="status-card-desc">Endpunkt zum Aufräumen alter Dateien ist vorhanden. Automatischer Timer für regelmäßige Ausführung fehlt noch.</div>
+        <div class="status-card-desc">Cache-Abruf ist vorhanden. Automatischer Timer und NAS-Cachen bleiben offen.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -594,13 +594,13 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">📤</div>
         <div class="feature-title">USB-Export</div>
-        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und Fehlerbehandlung im Repo umgesetzt.</div>
+        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und Fehlerbehandlung im Repo umgesetzt; der Auswahl-Reset durch USB-Polling ist behoben.</div>
         <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
         <div class="feature-title">NAS-Integration</div>
-        <div class="feature-desc">Die NAS bleibt die Hauptquelle aller Aufnahmen. Der Raspberry Pi hält lokale Kopien als schnellen Cache.</div>
+        <div class="feature-desc">Die NAS bleibt die Hauptquelle aller Aufnahmen. Der Index funktioniert; das Übertragen der NAS-Aufnahmen in den lokalen Cache ist noch offen.</div>
         <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
       </div>
     </div>
@@ -693,6 +693,20 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="done-note">Backend-Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling im Repo umgesetzt. Audio-Wiedergabe bewusst aus dem MVP gestrichen.</div>
         </div>
       </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">USB-Auswahl-Bug behoben</div>
+          <div class="done-note">Das USB-Status-Polling setzte die Beitragsauswahl wiederholt zurück, solange kein Stick steckte. Behoben per Flanken-Logik: Die Auswahl wird nur noch beim tatsächlichen Abziehen des Sticks geleert. Build, Lint und Format-Check sind grün.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Cache-Abruf erweitert (Backend)</div>
+          <div class="done-note">Logik zum gezielten Abrufen in den lokalen Cache ergänzt und mit Tests abgesichert.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -718,6 +732,20 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-content">
           <div class="open-title">USB-Export am echten Pi verifizieren</div>
           <div class="open-note">USB-Export-Flow ist im Repo umgesetzt. Offen ist der Pi-Smoke-Test: echter USB-Stick, produktive Mount-Konfiguration, Mehrfachkopie und Abziehen während des Kopiervorgangs.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--high">!</div>
+        <div class="open-content">
+          <div class="open-title">NAS-Cachen noch offen</div>
+          <div class="open-note">Die NAS bleibt die Quelle, der Pi der lokale Cache. Das automatische Übertragen von NAS-Aufnahmen in den lokalen Cache ist noch nicht umgesetzt. Bis dahin sind nur bereits lokal vorliegende Aufnahmen am Kiosk auf USB kopierbar.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--high">!</div>
+        <div class="open-content">
+          <div class="open-title">Produktiver Sync-Weg für das Technikteam</div>
+          <div class="open-note">Aktuell existieren nur Diagnose- und Dry-Run-Werkzeuge. Ein wartbarer, produktiver Weg zum Einspielen neuer Aufnahmen in die Datenbank steht noch aus.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -893,7 +921,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Inhalt-Verfügbarkeit</div>
         </div>
-        <div class="risk-desc">Klar unterscheiden: Liegt ein Inhalt lokal vor, ist er nur auf der NAS bekannt, oder ist er im Cache? Diese Unterscheidung ist wichtig für Wiedergabe und Kopierfunktion.</div>
+        <div class="risk-desc">Solange das NAS-Cachen aussteht, ist nur ein Teil des Katalogs lokal verfügbar und damit kopierbar. Klare Unterscheidung zwischen lokal, NAS-bekannt und Cache bleibt wichtig.</div>
       </div>
     </div>
   </div>
