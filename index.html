@@ -374,7 +374,25 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 
 /* MOBILE */
 @media (max-width: 640px) {
-  .header-nav .nav-links { display: none; }
+  html, body { max-width: 100vw; overflow-x: hidden; }
+  .container, .container--wide {
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: 0;
+    padding-inline: var(--space-4);
+  }
+  .header-nav .nav-links { display: none !important; }
+  .header-inner { gap: var(--space-3); }
+  .header-nav { gap: var(--space-2); }
+  .hero-lead, .section-desc, .status-card-desc, .feature-desc, .open-note, .risk-desc {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .hero-meta span { flex: 1 1 100%; min-width: 0; }
+  .status-grid, .feature-grid, .risk-grid { grid-template-columns: minmax(0, 1fr); }
+  .status-card, .feature-card, .risk-card, .done-item, .open-item { min-width: 0; }
+  .status-card-head { flex-wrap: wrap; }
+  .badge { max-width: 100%; white-space: normal; }
   .hero h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
   .roadmap-item { grid-template-columns: 1fr; }
   .roadmap-side { text-align: left; padding-bottom: var(--space-2); }
@@ -433,11 +451,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="hero-meta">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 9. Juni 2026
+        Stand: 10. Juni 2026
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Technischer MVP aktiv
+        Technischer MVP · 4411 Einträge lokal gecached
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -469,9 +487,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🔍 Suche &amp; Filter</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
         </div>
-        <div class="status-card-desc">Volltextsuche im Hintergrund fertig. Kategorie, Filter und Sortierung im Frontend bereits aktiv. Suche über das Eingabefeld steht noch aus.</div>
+        <div class="status-card-desc">Suchfeld, Backend-Volltextsuche, Kategorie-Filter und Sortierung sind im Besucher-Frontend aktiv.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -487,7 +505,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">💾 USB-Stick kopieren</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
         </div>
-        <div class="status-card-desc">USB-Export-Flow im Repo umgesetzt: Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling. Der Frontend-Auswahl-Bug im USB-Status-Polling ist behoben; offen bleibt der Pi-Smoke-Test mit echtem USB-Stick und produktiver Mount-Konfiguration.</div>
+        <div class="status-card-desc">USB-Export-Flow ist im Repo umgesetzt und mehrfach manuell erfolgreich getestet. Offen bleibt der formal dokumentierte Pi-Smoke-Test mit echtem USB-Stick und produktiver Mount-Konfiguration.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -501,9 +519,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🗄️ NAS als Quelle</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
         </div>
-        <div class="status-card-desc">Index funktioniert; das Übertragen der NAS-Aufnahmen in den lokalen Cache ist noch offen. Breite Jahresbäume sind weiterhin nicht als stabiler Weg freigegeben.</div>
+        <div class="status-card-desc">Die Jahressegmente 2026 und 2025 wurden produktiv synchronisiert und vollständig in den lokalen Cache geladen. Der breite Root-Pfad /mnt/echo-nas bleibt bewusst nicht freigegeben.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -527,7 +545,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🧹 Cache-Verwaltung</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
         </div>
-        <div class="status-card-desc">Cache-Abruf ist vorhanden. Automatischer Timer und NAS-Cachen bleiben offen.</div>
+        <div class="status-card-desc">Gezielter Cache-Abruf und Bulk-Cache laufen produktiv. Cleanup-Timer, Retention-Regeln und langfristige Betriebsregeln bleiben offen.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -576,8 +594,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">🔎</div>
         <div class="feature-title">Volltextsuche</div>
-        <div class="feature-desc">Schnelle Suche über Titel und Sprecher. Auch Teilbegriffe werden gefunden. Technisch fertig, im Frontend noch nicht vollständig eingebunden.</div>
-        <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+        <div class="feature-desc">Schnelle Suche über Titel und Sprecher. Das Suchfeld nutzt die Backend-Volltextsuche, inklusive On-Screen-Tastatur für den Touchscreen.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">📂</div>
@@ -594,14 +612,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">📤</div>
         <div class="feature-title">USB-Export</div>
-        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und Fehlerbehandlung im Repo umgesetzt; der Auswahl-Reset durch USB-Polling ist behoben.</div>
+        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und Fehlerbehandlung sind umgesetzt; der Flow wurde mehrfach manuell erfolgreich getestet.</div>
         <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
         <div class="feature-title">NAS-Integration</div>
-        <div class="feature-desc">Die NAS bleibt die Hauptquelle aller Aufnahmen. Der Index funktioniert; das Übertragen der NAS-Aufnahmen in den lokalen Cache ist noch offen.</div>
-        <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+        <div class="feature-desc">Die NAS bleibt die Hauptquelle. 2026 und 2025 sind segmentweise synchronisiert; 4411 Aufnahmen liegen lokal im Pi-Cache.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
       </div>
     </div>
   </div>
@@ -648,7 +666,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">NAS produktiv verifiziert</div>
-          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft. Ein enger Unterordner erfolgreich synchronisiert. Erste reale Datenstichprobe erhoben und dokumentiert.</div>
+          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft. Erst ein enger Unterordner, danach die Jahressegmente 2026 und 2025 segmentweise synchronisiert.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -662,7 +680,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">Frontend-Basis umgesetzt</div>
-          <div class="done-note">Inhaltsliste mit Kategoriefilter, Sortierung und Kategorieanzeige. Filter-Verhalten stabilisiert und verifiziert.</div>
+          <div class="done-note">Inhaltsliste mit Suchfeld, On-Screen-Tastatur, Kategoriefilter, Sortierung und Kategorieanzeige. Filter-Verhalten stabilisiert und verifiziert.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -704,7 +722,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">Cache-Abruf erweitert (Backend)</div>
-          <div class="done-note">Logik zum gezielten Abrufen in den lokalen Cache ergänzt und mit Tests abgesichert.</div>
+          <div class="done-note">Logik zum gezielten Abrufen und zum Bulk-Cachen aller Remote-Einträge ergänzt, deployed und mit Tests abgesichert.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Clean Catalog 2025/2026 aufgebaut</div>
+          <div class="done-note">Pi läuft auf Commit 3775841. Der produktive Katalog enthält 4411 aktive Einträge, alle lokal gecached, mit ca. 51.94 GB Cache-Daten.</div>
         </div>
       </div>
     </div>
@@ -731,28 +756,21 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--high">!</div>
         <div class="open-content">
           <div class="open-title">USB-Export am echten Pi verifizieren</div>
-          <div class="open-note">USB-Export-Flow ist im Repo umgesetzt. Offen ist der Pi-Smoke-Test: echter USB-Stick, produktive Mount-Konfiguration, Mehrfachkopie und Abziehen während des Kopiervorgangs.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">!</div>
-        <div class="open-content">
-          <div class="open-title">NAS-Cachen noch offen</div>
-          <div class="open-note">Die NAS bleibt die Quelle, der Pi der lokale Cache. Das automatische Übertragen von NAS-Aufnahmen in den lokalen Cache ist noch nicht umgesetzt. Bis dahin sind nur bereits lokal vorliegende Aufnahmen am Kiosk auf USB kopierbar.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">!</div>
-        <div class="open-content">
-          <div class="open-title">Produktiver Sync-Weg für das Technikteam</div>
-          <div class="open-note">Aktuell existieren nur Diagnose- und Dry-Run-Werkzeuge. Ein wartbarer, produktiver Weg zum Einspielen neuer Aufnahmen in die Datenbank steht noch aus.</div>
+          <div class="open-note">USB-Export wurde mehrfach manuell erfolgreich getestet. Offen bleibt der dokumentierte Pi-Smoke-Test: echter USB-Stick, produktive Mount-Konfiguration, Mehrfachkopie und Abziehen während des Kopiervorgangs.</div>
         </div>
       </div>
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">Breite NAS-Jahrespfade</div>
-          <div class="open-note">Vollständiges Einlesen größerer NAS-Ordner noch nicht verifiziert. Performance und Traversal-Verhalten müssen geprüft werden, bevor das als stabiler Weg gilt.</div>
+          <div class="open-title">Sync- und Cache-Betrieb verstetigen</div>
+          <div class="open-note">Jahressegmente 2025 und 2026 sind erfolgreich durchgelaufen. Für künftige Segmente braucht es eine klare Betriebsroutine mit Backup, Dry-Run, Sync, Bulk-Cache und Abnahme.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--med">~</div>
+        <div class="open-content">
+          <div class="open-title">NAS-Root bewusst ausklammern</div>
+          <div class="open-note">Jahresordner werden segmentweise verarbeitet. Der gemeinsame Root /mnt/echo-nas bleibt wegen fremder Ordner und Traversal-Risiko nicht als produktiver Sync-Pfad freigegeben.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -780,7 +798,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--low">○</div>
         <div class="open-content">
           <div class="open-title">Betriebsregeln finalisieren</div>
-          <div class="open-note">Langfristige Strategie für Speicher, Archiv, On-demand-Abruf von der NAS und Retention noch nicht ausgearbeitet.</div>
+          <div class="open-note">Langfristige Strategie für Speicher, Archiv, On-demand-Abruf von der NAS, Retention und Wiederaufbau des lokalen Caches noch nicht finalisiert.</div>
         </div>
       </div>
     </div>
@@ -802,11 +820,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 1</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Dokumentation &amp; Katalogwahrheit</div>
-          <div class="roadmap-desc">Alle Beteiligten auf denselben Stand bringen. Ist-Stand und geplante Funktionen klar trennen. NAS-Analyse-Dokumente konsolidieren.</div>
+          <div class="roadmap-title">Besucheroberfläche sichtbar schalten</div>
+          <div class="roadmap-desc">Baustellenseite ablösen, echten Besucher-Flow als Standard anzeigen und Touchscreen-Lesbarkeit vor Ort prüfen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--info"><span class="badge-dot"></span>Doku</span>
-            <span class="badge badge--info"><span class="badge-dot"></span>NAS-Mapping v1</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Kiosk</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Touch-UX</span>
           </div>
         </div>
       </div>
@@ -815,11 +833,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 2</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Breite NAS-Daten untersuchen</div>
-          <div class="roadmap-desc">Echte NAS-Jahresordner analysieren. Performance prüfen. Neue Begriffe sammeln und zuordnen. Klären, wie große Datenmengen sicher eingelesen werden.</div>
+          <div class="roadmap-title">USB-Export formal abnehmen</div>
+          <div class="roadmap-desc">Manuell erfolgreiche Tests dokumentiert wiederholen: echter USB-Stick, produktiver Mount, Mehrfachkopie, Speicherprüfung und Stick-Abziehen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>NAS inspect</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Performance</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>USB</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Pi-Smoke-Test</span>
           </div>
         </div>
       </div>
@@ -828,11 +846,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 3</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Datenmodell festigen</div>
-          <div class="roadmap-desc">Rohen NAS-Begriff separat speichern. Herkunft, Cache und Verfügbarkeit sauber unterscheiden. Grundlage für langfristigen Katalog legen.</div>
+          <div class="roadmap-title">Retention und Cleanup regeln</div>
+          <div class="roadmap-desc">Der lokale Cache umfasst rund 52 GB. Cleanup-Timer, Retention-Regeln und Wiederaufbau aus der NAS betrieblich festlegen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Datenmodell</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>raw_category</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Cache</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Retention</span>
           </div>
         </div>
       </div>
@@ -841,11 +859,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 4</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Besucher-Frontend sichtbar &amp; touch-tauglich</div>
-          <div class="roadmap-desc">Baustellenseite ablösen, echte App als Standard zeigen. Such-Eingabefeld anbinden. Auswahl- und Fehlerzustände am Touchscreen verständlich anzeigen.</div>
+          <div class="roadmap-title">Künftige NAS-Segmente verstetigen</div>
+          <div class="roadmap-desc">Segmentweises Vorgehen für weitere Jahre dokumentieren: Backup, Dry-Run, Real-Sync, Bulk-Cache, Abnahme und Rollback.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>Frontend</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Touch-UX</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>NAS</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Betrieb</span>
           </div>
         </div>
       </div>
@@ -854,11 +872,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 5</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">USB-Export am Kiosk abnehmen</div>
-          <div class="roadmap-desc">Copy-Job-Flow ist im Repo umgesetzt. Jetzt am echten Pi mit realem USB-Stick verifizieren: Mehrfachkopie, Speicherprüfung, Stick-Abziehen und Mount-Konfiguration.</div>
+          <div class="roadmap-title">Datenmodell festigen</div>
+          <div class="roadmap-desc">Rohen NAS-Begriff separat speichern. Herkunft, Cache und Verfügbarkeit sauber unterscheiden. Grundlage für langfristige Korrekturen legen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>USB</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Pi-Smoke-Test</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Datenmodell</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>raw_category</span>
           </div>
         </div>
       </div>
@@ -893,7 +911,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Breite NAS-Pfade</div>
         </div>
-        <div class="risk-desc">Vollständiges Einlesen großer NAS-Jahresordner noch nicht belastbar geprüft. Wichtigstes technisches Risiko für einen vollständigen Medienkatalog.</div>
+        <div class="risk-desc">Die Jahressegmente 2025 und 2026 sind verifiziert. Der breite Root /mnt/echo-nas bleibt wegen fremder Ordner und Traversal-Last ein bewusst ausgeklammerter Pfad.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
@@ -919,9 +937,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Inhalt-Verfügbarkeit</div>
+          <div class="risk-title">Speicher und Retention</div>
         </div>
-        <div class="risk-desc">Solange das NAS-Cachen aussteht, ist nur ein Teil des Katalogs lokal verfügbar und damit kopierbar. Klare Unterscheidung zwischen lokal, NAS-bekannt und Cache bleibt wichtig.</div>
+        <div class="risk-desc">Der lokale Cache liegt bei ca. 51.94 GB. Ohne klare Cleanup- und Retention-Regeln kann der Pi-Speicher langfristig zum Betriebsrisiko werden.</div>
       </div>
     </div>
   </div>
@@ -970,7 +988,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
-      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 6. Juni 2026</div>
+      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 10. Juni 2026</div>
       <div>Internes Dokument &middot; Nicht zur Veröffentlichung</div>
     </div>
   </div>
