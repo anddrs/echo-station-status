@@ -455,7 +455,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        MVP-Fokus USB-Export · 4411 Einträge lokal gecached
+        Pi auf dcc6ab1 · Admin-Auth C2 deployt · 4411 Einträge lokal gecached
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -535,17 +535,17 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🔐 Admin-Bereich</div>
-          <span class="badge badge--open"><span class="badge-dot"></span>Offen</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Deploy verifiziert</span>
         </div>
-        <div class="status-card-desc">Zentraler Folge-Case für geschützte Wartung: PIN-Schutz, Kalender-Verwaltung, Sync-Steuerung und Admin-Funktionen sind fachlich geplant, aber noch nicht umgesetzt.</div>
+        <div class="status-card-desc">PIN-basierte Admin-Auth mit First-Run-Setup ist auf dem Pi deployt. Backend-Smoke, Session-Cookie und Migration 008 sind verifiziert; offen bleibt die Touch-Abnahme der Ersteinrichtung und des PIN-Wechsels.</div>
       </div>
 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">📅 Kalender &amp; Kiosk-Freigabe</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Backend vorbereitet</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Read-only live</span>
         </div>
-        <div class="status-card-desc">Der Kalender wird die zentrale Quelle für Sperr- und Freigabezeiten. Die regulären Gottesdienste sind fachlich abgebildet; Admin-CRUD, PIN-Schutz und UI folgen später.</div>
+        <div class="status-card-desc">Resolver und Statusanzeige laufen am echten Kiosk. Der öffentliche Status bleibt ohne Auth erreichbar; schreibende Kalender- und Override-Endpunkte folgen jetzt geschützt durch die Admin-Session.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -612,8 +612,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">📅</div>
         <div class="feature-title">Kalender-Zeitsteuerung</div>
-        <div class="feature-desc">Reguläre Gottesdienste und spätere Sondertermine steuern, wann der Kiosk freigegeben oder gesperrt ist. Backend-Grundlage ist vorbereitet; Verwaltung folgt mit Admin-Schutz.</div>
-        <span class="badge badge--partial"><span class="badge-dot"></span>In Arbeit</span>
+        <div class="feature-desc">Reguläre Gottesdienste steuern, wann der Kiosk freigegeben oder gesperrt ist. Resolver, öffentlicher Status-Endpunkt und Admin-Statusanzeige sind am Pi verifiziert.</div>
+        <span class="badge badge--partial"><span class="badge-dot"></span>Read-only live</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔐</div>
+        <div class="feature-title">Admin-Auth</div>
+        <div class="feature-desc">Lokales First-Run-Setup für eine 6-stellige PIN, signiertes HttpOnly-Session-Cookie, Rate-Limit und PIN-Wechsel sind implementiert und auf dem Pi backend-seitig abgenommen.</div>
+        <span class="badge badge--partial"><span class="badge-dot"></span>Touch-Abnahme offen</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">📤</div>
@@ -738,6 +744,20 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="done-note">Pi läuft auf Commit 3775841. Der produktive Katalog enthält 4411 aktive Einträge, alle lokal gecached, mit ca. 51.94 GB Cache-Daten.</div>
         </div>
       </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Kiosk-Freigabe read-only live</div>
+          <div class="done-note">Resolver, öffentlicher Status-Endpunkt und Admin-Statusanzeige sind auf dem echten Kiosk deployt. Die Zeitzonenanzeige wurde mit 2026-06-14T09:50:00+02:00 als deutscher Ortszeit bestätigt.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Admin-Auth C2 deployt</div>
+          <div class="done-note">Pi läuft auf Commit dcc6ab1 mit First-Run-PIN-Setup, Session-Cookie, Rate-Limit, PIN-Wechsel und Migration 008. Backend-Smoke und Services sind grün; die erste PIN wird bewusst erst am Kiosk-Touch gesetzt.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -782,8 +802,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">Kalender-Zeitsteuerung abnehmen</div>
-          <div class="open-note">Kalender als Case sauber fertigstellen: Standard-Gottesdienste, Sondertermine, Prioritäten, Zeitzone Europe/Berlin und Kiosk-Freigabe testen. Schreibende Verwaltung erst nach Admin-PIN.</div>
+          <div class="open-title">Kalender-Zeitsteuerung schreibend machen</div>
+          <div class="open-note">Read-only-Status und Zeitzonenanzeige sind live. Als Nächstes folgen geschützte Admin-Schreibpfade für manuellen Override, Sondertermine und Verwaltung.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -810,8 +830,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--low">○</div>
         <div class="open-content">
-          <div class="open-title">Admin-Bereich</div>
-          <div class="open-note">Wartungsfunktionen für das Technikteam. PIN-Schutz wird vor schreibenden Kalender-, Sync- oder Admin-Funktionen benötigt.</div>
+          <div class="open-title">Admin-Touch-Abnahme abschließen</div>
+          <div class="open-note">First-Run-Setup ist backend-seitig deployt. Offen ist die Bedienung am echten Touchscreen: erste PIN setzen, Login, Statusansicht, PIN-Wechsel und Login mit neuer PIN.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -866,11 +886,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 3</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Kalender-Zeitsteuerung produktreif machen</div>
-          <div class="roadmap-desc">Standard-Gottesdienste, Sondertermine und manuelle Regeln als Kalender-Cases abbilden. Kiosk-Freigabe DST-sicher prüfen; schreibende Verwaltung erst mit Admin-Schutz.</div>
+          <div class="roadmap-title">Admin-geschützte Kalenderverwaltung bauen</div>
+          <div class="roadmap-desc">Read-only-Freigabe und Admin-Auth sind deployt. Nächster Schritt ist der erste schreibende Admin-Pfad: manueller Override, danach Sondertermine und Regeln.</div>
           <div class="roadmap-tags">
             <span class="badge badge--partial"><span class="badge-dot"></span>Kalender</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Kiosk-Zugriff</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Admin-Session</span>
           </div>
         </div>
       </div>
@@ -919,7 +939,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">Betrieb, Wartung &amp; Langzeit</div>
-          <div class="roadmap-desc">Admin-Bereich ausbauen. Cache-Cleanup aktivieren. Backup- und Restore-Ablauf absichern. Betriebscheckliste fertigstellen.</div>
+          <div class="roadmap-desc">Admin-Funktionen auf der vorhandenen PIN-Session ausbauen. Cache-Cleanup aktivieren, Backup- und Restore-Ablauf absichern und Betriebscheckliste fertigstellen.</div>
           <div class="roadmap-tags">
             <span class="badge badge--neutral"><span class="badge-dot"></span>Admin</span>
             <span class="badge badge--neutral"><span class="badge-dot"></span>Wartung</span>
@@ -985,7 +1005,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Kalender-Regeln</div>
         </div>
-        <div class="risk-desc">Sperr- und Freigabezeiten brauchen klare Prioritäten, Admin-Schutz und Tests für Sommer-/Winterzeit, Feiertage und Sondertermine.</div>
+        <div class="risk-desc">Sperr- und Freigabezeiten brauchen klare Prioritäten, konsequent geschützte Schreibpfade und Tests für Sommer-/Winterzeit, Feiertage und Sondertermine.</div>
+      </div>
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">Admin-Ersteinrichtung</div>
+        </div>
+        <div class="risk-desc">Die Auth-Basis ist deployt, aber noch unkonfiguriert. Die erste PIN muss am lokalen Kiosk gesetzt und der PIN-Wechsel am Touchscreen abgenommen werden.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
