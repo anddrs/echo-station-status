@@ -455,7 +455,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Pi auf dcc6ab1 · Admin-Auth C2 deployt · 4411 Einträge lokal gecached
+        Pi auf dcc6ab1 · USB-Kern-Test bestanden · 4411 Einträge lokal gecached
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -503,9 +503,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">💾 USB-Stick kopieren</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>Kern verifiziert</span>
         </div>
-        <div class="status-card-desc">USB-Export-Flow ist im Repo umgesetzt und mehrfach manuell erfolgreich getestet. Offen bleibt der formal dokumentierte Pi-Smoke-Test mit echtem USB-Stick und produktiver Mount-Konfiguration.</div>
+        <div class="status-card-desc">USB-Export ist am echten Pi mit realem Stick verifiziert: Einzel- und Mehrfachkopie liefen durch, MP3-Dateien und Dateinamen wurden extern geprüft. Offen bleiben Robustheitstests.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -624,8 +624,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">📤</div>
         <div class="feature-title">USB-Export</div>
-        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und Fehlerbehandlung sind umgesetzt; der Flow wurde mehrfach manuell erfolgreich getestet.</div>
-        <span class="badge badge--partial"><span class="badge-dot"></span>Im Repo umgesetzt</span>
+        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Mehrfachauswahl, Speicherprüfung und Fortschritt sind am echten Pi mit Einzel- und Mehrfachkopie erfolgreich getestet.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Kern verifiziert</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
@@ -758,6 +758,13 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="done-note">Pi läuft auf Commit dcc6ab1 mit First-Run-PIN-Setup, Session-Cookie, Rate-Limit, PIN-Wechsel und Migration 008. Backend-Smoke und Services sind grün; die erste PIN wird bewusst erst am Kiosk-Touch gesetzt.</div>
         </div>
       </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">USB-Kern-Smoke-Test bestanden</div>
+          <div class="done-note">Echter Stick am Pi erkannt, eine und mehrere Aufnahmen kopiert, MP3-Dateien an einem anderen Rechner geprüft und Dateinamen auch bei mehrfacher Kopie bestätigt.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -772,17 +779,17 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     </div>
     <div class="open-list">
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">!</div>
+        <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">Echte Besucheroberfläche sichtbar schalten</div>
-          <div class="open-note">Am Kiosk ist aktuell noch eine Baustellenseite aktiv, die echte App liegt im Hintergrund. Nächster Schritt: produktiven Besucher-Flow als Standardansicht sichtbar machen und Touchscreen-UX schärfen.</div>
+          <div class="open-title">Touchscreen-UX final abnehmen</div>
+          <div class="open-note">Der produktive Besucher-Flow ist sichtbar und nutzbar. Offen bleibt die Bedienprobe am Touchscreen: Lesbarkeit, Abstände, Erfolgsmeldung nach Kopie und Fehlermeldungen nachschärfen.</div>
         </div>
       </div>
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">!</div>
+        <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">USB-Export am echten Pi verifizieren</div>
-          <div class="open-note">USB-Export wurde mehrfach manuell erfolgreich getestet. Offen bleibt der dokumentierte Pi-Smoke-Test: echter USB-Stick, produktive Mount-Konfiguration, Mehrfachkopie und Abziehen während des Kopiervorgangs.</div>
+          <div class="open-title">USB-Robustheit und Fehlerfälle testen</div>
+          <div class="open-note">Der Kernfluss ist mit echtem Stick bestanden. Offen bleiben Abziehen während des Kopiervorgangs, volle/langsame oder nicht beschreibbare Sticks und die zugehörigen Touchscreen-Fehlermeldungen.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -860,10 +867,10 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 1</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Besucheroberfläche sichtbar schalten</div>
-          <div class="roadmap-desc">Baustellenseite ablösen, echten Besucher-Flow als Standard anzeigen und Touchscreen-Lesbarkeit vor Ort prüfen.</div>
+          <div class="roadmap-title">Touchscreen-UX final abnehmen</div>
+          <div class="roadmap-desc">Besucher-Flow ist sichtbar und nutzbar. Jetzt Lesbarkeit, Abstände, Erfolgsmeldung nach Kopie und Fehlertexte am Touchscreen prüfen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>Kiosk</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>Kiosk sichtbar</span>
             <span class="badge badge--partial"><span class="badge-dot"></span>Touch-UX</span>
           </div>
         </div>
@@ -873,11 +880,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 2</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">USB-Export formal abnehmen</div>
-          <div class="roadmap-desc">Manuell erfolgreiche Tests dokumentiert wiederholen: echter USB-Stick, produktiver Mount, Mehrfachkopie, Speicherprüfung und Stick-Abziehen.</div>
+          <div class="roadmap-title">USB-Robustheit formal abnehmen</div>
+          <div class="roadmap-desc">Kern-Smoke-Test ist bestanden. Jetzt Stick-Abziehen, volle/langsame oder nicht beschreibbare Sticks, Speicherprüfung und Fehlermeldungen dokumentiert testen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>USB</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Pi-Smoke-Test</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>USB-Kernfluss</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Robustheit</span>
           </div>
         </div>
       </div>
@@ -991,14 +998,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">USB-Robustheit</div>
         </div>
-        <div class="risk-desc">USB-Kopieren ist für Besucher wichtig, aber fehleranfällig. Zu langsame, volle oder falsch formatierte Sticks sowie Abziehen während des Kopiervorgangs müssen abgefangen werden.</div>
+        <div class="risk-desc">Der Kernfluss ist mit echtem Stick bestanden. Zu langsame, volle oder falsch formatierte Sticks sowie Abziehen während des Kopiervorgangs müssen noch sauber abgefangen werden.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Besucherbedienung</div>
         </div>
-        <div class="risk-desc">Das aktuelle Frontend ist noch kein finales Kiosk-Interface. Für den echten Betrieb braucht es klare Abläufe für den Touchscreen und verständliche Fehlermeldungen.</div>
+        <div class="risk-desc">Der Besucher-Flow ist am Kiosk sichtbar und nutzbar. Für den echten Betrieb müssen Lesbarkeit, Erfolgsmeldungen und Fehlertexte am Touchscreen final abgenommen werden.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
