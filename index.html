@@ -507,9 +507,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">💾 USB-Stick kopieren</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>MVP abgenommen</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>MVP + Abziehfall abgenommen</span>
         </div>
-        <div class="status-card-desc">USB-Export ist grün: echter Stick bereit, Einzel- und Mehrfachkopie, wiederholtes Kopieren mit konfliktfreien Dateinamen sowie externe Datei- und Abspielprüfung sind bestanden.</div>
+        <div class="status-card-desc">USB-Export ist grün: echter Stick bereit, Einzel- und Mehrfachkopie, wiederholtes Kopieren mit konfliktfreien Dateinamen, Abziehen während der Kopie sowie externe Datei- und Abspielprüfung sind bestanden.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -788,7 +788,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">USB-Export MVP abgenommen</div>
-          <div class="done-note">Echter Stick am Pi erkannt, Einzelkopie und Mehrfachkopie bestanden, wiederholtes Kopieren erzeugt konfliktfreie Dateinamen, MP3-Dateien sind extern vorhanden und abspielbar. Der Auswahl-Limit-Fehlerfall ist geprüft; die Grenze liegt nun bei 700 Einträgen und die Fehlermeldung ist per OK-Button schließbar.</div>
+          <div class="done-note">Echter Stick am Pi erkannt, Einzelkopie und Mehrfachkopie bestanden, wiederholtes Kopieren erzeugt konfliktfreie Dateinamen, MP3-Dateien sind extern vorhanden und abspielbar. Abziehen während der Kopie ist mehrfach geprüft: Der Kopiervorgang stoppt, der Zustand wird auf den Stand vor dem Kopierstart zurückgesetzt, die Sammelliste kann erneut gestartet werden und es werden nur noch fehlende Dateien kopiert. Der Auswahl-Limit-Fehlerfall ist geprüft; die Grenze liegt nun bei 700 Einträgen und die Fehlermeldung ist per OK-Button schließbar.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -835,8 +835,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">USB-Robustheit und Fehlerfälle testen</div>
-          <div class="open-note">Nicht MVP-blockierend: Abziehen während des Kopiervorgangs, volle oder sehr langsame Sticks, nicht beschreibbare Sticks und die zugehörigen Touchscreen-Fehlermeldungen.</div>
+          <div class="open-title">USB-Sonderfälle weiter testen</div>
+          <div class="open-note">Nicht MVP-blockierend: volle oder sehr langsame Sticks, nicht beschreibbare Sticks und die zugehörigen Touchscreen-Fehlermeldungen. Abziehen während der Kopie ist bereits als kontrollierter Abbruch mit erneutem Kopieren fehlender Dateien bestätigt.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -940,8 +940,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 3</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">USB-Robustheit für Sonderfälle abnehmen</div>
-          <div class="roadmap-desc">USB-Export ist MVP-abgenommen. Offen bleiben nur Sonderfälle: Stick während Kopie entfernen, volle oder sehr langsame Sticks, nicht beschreibbare Sticks und die dazugehörigen Fehlermeldungen.</div>
+          <div class="roadmap-title">USB-Sonderfälle weiter abnehmen</div>
+          <div class="roadmap-desc">USB-Export ist MVP-abgenommen, inklusive kontrolliertem Abbruch beim Abziehen während der Kopie und erneutem Kopieren nur fehlender Dateien. Offen bleiben volle oder sehr langsame Sticks, nicht beschreibbare Sticks und die dazugehörigen Fehlermeldungen.</div>
           <div class="roadmap-tags">
             <span class="badge badge--done"><span class="badge-dot"></span>USB-MVP</span>
             <span class="badge badge--partial"><span class="badge-dot"></span>Robustheit</span>
@@ -1058,7 +1058,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">USB-Robustheit</div>
         </div>
-        <div class="risk-desc">Der USB-MVP ist mit echtem Stick abgenommen. Zu langsame, volle oder nicht beschreibbare Sticks sowie Abziehen während des Kopiervorgangs sind weiterhin offene Robustheitstests.</div>
+        <div class="risk-desc">Der USB-MVP ist mit echtem Stick abgenommen; auch Abziehen während der Kopie ist als kontrollierter Abbruch mit erneutem Kopieren fehlender Dateien bestätigt. Zu langsame, volle oder nicht beschreibbare Sticks bleiben offene Sonderfalltests.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
