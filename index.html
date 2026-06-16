@@ -451,11 +451,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="hero-meta">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 15. Juni 2026
+        Stand: 16. Juni 2026
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Pi auf 2c828d4 · USB-Export MVP abgenommen · 4411 Einträge lokal gecached
+        Statuslabel v0.5.0-beta.1 · Pi auf c21fb61 · Kiosk-Probebetrieb
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        Backend/Kiosk aktiv · ein Chromium-Fenster · 4411 Einträge lokal gecached
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -471,7 +475,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="section-header">
       <div class="section-label">Aktueller Stand</div>
       <h2 class="section-title">Funktionsübersicht</h2>
-      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Grün = fertig, Gelb = teilweise umgesetzt, Rot = noch offen.</p>
+      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station geht in den Kiosk-Probebetrieb.</p>
     </div>
 
     <div class="status-grid">
@@ -489,7 +493,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🔍 Suche &amp; Filter</div>
           <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
         </div>
-        <div class="status-card-desc">Suchfeld, Backend-Volltextsuche, Kategorie-Filter und Sortierung sind im Besucher-Frontend aktiv.</div>
+        <div class="status-card-desc">Suchfeld, Backend-Volltextsuche, Kategorie-Filter und Sortierung sind im Besucher-Frontend aktiv. Das Suchfenster scrollt jetzt auch per Finger-/Pointer-Drag auf dem Kiosk-Panel.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -519,7 +523,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🗄️ NAS als Quelle</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Aktiv begrenzt</span>
         </div>
         <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten; der lokale Pi-Katalog und Cache sind produktiv nutzbar. Breite Jahres- und Root-Pfade bleiben ein Betriebs- und Traversal-Thema.</div>
       </div>
@@ -538,6 +542,22 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <span class="badge badge--done"><span class="badge-dot"></span>Touch abgenommen</span>
         </div>
         <div class="status-card-desc">PIN-basierte Admin-Auth ist am echten Kiosk in Betrieb: First-Run-PIN gesetzt, Login geprüft, Statusansicht geöffnet und PIN-Wechsel erfolgreich durchgeführt.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🖥️ FullHD-Kiosk &amp; Touch</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
+        </div>
+        <div class="status-card-desc">FullHD-Galerie, betonte Sammelleiste und Overlay-Scrolling sind auf dem Pi deployt. Suche und Sammlung wurden per Pointer-Drag geprüft; die Bedienung geht in den Probebetrieb.</div>
+      </div>
+
+      <div class="status-card fade-in">
+        <div class="status-card-head">
+          <div class="status-card-title">🪟 Chromium-Fensterkontrolle</div>
+          <span class="badge badge--done"><span class="badge-dot"></span>Gehärtet</span>
+        </div>
+        <div class="status-card-desc">Der Kiosk startet mit dediziertem Chromium-Profil als App-Fenster. Verwaiste Chromium-Reste werden vor dem Start bereinigt; live geprüft ist genau ein sichtbares Fenster.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -594,7 +614,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">🔎</div>
         <div class="feature-title">Volltextsuche</div>
-        <div class="feature-desc">Schnelle Suche über Titel und Sprecher. Das Suchfeld nutzt die Backend-Volltextsuche, inklusive On-Screen-Tastatur für den Touchscreen.</div>
+        <div class="feature-desc">Schnelle Suche über Titel und Sprecher. Das Suchfeld nutzt die Backend-Volltextsuche, inklusive On-Screen-Tastatur und korrigiertem Finger-/Pointer-Scroll im Suchfenster.</div>
         <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
       </div>
       <div class="feature-card fade-in">
@@ -626,6 +646,12 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="feature-title">USB-Export</div>
         <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Einzelkopie, Mehrfachkopie, Namenskollisionen, externe Datei-/Abspielprüfung und Auswahl-Limit-Fehlerfall sind am echten Pi bestanden.</div>
         <span class="badge badge--done"><span class="badge-dot"></span>MVP abgenommen</span>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🖥️</div>
+        <div class="feature-title">Kiosk-Probebetrieb</div>
+        <div class="feature-desc">FullHD-Layout, Sammelleiste, Suche, Sammlung und Chromium-Fensterkontrolle sind am Pi verifiziert. Der Stand ist als v0.5.0-beta.1 für Geräte- und Bedienprüfung markiert.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
@@ -765,6 +791,20 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="done-note">Echter Stick am Pi erkannt, Einzelkopie und Mehrfachkopie bestanden, wiederholtes Kopieren erzeugt konfliktfreie Dateinamen, MP3-Dateien sind extern vorhanden und abspielbar. Der Auswahl-Limit-Fehlerfall ist geprüft; die Grenze liegt nun bei 700 Einträgen und die Fehlermeldung ist per OK-Button schließbar.</div>
         </div>
       </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">FullHD-Kiosk-Design auf dem Pi geprüft</div>
+          <div class="done-note">Galerie-Maske, Floating-Pfeile, neutrale Jahresauswahl, vereinfachte Demnächst-Karten und die deutlichere Sammelleiste sind auf dem FullHD-Kiosk deployt.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Overlay-Scroll und Chromium-Fensterkontrolle stabilisiert</div>
+          <div class="done-note">Suche und Sammlung scrollen auf dem Kiosk per Pointer-Drag. Das Kiosk-Skript bereinigt verwaiste Chromium-Reste; live geprüft ist ein sichtbares App-Fenster mit aktivem kiosk.service.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -781,8 +821,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">Touchscreen-UX final abnehmen</div>
-          <div class="open-note">Der produktive Besucher-Flow ist sichtbar und der normale USB-Export ist abgenommen. Offen bleibt Feinschliff am Touchscreen: Lesbarkeit, Abstände und klare Rückmeldungen für robuste Sonderfälle.</div>
+          <div class="open-title">Beta-Probebetrieb am Kiosk begleiten</div>
+          <div class="open-note">FullHD-Layout, Sammelleiste, Suche, Sammlung und Chromium-Fensterkontrolle sind live. Offen bleibt die praktische Beobachtung im Geräte- und Besucherbetrieb.</div>
+        </div>
+      </div>
+      <div class="open-item fade-in">
+        <div class="open-icon open-icon--low">○</div>
+        <div class="open-content">
+          <div class="open-title">Beta-Branch in main übernehmen</div>
+          <div class="open-note">Der Pi läuft aktuell auf dem PR-/Beta-Branch design/p0-paket-a mit Commit c21fb61. Nach visueller Abnahme sollte der Stand gemergt und als Produktstand nachgeführt werden.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -867,17 +914,30 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 1</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Touchscreen-UX final abnehmen</div>
-          <div class="roadmap-desc">Normaler USB-Besucherfluss ist abgenommen. Jetzt Lesbarkeit, Abstände und Rückmeldungen für robuste Sonderfälle am Touchscreen prüfen.</div>
+          <div class="roadmap-title">Beta-Probebetrieb begleiten</div>
+          <div class="roadmap-desc">v0.5.0-beta.1 ist auf dem Pi aktiv. Jetzt reale Bedienung beobachten: FullHD-Galerie, Sammelleiste, Suche, Sammlung, Erfolgslisten und ein konsistentes Chromium-Kioskfenster.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--done"><span class="badge-dot"></span>Kiosk sichtbar</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Touch-UX</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>c21fb61</span>
           </div>
         </div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
           <div class="roadmap-phase">Phase 2</div>
+        </div>
+        <div class="roadmap-body fade-in">
+          <div class="roadmap-title">Beta-Branch mergen und Release-Stand nachziehen</div>
+          <div class="roadmap-desc">Der laufende Pi-Stand liegt auf design/p0-paket-a. Nach visueller Abnahme: PR mergen, Produktversionen nachziehen und Deploy-Pfad wieder auf main normalisieren.</div>
+          <div class="roadmap-tags">
+            <span class="badge badge--partial"><span class="badge-dot"></span>PR-Branch</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Release</span>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-side">
+          <div class="roadmap-phase">Phase 3</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">USB-Robustheit für Sonderfälle abnehmen</div>
@@ -890,7 +950,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 3</div>
+          <div class="roadmap-phase">Phase 4</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">Admin-geschützte Kalenderverwaltung bauen</div>
@@ -903,7 +963,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 4</div>
+          <div class="roadmap-phase">Phase 5</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">Retention und Cleanup regeln</div>
@@ -916,7 +976,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 5</div>
+          <div class="roadmap-phase">Phase 6</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">NAS-Betrieb verstetigen</div>
@@ -929,7 +989,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 6</div>
+          <div class="roadmap-phase">Phase 7</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">Datenmodell festigen</div>
@@ -942,7 +1002,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 7</div>
+          <div class="roadmap-phase">Phase 8</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">Betrieb, Wartung &amp; Langzeit</div>
@@ -955,7 +1015,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 8</div>
+          <div class="roadmap-phase">Phase 9</div>
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">KI-Unterstützung als Folge-Case schneiden</div>
@@ -1005,7 +1065,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Besucherbedienung</div>
         </div>
-        <div class="risk-desc">Der normale Besucher-Export ist am Kiosk abgenommen. Für Sonderfälle bleiben Lesbarkeit, Rückmeldungen und Fehlertexte am Touchscreen zu prüfen.</div>
+        <div class="risk-desc">Die Hauptprobleme bei FullHD-Layout, Sammelleiste und Overlay-Scroll sind behoben. Im Probebetrieb müssen reale Besucherführung und Sonderfalltexte weiter beobachtet werden.</div>
+      </div>
+      <div class="risk-card fade-in">
+        <div class="risk-head">
+          <div class="risk-icon">⚠️</div>
+          <div class="risk-title">Release-Übergang</div>
+        </div>
+        <div class="risk-desc">Der Pi läuft aktuell bewusst auf dem Beta-/PR-Branch. Nach Abnahme muss der Stand in main übernommen werden, damit Status, GitHub und Deployment-Pfad wieder deckungsgleich sind.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
@@ -1082,7 +1149,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
-      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 15. Juni 2026</div>
+      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 16. Juni 2026 &middot; v0.5.0-beta.1</div>
       <div>Internes Dokument &middot; Nicht zur Veröffentlichung</div>
     </div>
   </div>
