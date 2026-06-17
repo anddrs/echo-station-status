@@ -455,11 +455,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Statuslabel v0.5.0-beta.1 · App-Code d1ae5e8 · Kiosk-Probebetrieb
+        Statuslabel v0.5.0-beta.1 · App-Code e81bf8d · Produktdocs f7b6cd9
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-        Backend/Kiosk aktiv · Admin-NAS-UI deployt · USB-MVP grün
+        Backend/Kiosk aktiv · NAS-UX live · USB-MVP grün
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -475,7 +475,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="section-header">
       <div class="section-label">Aktueller Stand</div>
       <h2 class="section-title">Funktionsübersicht</h2>
-      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station läuft im Kiosk-Probebetrieb, die Admin-NAS-UI ist deployt und der erste eng begrenzte NAS-Event-Sync ist kontrolliert abgeschlossen.</p>
+      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station läuft im Kiosk-Probebetrieb, die Admin-NAS-UI mit produktiver Ein-Event-Freigabe ist deployt und der erste eng begrenzte NAS-Event-Sync ist kontrolliert abgeschlossen.</p>
     </div>
 
     <div class="status-grid">
@@ -525,7 +525,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🗄️ NAS als Quelle</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Ein Event belegt</span>
         </div>
-        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Status, Event-Auswahl, Dry-Run-Ergebnis und Run-History sind deployt; ein breiter produktiver 2026_MP3-Lauf ist nicht freigegeben.</div>
+        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Status, Event-Auswahl, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History sind deployt; ein breiter produktiver 2026_MP3-Lauf ist nicht freigegeben.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -539,9 +539,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🔐 Admin-Bereich</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>NAS-UI deployt</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>NAS-UX live</span>
         </div>
-        <div class="status-card-desc">PIN-basierte Admin-Auth ist am echten Kiosk in Betrieb. Der geschützte Admin-Bereich zeigt Kiosk-Status, NAS-Status, Event-Liste, Dry-Run-Ergebnis und Run-History.</div>
+        <div class="status-card-desc">PIN-basierte Admin-Auth ist am echten Kiosk in Betrieb. Verdeckter Long-Press-Zugang, Kiosk-Status, NAS-Status, Event-Liste, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History sind live.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -815,8 +815,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="done-item fade-in">
         <div class="done-icon">✓</div>
         <div class="done-content">
-          <div class="done-title">Admin-NAS-UI deployt</div>
-          <div class="done-note">App-Code d1ae5e8 ist auf dem Pi gebaut und der Kiosk neu gestartet. Die UI zeigt NAS-Status, Filter, Event-Auswahl, Dry-Run-Ergebnis und Run-History; der Dry-Run-Pfad bleibt im Frontend auf dryRun:true begrenzt.</div>
+          <div class="done-title">Admin-NAS-UX und Timer v1 deployt</div>
+          <div class="done-note">App-Code e81bf8d ist auf dem Pi gebaut und Backend/Kiosk wurden neu gestartet. Die UI zeigt NAS-Status, Filter, Event-Auswahl, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe mit Backup-Bestätigung, Scheduler-Status und Run-History; Timer v1 bleibt per Env/default deaktiviert.</div>
         </div>
       </div>
     </div>
@@ -843,7 +843,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--low">○</div>
         <div class="open-content">
           <div class="open-title">Main-, Pi- und Doku-Stand zusammenhalten</div>
-          <div class="open-note">Der Pi-Checkout ist auf main. Reine Doku-Commits können nach dem laufenden App-Code liegen; Produktrepo, Pi-Checkout und öffentliche Statusseite müssen deshalb getrennt nachgeführt werden.</div>
+          <div class="open-note">Der Pi-Checkout ist auf main und hat den Produktdocs-Commit f7b6cd9 gezogen. Der laufende App-Code bleibt e81bf8d; Produktrepo, Pi-Checkout, Runtime und öffentliche Statusseite müssen deshalb getrennt benannt werden.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -857,7 +857,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
           <div class="open-title">Sync- und Cache-Betrieb verstetigen</div>
-          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar und die erste Admin-NAS-UI ist deployt. Für weitere echte NAS-Event-Syncs braucht es noch Backup-Hinweis, Bestätigung, Dry-Run, genauem Event-Scope, Run-History, Katalog-/Suchprüfung und Abnahme.</div>
+          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar und die Admin-NAS-UX ist deployt. Weitere echte NAS-Event-Syncs nur eng bedienen: aktueller Dry-Run, genau ein Event, missing=0, frische DB-Sicherung, Produktivlauf, Run-History sowie Katalog-/Suchprüfung.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -932,7 +932,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-desc">v0.5.0-beta.1 ist auf dem Pi aktiv. Jetzt reale Bedienung beobachten: FullHD-Galerie, Sammelleiste, Suche, Sammlung, Erfolgslisten und ein konsistentes Chromium-Kioskfenster.</div>
           <div class="roadmap-tags">
             <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
-            <span class="badge badge--done"><span class="badge-dot"></span>d1ae5e8</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>e81bf8d</span>
           </div>
         </div>
       </div>
@@ -994,7 +994,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">NAS-Betrieb verstetigen</div>
-          <div class="roadmap-desc">Nach dem ersten produktiven Ein-Event-Sync und der deployten Admin-NAS-UI die produktive Strecke wiederholbar machen: Backup-Hinweis, Bestätigung, Dry-Run, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation.</div>
+          <div class="roadmap-desc">Nach dem ersten produktiven Ein-Event-Sync und der deployten Admin-NAS-UX weitere echte Events streng wiederholbar bedienen: aktueller Dry-Run, Backup-Bestätigung, genau ein Event, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation. Timer v1 bleibt bis zur gezielten Freigabe deaktiviert.</div>
           <div class="roadmap-tags">
             <span class="badge badge--neutral"><span class="badge-dot"></span>NAS</span>
             <span class="badge badge--neutral"><span class="badge-dot"></span>Betrieb</span>
