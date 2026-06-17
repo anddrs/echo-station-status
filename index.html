@@ -451,15 +451,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="hero-meta">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 16. Juni 2026
+        Stand: 17. Juni 2026
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Statuslabel v0.5.0-beta.1 · Pi auf c21fb61 · Kiosk-Probebetrieb
+        Statuslabel v0.5.0-beta.1 · App-Code 29f5e1c · Kiosk-Probebetrieb
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-        Backend/Kiosk aktiv · ein Chromium-Fenster · 4411 Einträge lokal gecached
+        Backend/Kiosk aktiv · 4411 Einträge · erster NAS-Event-Sync kontrolliert abgeschlossen
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -475,7 +475,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="section-header">
       <div class="section-label">Aktueller Stand</div>
       <h2 class="section-title">Funktionsübersicht</h2>
-      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station geht in den Kiosk-Probebetrieb.</p>
+      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station läuft im Kiosk-Probebetrieb und der erste eng begrenzte NAS-Event-Sync ist kontrolliert abgeschlossen.</p>
     </div>
 
     <div class="status-grid">
@@ -523,9 +523,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🗄️ NAS als Quelle</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Aktiv begrenzt</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Ein Event belegt</span>
         </div>
-        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten; der lokale Pi-Katalog und Cache sind produktiv nutzbar. Breite Jahres- und Root-Pfade bleiben ein Betriebs- und Traversal-Thema.</div>
+        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Der erste produktive Ein-Event-Sync für 2026_MP3/GD_260527_Mi_mp3_a ist erfolgreich; ein breiter produktiver 2026_MP3-Lauf ist nicht freigegeben.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -656,7 +656,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
         <div class="feature-title">NAS-Integration</div>
-        <div class="feature-desc">Die NAS bleibt die Hauptquelle. Der lokale Pi-Katalog umfasst 4411 Einträge; breite Jahres- und Root-Pfade werden weiter vorsichtig behandelt.</div>
+        <div class="feature-desc">Die NAS bleibt die Hauptquelle. Der lokale Pi-Katalog umfasst 4411 Einträge; ein einzelner Event wurde produktiv synchronisiert, breite Jahres- und Root-Pfade werden weiter vorsichtig behandelt.</div>
         <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
       </div>
     </div>
@@ -704,7 +704,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">NAS-Anbindung produktiv verifiziert</div>
-          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft und der lokale Katalog/Cache produktiv aufgebaut. Breite Jahres- und Root-Pfade bleiben bewusst kein pauschal freigegebener Sync-Pfad.</div>
+          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft und der lokale Katalog/Cache produktiv aufgebaut. Der erste produktive Ein-Event-Sync ist kontrolliert abgeschlossen; breite Jahres- und Root-Pfade bleiben bewusst kein pauschal freigegebener Sync-Pfad.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -805,6 +805,13 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="done-note">Suche und Sammlung scrollen auf dem Kiosk per Pointer-Drag. Das Kiosk-Skript bereinigt verwaiste Chromium-Reste; live geprüft ist ein sichtbares App-Fenster mit aktivem kiosk.service.</div>
         </div>
       </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">NAS-Event-Sync kontrolliert abgeschlossen</div>
+          <div class="done-note">Admin-API akzeptiert gezielte eventRelativeRoots und sperrt produktive Läufe ohne exakt einen geplanten Event. Nach Backup und Dry-Run wurde 2026_MP3/GD_260527_Mi_mp3_a produktiv synchronisiert: Run 99, scanned=8, updated=8, missing=0, Event-State synced.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -828,8 +835,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--low">○</div>
         <div class="open-content">
-          <div class="open-title">Beta-Branch in main übernehmen</div>
-          <div class="open-note">Der Pi läuft aktuell auf dem PR-/Beta-Branch design/p0-paket-a mit Commit c21fb61. Nach visueller Abnahme sollte der Stand gemergt und als Produktstand nachgeführt werden.</div>
+          <div class="open-title">Main-, Pi- und Doku-Stand zusammenhalten</div>
+          <div class="open-note">Der Pi-Checkout ist auf main. Reine Doku-Commits können nach dem laufenden App-Code liegen; Produktrepo, Pi-Checkout und öffentliche Statusseite müssen deshalb getrennt nachgeführt werden.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -843,14 +850,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
           <div class="open-title">Sync- und Cache-Betrieb verstetigen</div>
-          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar. Für künftige NAS-Erweiterungen braucht es eine klare Betriebsroutine mit Backup, Dry-Run, Sync, Cache-Aufbau und Abnahme.</div>
+          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar. Für weitere NAS-Event-Syncs braucht es eine wiederholbare Routine mit Backup, Dry-Run, genauem Event-Scope, Run-History, Katalog-/Suchprüfung und Abnahme.</div>
         </div>
       </div>
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">NAS-Root bewusst ausklammern</div>
-          <div class="open-note">Breite Jahres- und Root-Pfade bleiben wegen fremder Ordner, Laufzeit und Traversal-Risiko nicht als gelöst oder pauschal produktiv freigegeben.</div>
+          <div class="open-title">Breiten NAS-Lauf nicht freigeben</div>
+          <div class="open-note">Der erste Ein-Event-Sync ist belegt. Trotzdem bleibt ein breiter produktiver 2026_MP3- oder Root-Lauf wegen Laufzeit und Traversal-Risiko nicht freigegeben.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -918,7 +925,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-desc">v0.5.0-beta.1 ist auf dem Pi aktiv. Jetzt reale Bedienung beobachten: FullHD-Galerie, Sammelleiste, Suche, Sammlung, Erfolgslisten und ein konsistentes Chromium-Kioskfenster.</div>
           <div class="roadmap-tags">
             <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
-            <span class="badge badge--done"><span class="badge-dot"></span>c21fb61</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>29f5e1c</span>
           </div>
         </div>
       </div>
@@ -927,11 +934,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-phase">Phase 2</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Beta-Branch mergen und Release-Stand nachziehen</div>
-          <div class="roadmap-desc">Der laufende Pi-Stand liegt auf design/p0-paket-a. Nach visueller Abnahme: PR mergen, Produktversionen nachziehen und Deploy-Pfad wieder auf main normalisieren.</div>
+          <div class="roadmap-title">Main-Stand und Statusdoku aktuell halten</div>
+          <div class="roadmap-desc">App-Code, reine Doku-Commits, Pi-Checkout und öffentliche Statusseite getrennt nachführen. Nach Doku-only Pulls auf dem Pi sind kein Build und kein Service-Restart nötig.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>PR-Branch</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Release</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>main</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Status</span>
           </div>
         </div>
       </div>
@@ -980,7 +987,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">NAS-Betrieb verstetigen</div>
-          <div class="roadmap-desc">Groben Betriebsstatus halten, ohne breite Jahres- oder Root-Pfade als gelöst darzustellen: Backup, Dry-Run, Sync, Cache-Aufbau, Abnahme und Rollback dokumentieren.</div>
+          <div class="roadmap-desc">Nach dem ersten produktiven Ein-Event-Sync die Admin-Strecke wiederholbar machen: Event-Auswahl, Backup-Hinweis, Dry-Run, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation.</div>
           <div class="roadmap-tags">
             <span class="badge badge--neutral"><span class="badge-dot"></span>NAS</span>
             <span class="badge badge--neutral"><span class="badge-dot"></span>Betrieb</span>
@@ -1044,7 +1051,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Breite NAS-Pfade</div>
         </div>
-        <div class="risk-desc">Breite Jahres- und Root-Pfade bleiben wegen fremder Ordner, Laufzeit und Traversal-Last ein bewusst ausgeklammertes Betriebsrisiko.</div>
+        <div class="risk-desc">Der Ein-Event-Sync ist erfolgreich belegt. Breite Jahres- und Root-Pfade bleiben trotzdem wegen fremder Ordner, Laufzeit und Traversal-Last ein bewusst ausgeklammertes Betriebsrisiko.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
@@ -1070,9 +1077,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Release-Übergang</div>
+          <div class="risk-title">Stand-Drift</div>
         </div>
-        <div class="risk-desc">Der Pi läuft aktuell bewusst auf dem Beta-/PR-Branch. Nach Abnahme muss der Stand in main übernommen werden, damit Status, GitHub und Deployment-Pfad wieder deckungsgleich sind.</div>
+        <div class="risk-desc">App-Code, Doku-Commits, Pi-Checkout und Statusseite können unterschiedliche Commitstände haben. Bei jeder Übergabe muss klar sein, welcher Stand lokal, auf GitHub, auf dem Pi und öffentlich sichtbar ist.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
@@ -1149,7 +1156,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
-      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 16. Juni 2026 &middot; v0.5.0-beta.1</div>
+      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 17. Juni 2026 &middot; v0.5.0-beta.1</div>
       <div>Internes Dokument &middot; Nicht zur Veröffentlichung</div>
     </div>
   </div>
