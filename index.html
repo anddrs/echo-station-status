@@ -451,15 +451,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="hero-meta">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 17. Juni 2026
+        Stand: 18. Juni 2026
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Statuslabel v0.5.0-beta.1 · App-Code e81bf8d · Produktdocs f7b6cd9
+        Statuslabel v0.5.0-beta.1 · App-Code 359e19d · Produktdocs 649f89c
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-        Backend/Kiosk aktiv · NAS-UX live · USB-MVP grün
+        Backend/Kiosk aktiv · NAS-Backup-Gate live · Kiosk-Sperre abgenommen
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -475,7 +475,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="section-header">
       <div class="section-label">Aktueller Stand</div>
       <h2 class="section-title">Funktionsübersicht</h2>
-      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station läuft im Kiosk-Probebetrieb, die Admin-NAS-UI mit produktiver Ein-Event-Freigabe ist deployt und der erste eng begrenzte NAS-Event-Sync ist kontrolliert abgeschlossen.</p>
+      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station läuft im Kiosk-Probebetrieb, die Admin-NAS-UI mit echtem DB-Backup-Gate ist deployt und die Kiosk-Bildschirmsperre mit Simple- und Admin-Modus ist am Touchscreen abgenommen.</p>
     </div>
 
     <div class="status-grid">
@@ -525,7 +525,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🗄️ NAS als Quelle</div>
           <span class="badge badge--partial"><span class="badge-dot"></span>Ein Event belegt</span>
         </div>
-        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Status, Event-Auswahl, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History sind deployt; ein breiter produktiver 2026_MP3-Lauf ist nicht freigegeben.</div>
+        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Status, Event-Auswahl, DB-Backup, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History sind deployt; ein breiter produktiver 2026_MP3-Lauf ist nicht freigegeben.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -539,9 +539,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🔐 Admin-Bereich</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>NAS-UX live</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>NAS + Sperre live</span>
         </div>
-        <div class="status-card-desc">PIN-basierte Admin-Auth ist am echten Kiosk in Betrieb. Verdeckter Long-Press-Zugang, Kiosk-Status, NAS-Status, Event-Liste, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History sind live.</div>
+        <div class="status-card-desc">PIN-basierte Admin-Auth ist am echten Kiosk in Betrieb. Verdeckter Long-Press-Zugang, Kiosk-Status, NAS-Status, Event-Liste, DB-Backup, Dry-Run, produktive Ein-Event-Freigabe, Admin-Lock und Freigabe-Buttons sind live.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -563,9 +563,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">📅 Kalender &amp; Kiosk-Freigabe</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Read-only live</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>Sperre live</span>
         </div>
-        <div class="status-card-desc">Resolver und Statusanzeige laufen am echten Kiosk. Der öffentliche Status bleibt ohne Auth erreichbar; schreibende Kalender- und Override-Endpunkte folgen jetzt geschützt durch die Admin-Session.</div>
+        <div class="status-card-desc">Resolver und Statusanzeige laufen am echten Kiosk. Der öffentliche Status bleibt ohne Auth erreichbar; Simple-Lock und Admin-Lock sind deployt und am Touchscreen geprüft. Kalender-Sondertermine bleiben der nächste Ausbau.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -632,8 +632,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">📅</div>
         <div class="feature-title">Kalender-Zeitsteuerung</div>
-        <div class="feature-desc">Reguläre Gottesdienste steuern, wann der Kiosk freigegeben oder gesperrt ist. Resolver, öffentlicher Status-Endpunkt und Admin-Statusanzeige sind am Pi verifiziert.</div>
-        <span class="badge badge--partial"><span class="badge-dot"></span>Read-only live</span>
+        <div class="feature-desc">Reguläre Gottesdienste steuern, wann der Kiosk freigegeben oder gesperrt ist. Resolver, öffentlicher Status-Endpunkt, Simple-Lock, Admin-Lock und Admin-Statusanzeige sind am Pi verifiziert.</div>
+        <span class="badge badge--done"><span class="badge-dot"></span>Sperre live</span>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔐</div>
@@ -773,8 +773,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="done-item fade-in">
         <div class="done-icon">✓</div>
         <div class="done-content">
-          <div class="done-title">Kiosk-Freigabe read-only live</div>
-          <div class="done-note">Resolver, öffentlicher Status-Endpunkt und Admin-Statusanzeige sind auf dem echten Kiosk deployt. Die Zeitzonenanzeige wurde mit 2026-06-14T09:50:00+02:00 als deutscher Ortszeit bestätigt.</div>
+          <div class="done-title">Kiosk-Zeitstatus und Sperre live</div>
+          <div class="done-note">Resolver, öffentlicher Status-Endpunkt, Admin-Statusanzeige, Simple-Lock und Admin-Lock sind auf dem echten Kiosk deployt. Die neuen Statusfelder lockMode, lockedAt, scheduleActive und scheduleActiveUntil sind live.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -815,8 +815,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="done-item fade-in">
         <div class="done-icon">✓</div>
         <div class="done-content">
-          <div class="done-title">Admin-NAS-UX und Timer v1 deployt</div>
-          <div class="done-note">App-Code e81bf8d ist auf dem Pi gebaut und Backend/Kiosk wurden neu gestartet. Die UI zeigt NAS-Status, Filter, Event-Auswahl, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe mit Backup-Bestätigung, Scheduler-Status und Run-History; Timer v1 bleibt per Env/default deaktiviert.</div>
+          <div class="done-title">Admin-NAS-UX mit DB-Backup-Gate deployt</div>
+          <div class="done-note">App-Code 2033583 ist auf dem Pi gebaut und Backend/Kiosk wurden neu gestartet. Die UI zeigt NAS-Status, Filter, Event-Auswahl, DB-Backup, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History; Timer v1 bleibt per Env/default deaktiviert.</div>
+        </div>
+      </div>
+      <div class="done-item fade-in">
+        <div class="done-icon">✓</div>
+        <div class="done-content">
+          <div class="done-title">Kiosk-Sperre mit Simple/Admin-Modus deployt</div>
+          <div class="done-note">App-Code 359e19d ist auf dem Pi gebaut. Der dezente Button „Bildschirm sperren" im Admin-Login-Dialog, Simple-Lock, Sperrbildschirm, Admin-Freigabe und „Administrativ sperren" sind am echten Touchscreen bestanden.</div>
         </div>
       </div>
     </div>
@@ -843,7 +850,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--low">○</div>
         <div class="open-content">
           <div class="open-title">Main-, Pi- und Doku-Stand zusammenhalten</div>
-          <div class="open-note">Der Pi-Checkout ist auf main und hat den Produktdocs-Commit f7b6cd9 gezogen. Der laufende App-Code bleibt e81bf8d; Produktrepo, Pi-Checkout, Runtime und öffentliche Statusseite müssen deshalb getrennt benannt werden.</div>
+          <div class="open-note">Der Pi-Checkout ist auf main und hat den Produktdocs-Commit 649f89c gezogen. Der laufende App-Code ist 359e19d; Produktrepo, Pi-Checkout, Runtime und öffentliche Statusseite müssen weiterhin getrennt benannt werden.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -870,8 +877,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
-          <div class="open-title">Kalender-Zeitsteuerung schreibend machen</div>
-          <div class="open-note">Read-only-Status und Zeitzonenanzeige sind live. Als Nächstes folgen geschützte Admin-Schreibpfade für manuellen Override, Sondertermine und Verwaltung.</div>
+          <div class="open-title">Kalender-Sondertermine schreibend machen</div>
+          <div class="open-note">Status, Simple-Lock, Admin-Lock und Freigabe sind live. Als Nächstes folgen geschützte Admin-Schreibpfade für Sondertermine und dauerhafte Regelverwaltung.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -898,8 +905,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="open-item fade-in">
         <div class="open-icon open-icon--low">○</div>
         <div class="open-content">
-          <div class="open-title">Admin-Schreibpfad fachlich schneiden</div>
-          <div class="open-note">Admin-Login und PIN-Wechsel sind am Touchscreen erledigt. Offen ist der erste geschützte Schreibpfad, voraussichtlich manueller Kiosk-Override oder Kalender-Sondertermin.</div>
+          <div class="open-title">Weitere Admin-Schreibpfade schneiden</div>
+          <div class="open-note">Admin-Login, PIN-Wechsel, Simple-Lock und Admin-Lock sind am Touchscreen erledigt. Offen sind die nächsten geschützten Schreibpfade für Kalender-Sondertermine, Regeln und Betriebsaktionen.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -932,7 +939,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="roadmap-desc">v0.5.0-beta.1 ist auf dem Pi aktiv. Jetzt reale Bedienung beobachten: FullHD-Galerie, Sammelleiste, Suche, Sammlung, Erfolgslisten und ein konsistentes Chromium-Kioskfenster.</div>
           <div class="roadmap-tags">
             <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
-            <span class="badge badge--done"><span class="badge-dot"></span>e81bf8d</span>
+            <span class="badge badge--done"><span class="badge-dot"></span>359e19d</span>
           </div>
         </div>
       </div>
@@ -968,7 +975,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">Admin-geschützte Kalenderverwaltung bauen</div>
-          <div class="roadmap-desc">Read-only-Freigabe läuft, Admin-Auth ist am Touchscreen abgenommen. Nächster Schritt ist der erste schreibende Admin-Pfad: manueller Override, danach Sondertermine und Regeln.</div>
+          <div class="roadmap-desc">Simple-Lock, Admin-Lock und Freigabe laufen, Admin-Auth ist am Touchscreen abgenommen. Nächster Schritt sind geschützte Admin-Pfade für Sondertermine und Regeln.</div>
           <div class="roadmap-tags">
             <span class="badge badge--partial"><span class="badge-dot"></span>Kalender</span>
             <span class="badge badge--partial"><span class="badge-dot"></span>Admin-Session</span>
@@ -994,7 +1001,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">NAS-Betrieb verstetigen</div>
-          <div class="roadmap-desc">Nach dem ersten produktiven Ein-Event-Sync und der deployten Admin-NAS-UX weitere echte Events streng wiederholbar bedienen: aktueller Dry-Run, Backup-Bestätigung, genau ein Event, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation. Timer v1 bleibt bis zur gezielten Freigabe deaktiviert.</div>
+          <div class="roadmap-desc">Nach dem ersten produktiven Ein-Event-Sync und der deployten Admin-NAS-UX weitere echte Events streng wiederholbar bedienen: aktueller Dry-Run, echtes DB-Backup-Gate, genau ein Event, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation. Timer v1 bleibt bis zur gezielten Freigabe deaktiviert.</div>
           <div class="roadmap-tags">
             <span class="badge badge--neutral"><span class="badge-dot"></span>NAS</span>
             <span class="badge badge--neutral"><span class="badge-dot"></span>Betrieb</span>
