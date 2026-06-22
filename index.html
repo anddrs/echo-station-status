@@ -523,9 +523,9 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🗄️ NAS als Quelle</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Ein Event belegt</span>
+          <span class="badge badge--done"><span class="badge-dot"></span>Batch + Timer aktiv</span>
         </div>
-        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Status, Event-Auswahl, DB-Backup, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History sind deployt; ein breiter produktiver 2026_MP3-Lauf ist nicht freigegeben.</div>
+        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Workflow mit DB-Backup, Dry-Run, produktiven Event-/Batch-Syncs, Scheduler-Status und Run-History ist live. Stand 22.06.: 7553 Katalogeinträge, 3095 davon auf NAS, 566 NAS-Runs; der Timer ist aktiv konfiguriert, breite 2026_MP3-/Root-Blindläufe bleiben gesperrt.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -704,7 +704,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">NAS-Anbindung produktiv verifiziert</div>
-          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft und der lokale Katalog/Cache produktiv aufgebaut. Der erste produktive Ein-Event-Sync ist kontrolliert abgeschlossen; breite Jahres- und Root-Pfade bleiben bewusst kein pauschal freigegebener Sync-Pfad.</div>
+          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft und der lokale Katalog/Cache produktiv aufgebaut. Kontrollierte Event- und Batch-Syncs sind produktiv gelaufen; breite Jahres- und Root-Pfade bleiben bewusst kein pauschal freigegebener Sync-Pfad.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -899,14 +899,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
           <div class="open-title">Sync- und Cache-Betrieb verstetigen</div>
-          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar und die Admin-NAS-UX ist deployt. Weitere echte NAS-Event-Syncs nur eng bedienen: aktueller Dry-Run, genau ein Event, missing=0, frische DB-Sicherung, Produktivlauf, Run-History sowie Katalog-/Suchprüfung.</div>
+          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar, die Admin-NAS-UX ist deployt und der Timer ist aktiv konfiguriert. Nächster Betriebsfokus: Timer-Nachläufe mit frischem Event beobachten und Cache-Verhalten weiter sauber kontrollieren.</div>
         </div>
       </div>
       <div class="open-item fade-in">
         <div class="open-icon open-icon--med">~</div>
         <div class="open-content">
           <div class="open-title">Breiten NAS-Lauf nicht freigeben</div>
-          <div class="open-note">Der erste Ein-Event-Sync ist belegt. Trotzdem bleibt ein breiter produktiver 2026_MP3- oder Root-Lauf wegen Laufzeit und Traversal-Risiko nicht freigegeben.</div>
+          <div class="open-note">Event- und Batch-Syncs sind produktiv belegt. Trotzdem bleibt ein breiter produktiver 2026_MP3- oder Root-Lauf wegen Laufzeit und Traversal-Risiko nicht freigegeben.</div>
         </div>
       </div>
       <div class="open-item fade-in">
@@ -1036,7 +1036,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
         <div class="roadmap-body fade-in">
           <div class="roadmap-title">NAS-Betrieb verstetigen</div>
-          <div class="roadmap-desc">Nach dem ersten produktiven Ein-Event-Sync und der deployten Admin-NAS-UX weitere echte Events streng wiederholbar bedienen: aktueller Dry-Run, echtes DB-Backup-Gate, genau ein Event, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation. Der dauerhafte Timer ist für Mittwoch und Sonntag aktiv und muss beim ersten frischen Gottesdienst-Nachlauf beobachtet werden.</div>
+          <div class="roadmap-desc">Nach produktiven Event-/Batch-Syncs und der deployten Admin-NAS-UX weitere echte Events streng wiederholbar bedienen: aktueller Dry-Run, echtes DB-Backup-Gate, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation. Der dauerhafte Timer ist für Mittwoch und Sonntag aktiv und muss beim ersten frischen Gottesdienst-Nachlauf beobachtet werden.</div>
           <div class="roadmap-tags">
             <span class="badge badge--neutral"><span class="badge-dot"></span>NAS</span>
             <span class="badge badge--neutral"><span class="badge-dot"></span>Betrieb</span>
@@ -1100,7 +1100,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Breite NAS-Pfade</div>
         </div>
-        <div class="risk-desc">Der Ein-Event-Sync ist erfolgreich belegt. Breite Jahres- und Root-Pfade bleiben trotzdem wegen fremder Ordner, Laufzeit und Traversal-Last ein bewusst ausgeklammertes Betriebsrisiko.</div>
+        <div class="risk-desc">Event- und Batch-Syncs sind erfolgreich belegt. Breite Jahres- und Root-Pfade bleiben trotzdem wegen fremder Ordner, Laufzeit und Traversal-Last ein bewusst ausgeklammertes Betriebsrisiko.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
