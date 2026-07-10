@@ -451,15 +451,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="hero-meta">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 22. Juni 2026
+        Stand: 11. Juli 2026
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        v0.6.0-beta.1 · Backend/Kiosk aktiv · NAS-Timer aktiv
+        v0.6.0-beta.1 · Backend/Kiosk aktiv · V2-Richtung festgelegt
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-        Backend/Kiosk aktiv · Admin-PIN 4-stellig · NAS-Live-Timer aktiv
+        Altbetrieb unverändert · EchoStation-Struktur noch nicht freigegeben
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -475,7 +475,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <div class="section-header">
       <div class="section-label">Aktueller Stand</div>
       <h2 class="section-title">Funktionsübersicht</h2>
-      <p class="section-desc">Überblick über alle Bereiche des Projekts mit aktuellem Status. Stand jetzt: Besucher-MVP ist auf dem Pi lauffähig, die Station läuft im Kiosk-Probebetrieb, die Admin-NAS-UI mit echtem DB-Backup-Gate ist deployt, die Kiosk-Bildschirmsperre ist abgenommen, das Kiosk-Hardening ist nach Reboot technisch grün, der Fernzugriff für Wartung ist eingerichtet und der NAS-Live-Timer läuft dauerhaft für Mittwoch und Sonntag.</p>
+      <p class="section-desc">Der Besucher-MVP läuft weiter unverändert auf der bestehenden Altquelle. EchoStation ist als einzige künftige Audioquelle beschlossen; Tontechnik und IT finalisieren jedoch zuerst die reale Ordnerstruktur. Bis zu deren Freigabe gibt es keinen Mountwechsel und keine V2-Implementierung aus Annahmen.</p>
     </div>
 
     <div class="status-grid">
@@ -501,7 +501,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">🤖 KI-Unterstützung</div>
           <span class="badge badge--info"><span class="badge-dot"></span>Geplanter Case</span>
         </div>
-        <div class="status-card-desc">KI ersetzt „Musik hören“ als nächster fachlicher Case: bessere Suche, Vorschläge, Kategorisierung und Admin-Assistenz. Nicht MVP-blockierend; der Besucher-MVP bleibt USB-Export.</div>
+        <div class="status-card-desc">Mögliche spätere Verbesserung für Suche und Admin-Assistenz. Sie ist kein aktuelles V2-Gate und darf die Strukturinventur, den direkten USB-Export oder den Cutover nicht verzögern.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -515,17 +515,17 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🔄 Daten-Synchronisation</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>V1 läuft · V2 wartet</span>
         </div>
-        <div class="status-card-desc">Audiodateien werden aus lokalem Ordner und NAS eingelesen, ausgewertet und in der Datenbank gespeichert. Produktiv verifiziert.</div>
+        <div class="status-card-desc">Der bestehende V1-Sync bleibt bis zum harten Cutover unverändert. Weitere Timer-, Event-Sync- oder Cache-Erweiterungen sind nicht Teil der aktuellen V2-Vorbereitung.</div>
       </div>
 
       <div class="status-card fade-in">
         <div class="status-card-head">
           <div class="status-card-title">🗄️ NAS als Quelle</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Batch + Timer aktiv</span>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Struktur ausstehend</span>
         </div>
-        <div class="status-card-desc">Die NAS bleibt Quelle der Audio-Daten. Admin-Workflow mit DB-Backup, Dry-Run, produktiven Event-/Batch-Syncs, Scheduler-Status und Run-History ist live. Stand 22.06.: 7553 Katalogeinträge, 3095 davon auf NAS, 566 NAS-Runs; der Timer ist aktiv konfiguriert, breite 2026_MP3-/Root-Blindläufe bleiben gesperrt.</div>
+        <div class="status-card-desc">EchoStation wird die einzige künftige Audioquelle. Tontechnik und IT legen zuerst den endgültigen Arbeitsablauf und die Ordnerstruktur fest; danach folgt eine vollständige read-only Inventur.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -565,15 +565,15 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
           <div class="status-card-title">📅 Kalender &amp; Kiosk-Freigabe</div>
           <span class="badge badge--done"><span class="badge-dot"></span>Sperre live</span>
         </div>
-        <div class="status-card-desc">Resolver und Statusanzeige laufen am echten Kiosk. Der öffentliche Status bleibt ohne Auth erreichbar; Simple-Lock, Admin-Lock und /api/v1/kiosk/unlock sind deployt. Kalender-Sondertermine bleiben der nächste Ausbau.</div>
+        <div class="status-card-desc">Resolver und Statusanzeige laufen am echten Kiosk. Der öffentliche Status bleibt ohne Auth erreichbar; Simple-Lock, Admin-Lock und /api/v1/kiosk/unlock sind deployt. Diese Funktion bleibt beim V2-Umbau erhalten.</div>
       </div>
 
       <div class="status-card fade-in">
         <div class="status-card-head">
-          <div class="status-card-title">🧹 Cache-Verwaltung</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Teilweise</span>
+          <div class="status-card-title">🧭 V2-Neuausrichtung</div>
+          <span class="badge badge--partial"><span class="badge-dot"></span>Gate 0</span>
         </div>
-        <div class="status-card-desc">Gezielter Cache-Abruf und Bulk-Cache laufen produktiv. Cleanup-Timer, Retention-Regeln und langfristige Betriebsregeln bleiben offen.</div>
+        <div class="status-card-desc">Greenfield-SQLite/FTS, kein permanenter Pi-Audiocache und direkter NAS-zu-USB-Export sind beschlossen. Parser und Datenmodell entstehen erst aus der freigegebenen realen Struktur.</div>
       </div>
 
       <div class="status-card fade-in">
@@ -638,7 +638,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">🔐</div>
         <div class="feature-title">Admin-Auth</div>
-        <div class="feature-desc">Lokales First-Run-Setup für eine 4-stellige PIN, signiertes HttpOnly-Session-Cookie, Rate-Limit und PIN-Wechsel sind implementiert. Migration 011 ist live, die PIN ist neu gesetzt und auth_state.configured=true.</div>
+        <div class="feature-desc">Lokales First-Run-Setup, signiertes HttpOnly-Session-Cookie, Rate-Limit und PIN-Wechsel sind im laufenden V1-System implementiert. Die genaue V2-Auth-Konfiguration wird im Greenfield-Vertrag übernommen und getestet.</div>
         <span class="badge badge--done"><span class="badge-dot"></span>Touch abgenommen</span>
       </div>
       <div class="feature-card fade-in">
@@ -656,8 +656,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <div class="feature-card fade-in">
         <div class="feature-icon">🔗</div>
         <div class="feature-title">NAS-Integration</div>
-        <div class="feature-desc">Die NAS bleibt die Hauptquelle. Der Pi-Katalog umfasst 7553 Einträge, davon 3095 remote/NAS-indexiert. 566 NAS-Runs sind protokolliert; der Timer ist aktiv konfiguriert und gestartet. Die zuletzt geprüften Runs waren weiterhin manuell, der erste frische Gottesdienst-Nachlauf bleibt zu beobachten.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
+        <div class="feature-desc">Die bestehende V1-Anbindung bleibt bis zum Cutover in Betrieb. EchoStation wird danach alleinige Quelle; die technische Umsetzung wartet auf die von Tontechnik und IT freigegebene Ordnerstruktur.</div>
+        <span class="badge badge--partial"><span class="badge-dot"></span>Übergang geplant</span>
       </div>
     </div>
   </div>
@@ -767,7 +767,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="done-icon">✓</div>
         <div class="done-content">
           <div class="done-title">Lokalen Katalog aufgebaut</div>
-          <div class="done-note">Der produktive Katalog enthält 4411 aktive Einträge, lokal gecached, mit ca. 51.94 GB Cache-Daten.</div>
+          <div class="done-note">Der historische V1-Katalog und lokale Cache wurden produktiv aufgebaut. Diese Bestandszahlen bleiben V1-Historie und definieren weder V2-Datenmodell noch EchoStation-Struktur.</div>
         </div>
       </div>
       <div class="done-item fade-in">
@@ -855,100 +855,44 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <section class="section" id="offen">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Offene Punkte</div>
-      <h2 class="section-title">Was noch aussteht</h2>
-      <p class="section-desc">Punkte, die für einen vollen Besucherbetrieb noch fehlen, geordnet nach Priorität.</p>
+      <div class="section-label">Aktuelle Abhängigkeit</div>
+      <h2 class="section-title">Was jetzt wirklich als Nächstes kommt</h2>
+      <p class="section-desc">Die Reihenfolge ist verbindlich. Der bestehende Kiosk bleibt bis zum geprüften V2-Cutover unverändert.</p>
     </div>
     <div class="open-list">
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
+        <div class="open-icon open-icon--high">1</div>
         <div class="open-content">
-          <div class="open-title">Beta-Probebetrieb am Kiosk begleiten</div>
-          <div class="open-note">FullHD-Layout, Sammelleiste, Suche, Sammlung und Chromium-Fensterkontrolle sind live. Offen bleibt die praktische Beobachtung im Geräte- und Besucherbetrieb.</div>
+          <div class="open-title">EchoStation-Struktur fertigstellen</div>
+          <div class="open-note">Tontechnik und IT legen ihren tatsächlichen Ablageablauf, Ordnernamen und Verantwortlichkeiten fest und geben die Struktur anschließend ausdrücklich frei.</div>
         </div>
       </div>
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--low">○</div>
+        <div class="open-icon open-icon--high">2</div>
         <div class="open-content">
-          <div class="open-title">Main-, Pi- und Doku-Stand zusammenhalten</div>
-          <div class="open-note">Produktrepo/origin, Pi-Checkout, Pi-Runtime und öffentliche Statusseite bleiben getrennte Stände und werden bewusst separat nachgeführt. Commit-Details stehen in der internen Übergabe, nicht auf der öffentlichen Statusseite.</div>
+          <div class="open-title">Vollständig read-only inventarisieren</div>
+          <div class="open-note">Erst nach Freigabe werden mehrere Jahre, alle Hierarchieebenen, vollständige MP3-Pfade, ID3-/Datumsquellen, Sonderzeichen, Berechtigungen und Abweichungen untersucht.</div>
         </div>
       </div>
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
+        <div class="open-icon open-icon--high">3</div>
         <div class="open-content">
-          <div class="open-title">Interne Wartungsfreigaben zurückbauen</div>
-          <div class="open-note">Kiosk-Hardening, Fernzugriff, Services, Health und USB sind fertig eingerichtet. Offen bleibt der bewusste Rückbau temporärer Wartungsfreigaben, sobald keine Live-Arbeiten mit erweiterten Rechten mehr laufen.</div>
+          <div class="open-title">V2-Vertrag aus dem Befund ableiten</div>
+          <div class="open-note">Die reale Struktur bestimmt Parser, SQLite-Schema, Indexer, dynamische Navigation, Suche, Verfügbarkeitsanzeige und NAS-zu-USB-Export. Vermutete Zwischenebenen werden nicht implementiert.</div>
         </div>
       </div>
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
+        <div class="open-icon open-icon--med">4</div>
         <div class="open-content">
-          <div class="open-title">Fernzugriff intern nachhärten</div>
-          <div class="open-note">Der funktionierende Fernzugriff bleibt bestehen. Zusätzliche Absicherung kann später intern geplant und getestet werden.</div>
+          <div class="open-title">Greenfield-V2 bauen und als Candidate prüfen</div>
+          <div class="open-note">Neue SQLite-/FTS-Datenbank, kein permanenter MP3-Cache, direkter speicherbegrenzter USB-Export sowie vollständige Backend-, Frontend-, Backup-, Reboot- und Hardwaretests.</div>
         </div>
       </div>
       <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
+        <div class="open-icon open-icon--med">5</div>
         <div class="open-content">
-          <div class="open-title">USB-Sonderfälle weiter testen</div>
-          <div class="open-note">Nicht MVP-blockierend: volle oder sehr langsame Sticks, nicht beschreibbare Sticks und die zugehörigen Touchscreen-Fehlermeldungen. Abziehen während der Kopie ist bereits als kontrollierter Abbruch mit erneutem Kopieren fehlender Dateien bestätigt.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
-        <div class="open-content">
-          <div class="open-title">Sync- und Cache-Betrieb verstetigen</div>
-          <div class="open-note">Der lokale Katalog/Cache ist produktiv nutzbar, die Admin-NAS-UX ist deployt und der Timer ist aktiv konfiguriert. Nächster Betriebsfokus: Timer-Nachläufe mit frischem Event beobachten und Cache-Verhalten weiter sauber kontrollieren.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
-        <div class="open-content">
-          <div class="open-title">Breiten NAS-Lauf nicht freigeben</div>
-          <div class="open-note">Event- und Batch-Syncs sind produktiv belegt. Trotzdem bleibt ein breiter produktiver 2026_MP3- oder Root-Lauf wegen Laufzeit und Traversal-Risiko nicht freigegeben.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
-        <div class="open-content">
-          <div class="open-title">Kalender-Sondertermine schreibend machen</div>
-          <div class="open-note">Status, Simple-Lock, Admin-Lock und Freigabe sind live. Als Nächstes folgen geschützte Admin-Schreibpfade für Sondertermine und dauerhafte Regelverwaltung.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
-        <div class="open-content">
-          <div class="open-title">Cache-Cleanup automatisieren</div>
-          <div class="open-note">Endpunkt vorhanden, automatischer Timer fehlt noch. Nötig, damit der Speicher auf dem Pi langfristig nicht voll läuft.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">~</div>
-        <div class="open-content">
-          <div class="open-title">Datenmodell schärfen</div>
-          <div class="open-note">Ursprünglicher NAS-Begriff, interner Typ, Herkunft und Verfügbarkeit sauber trennen. Regeln für unklare Begriffe wie „Gebet" und „Abschluss" festlegen.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--low">○</div>
-        <div class="open-content">
-          <div class="open-title">KI-Case konkret schneiden</div>
-          <div class="open-note">Musik hören wird nicht weiter als MVP-Ziel verfolgt. Stattdessen werden konkrete KI-Anwendungsfälle gesammelt: Suche, Vorschläge, Kategorisierung, Dublettenhinweise und Admin-Hilfe.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--low">○</div>
-        <div class="open-content">
-          <div class="open-title">Weitere Admin-Schreibpfade schneiden</div>
-          <div class="open-note">Admin-Login, PIN-Wechsel, Simple-Lock und Admin-Lock sind am Touchscreen erledigt. Offen sind die nächsten geschützten Schreibpfade für Kalender-Sondertermine, Regeln und Betriebsaktionen.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--low">○</div>
-        <div class="open-content">
-          <div class="open-title">Betriebsregeln finalisieren</div>
-          <div class="open-note">Langfristige Strategie für Speicher, Archiv, On-demand-Abruf von der NAS, Retention und Wiederaufbau des lokalen Caches noch nicht finalisiert.</div>
+          <div class="open-title">Erst danach harter Cutover</div>
+          <div class="open-note">EchoStation wird ohne produktiven Parallelbetrieb zur einzigen Quelle. Alte Datenbank, Backups und Cache werden nur nach Candidate-Abnahme und separater Purge-Manifestfreigabe entfernt.</div>
         </div>
       </div>
     </div>
@@ -959,126 +903,81 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <section class="section" id="fahrplan">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Fahrplan</div>
-      <h2 class="section-title">Nächste Schritte</h2>
-      <p class="section-desc">Phasenbasierter Plan ohne feste Termine. Reihenfolge orientiert sich am Nutzwert für Besucher und Betrieb.</p>
+      <div class="section-label">V2-Fahrplan</div>
+      <h2 class="section-title">Von der realen Ordnerstruktur zum harten Cutover</h2>
+      <p class="section-desc">Keine feste Terminannahme: Tontechnik und IT schließen zuerst Gate 0. Die Technik folgt dem realen Befund.</p>
     </div>
 
     <div class="roadmap">
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 1</div>
+          <div class="roadmap-phase">Gate 0</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Kiosk-Betrieb beobachten</div>
-          <div class="roadmap-desc">v0.6.0-beta.1 ist auf dem Pi aktiv. Backend/Kiosk laufen technisch; Kiosk-Flags, labwc/getty-Hardening, Fernzugriff, Admin-PIN-Umstellung und NAS-Live-Timer sind abgeschlossen. Touch-Smokes bleiben anlassbezogen für neue UX-Änderungen.</div>
+          <div class="roadmap-title">Arbeitsablauf und Ordnerstruktur freigeben</div>
+          <div class="roadmap-desc">EchoStation wird von Tontechnik und IT fertig eingerichtet und für die technische Bestandsaufnahme eingefroren. Bis dahin kein Mountwechsel und keine strukturbasierte Implementierung.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
-            <span class="badge badge--done"><span class="badge-dot"></span>Pi live</span>
+            <span class="badge badge--partial"><span class="badge-dot"></span>Wartet auf Tontechnik/IT</span>
           </div>
         </div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 2</div>
+          <div class="roadmap-phase">Gate 1</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Main-Stand und Statusdoku aktuell halten</div>
-          <div class="roadmap-desc">App-Code, reine Doku-Commits, Pi-Checkout und öffentliche Statusseite getrennt nachführen. Nach Doku-only Pulls auf dem Pi sind kein Build und kein Service-Restart nötig.</div>
+          <div class="roadmap-title">Read-only Inventur</div>
+          <div class="roadmap-desc">Reale Jahre, Pfade, Kategorien, MP3-Dateien, ID3-Felder, Datumsquellen, Sonderfälle, Mengen und Rechte erfassen. Nur anonymisierte Fixtures gelangen ins Repo.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>main</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Status</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Read-only</span>
           </div>
         </div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 3</div>
+          <div class="roadmap-phase">Gate 2</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">USB-Sonderfälle weiter abnehmen</div>
-          <div class="roadmap-desc">USB-Export ist MVP-abgenommen, inklusive kontrolliertem Abbruch beim Abziehen während der Kopie und erneutem Kopieren nur fehlender Dateien. Offen bleiben volle oder sehr langsame Sticks, nicht beschreibbare Sticks und die dazugehörigen Fehlermeldungen.</div>
+          <div class="roadmap-title">V2-Verträge festschreiben</div>
+          <div class="roadmap-desc">Pfadidentität, Datum, autoritativer Scan, SQLite/FTS, API, Navigation, Verfügbarkeit, USB-Preflight und Zielnamen werden auf Basis der Inventur verbindlich.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--done"><span class="badge-dot"></span>USB-MVP</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Robustheit</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Vertrag</span>
           </div>
         </div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 4</div>
+          <div class="roadmap-phase">Gate 3</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Admin-geschützte Kalenderverwaltung bauen</div>
-          <div class="roadmap-desc">Simple-Lock, Admin-Lock und Freigabe laufen, Admin-Auth ist am Touchscreen abgenommen. Nächster Schritt sind geschützte Admin-Pfade für Sondertermine und Regeln.</div>
+          <div class="roadmap-title">Greenfield-V2 implementieren</div>
+          <div class="roadmap-desc">Neue Datenbank und Indexer, dynamisches Frontend, direkter NAS-zu-USB-Export, Adminstatus, Backup/Restore und systemd – ohne permanenten Pi-Audiocache.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>Kalender</span>
-            <span class="badge badge--partial"><span class="badge-dot"></span>Admin-Session</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Implementierung</span>
           </div>
         </div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 5</div>
+          <div class="roadmap-phase">Gate 4</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Retention und Cleanup regeln</div>
-          <div class="roadmap-desc">Der lokale Cache umfasst rund 52 GB. Cleanup-Timer, Retention-Regeln und Wiederaufbau aus der NAS betrieblich festlegen.</div>
+          <div class="roadmap-title">Candidate vollständig abnehmen</div>
+          <div class="roadmap-desc">Autoritativer Vollindex, FTS, Stichproben, Touch, USB-Canary, Restore-Smoke, Last- und Reboot-Test müssen grün sein.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Cache</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Retention</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Abnahme</span>
           </div>
         </div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 6</div>
+          <div class="roadmap-phase">Gate 5</div>
         </div>
         <div class="roadmap-body fade-in">
-          <div class="roadmap-title">NAS-Betrieb verstetigen</div>
-          <div class="roadmap-desc">Nach produktiven Event-/Batch-Syncs und der deployten Admin-NAS-UX weitere echte Events streng wiederholbar bedienen: aktueller Dry-Run, echtes DB-Backup-Gate, Produktivlauf, Run-History, Katalog-/Suchprüfung und Rollback-Dokumentation. Der dauerhafte Timer ist für Mittwoch und Sonntag aktiv und muss beim ersten frischen Gottesdienst-Nachlauf beobachtet werden.</div>
+          <div class="roadmap-title">Harter Cutover und kontrollierter Purge</div>
+          <div class="roadmap-desc">EchoStation wird alleinige Quelle. Erst nach erfolgreichem Produktions- und Backup-Smoke darf ein separat bestätigtes Allowlist-Manifest V1-Daten und Cache entfernen.</div>
           <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>NAS</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Betrieb</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 7</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Datenmodell festigen</div>
-          <div class="roadmap-desc">Rohen NAS-Begriff separat speichern. Herkunft, Cache und Verfügbarkeit sauber unterscheiden. Grundlage für langfristige Korrekturen legen.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Datenmodell</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>raw_category</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 8</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Betrieb, Wartung &amp; Langzeit</div>
-          <div class="roadmap-desc">Admin-Funktionen auf der vorhandenen PIN-Session ausbauen. Cache-Cleanup aktivieren, Backup- und Restore-Ablauf absichern und Betriebscheckliste fertigstellen.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Admin</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Wartung</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Phase 9</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">KI-Unterstützung als Folge-Case schneiden</div>
-          <div class="roadmap-desc">Offline-taugliche, kontrollierbare KI-Anwendungsfälle definieren. Fokus: bessere Suche, Vorschläge, Kategorisierungshilfe und Admin-Unterstützung statt Musik hören.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>KI</span>
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Suche</span>
+            <span class="badge badge--neutral"><span class="badge-dot"></span>Kein Parallelbetrieb</span>
           </div>
         </div>
       </div>
@@ -1091,72 +990,51 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
   <div class="container">
     <div class="section-header">
       <div class="section-label">Risiken</div>
-      <h2 class="section-title">Offene Fragen &amp; Risiken</h2>
-      <p class="section-desc">Bekannte Unsicherheiten, die den weiteren Verlauf beeinflussen können.</p>
+      <h2 class="section-title">Was die Reihenfolge absichert</h2>
+      <p class="section-desc">Die wichtigsten Risiken liegen derzeit nicht im Programmcode, sondern in verfrühten Annahmen und einem zu frühen Cutover.</p>
     </div>
     <div class="risk-grid">
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Breite NAS-Pfade</div>
+          <div class="risk-title">Ordnerstruktur noch nicht final</div>
         </div>
-        <div class="risk-desc">Event- und Batch-Syncs sind erfolgreich belegt. Breite Jahres- und Root-Pfade bleiben trotzdem wegen fremder Ordner, Laufzeit und Traversal-Last ein bewusst ausgeklammertes Betriebsrisiko.</div>
+        <div class="risk-desc">Ein Parser gegen den heutigen Zwischenstand würde den späteren Arbeitsablauf der Tontechnik möglicherweise falsch abbilden. Deshalb beginnt die Implementierung erst nach ausdrücklicher Freigabe.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Datenqualität NAS</div>
+          <div class="risk-title">Unbekannte Datumsquelle</div>
         </div>
-        <div class="risk-desc">Bisherige Stichproben sind hilfreich strukturiert. Ältere Dateien können abweichen. „Unbekannt" bleibt nötig als sicherer Fallback für nicht erkannte Begriffe.</div>
+        <div class="risk-desc">Ordnernamen, Dateinamen und ID3-Felder müssen an echten vollständigen Pfaden geprüft werden. Das NAS-Änderungsdatum wird nicht als Aufnahmedatum geraten.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">USB-Robustheit</div>
+          <div class="risk-title">Vorzeitiger Mountwechsel</div>
         </div>
-        <div class="risk-desc">Der USB-MVP ist mit echtem Stick abgenommen; auch Abziehen während der Kopie ist als kontrollierter Abbruch mit erneutem Kopieren fehlender Dateien bestätigt. Zu langsame, volle oder nicht beschreibbare Sticks bleiben offene Sonderfalltests.</div>
+        <div class="risk-desc">Der bestehende Kiosk bleibt auf der Altquelle, bis V2 als Candidate vollständig geprüft ist. Ein früher Wechsel könnte Katalog, Suche und USB-Export gleichzeitig unterbrechen.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Besucherbedienung</div>
+          <div class="risk-title">Irreversibler V1-Purge</div>
         </div>
-        <div class="risk-desc">Die Hauptprobleme bei FullHD-Layout, Sammelleiste und Overlay-Scroll sind behoben. Im Probebetrieb müssen reale Besucherführung und Sonderfalltexte weiter beobachtet werden.</div>
+        <div class="risk-desc">Alte Datenbank, Backups und Cache werden erst nach Candidate-, Restore-, Reboot- und USB-Abnahme über ein separat bestätigtes Allowlist-Manifest entfernt.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
           <div class="risk-title">Stand-Drift</div>
         </div>
-        <div class="risk-desc">App-Code, Doku-Commits, Pi-Checkout und Statusseite können unterschiedliche Commitstände haben. Bei jeder Übergabe muss klar sein, welcher Stand lokal, auf GitHub, auf dem Pi und öffentlich sichtbar ist.</div>
+        <div class="risk-desc">Produktrepo, GitHub, Pi-Checkout, laufende Dienste und öffentliche Statusseite sind getrennte Stände. Jede Übergabe muss diese Ebenen ausdrücklich auseinanderhalten.</div>
       </div>
       <div class="risk-card fade-in">
         <div class="risk-head">
           <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Kalender-Regeln</div>
+          <div class="risk-title">USB- und NAS-Verfügbarkeit</div>
         </div>
-        <div class="risk-desc">Sperr- und Freigabezeiten brauchen klare Prioritäten, konsequent geschützte Schreibpfade und Tests für Sommer-/Winterzeit, Feiertage und Sondertermine.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Admin-Schreibpfade</div>
-        </div>
-        <div class="risk-desc">Ersteinrichtung, Login und PIN-Wechsel sind erledigt. Das Risiko liegt jetzt in konsequent geschützten Schreibpfaden für Override, Sondertermine und Verwaltung.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">KI-Abgrenzung</div>
-        </div>
-        <div class="risk-desc">KI darf den lokalen Offline-Betrieb, Datenschutz und die Pi-Ressourcen nicht gefährden. Der Case muss eng geschnitten und fachlich überprüfbar bleiben.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Speicher und Retention</div>
-        </div>
-        <div class="risk-desc">Der lokale Cache liegt bei ca. 51.94 GB. Ohne klare Cleanup- und Retention-Regeln kann der Pi-Speicher langfristig zum Betriebsrisiko werden.</div>
+        <div class="risk-desc">V2 kopiert direkt von EchoStation. Deshalb müssen Rootidentität, Quellen, echter USB-Mount, freier Platz und Dateiversion vor der ersten USB-Mutation vollständig geprüft werden.</div>
       </div>
     </div>
   </div>
@@ -1205,7 +1083,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
-      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 22. Juni 2026 &middot; v0.6.0-beta.1</div>
+      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 11. Juli 2026 &middot; v0.6.0-beta.1</div>
       <div>Internes Dokument &middot; Nicht zur Veröffentlichung</div>
     </div>
   </div>
