@@ -1,1122 +1,141 @@
-<!DOCTYPE html>
-<html lang="de" data-theme="light">
+<!doctype html>
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Echo-Station – Projektbericht</title>
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=boska@400,500,700&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   ART DIRECTION: Intern / sachlich / warm-neutral
-   Display: Boska (serif, warm)  |  Body: Satoshi (sans)
-   Palette: Nexus (beige/teal)   |  Density: ausgewogen
-   ============================================================ */
-
-:root, [data-theme="light"] {
-  --font-display: 'Boska', Georgia, serif;
-  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
-
-  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
-  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
-  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
-  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
-  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
-  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
-
-  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
-  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
-  --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
-
-  --color-bg:             #f7f6f2;
-  --color-surface:        #f9f8f5;
-  --color-surface-2:      #fbfbf9;
-  --color-surface-offset: #f0ede8;
-  --color-surface-dynamic:#e6e4df;
-  --color-divider:        #dcd9d5;
-  --color-border:         #d0cdc6;
-  --color-text:           #28251d;
-  --color-text-muted:     #6a6863;
-  --color-text-faint:     #aaa9a4;
-  --color-primary:        #01696f;
-  --color-primary-hover:  #0c4e54;
-  --color-primary-light:  #e0eded;
-  --color-success:        #437a22;
-  --color-success-bg:     #eaf3e3;
-  --color-warning:        #8a5200;
-  --color-warning-bg:     #fef3e0;
-  --color-error:          #9e2b2b;
-  --color-error-bg:       #fdeaea;
-  --color-neutral-badge:  #7a7974;
-  --color-neutral-bg:     #f0ede8;
-
-  --radius-sm: .375rem; --radius-md: .5rem;
-  --radius-lg: .75rem;  --radius-xl: 1rem;
-  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / .06);
-  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / .08);
-  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / .12);
-  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
-
-  --content-default: 960px;
-  --content-wide: 1180px;
-}
-
-[data-theme="dark"] {
-  --color-bg:             #171614;
-  --color-surface:        #1c1b19;
-  --color-surface-2:      #201f1d;
-  --color-surface-offset: #1d1c1a;
-  --color-surface-dynamic:#2d2c2a;
-  --color-divider:        #2a2927;
-  --color-border:         #393836;
-  --color-text:           #cdccca;
-  --color-text-muted:     #8a8986;
-  --color-text-faint:     #5a5957;
-  --color-primary:        #4f98a3;
-  --color-primary-hover:  #227f8b;
-  --color-primary-light:  #1f3335;
-  --color-success:        #6daa45;
-  --color-success-bg:     #1e2f16;
-  --color-warning:        #d4902a;
-  --color-warning-bg:     #2a2010;
-  --color-error:          #d16060;
-  --color-error-bg:       #2e1212;
-  --color-neutral-badge:  #797876;
-  --color-neutral-bg:     #242321;
-  --shadow-sm: 0 1px 2px oklch(0 0 0 / .2);
-  --shadow-md: 0 4px 12px oklch(0 0 0 / .3);
-  --shadow-lg: 0 12px 32px oklch(0 0 0 / .4);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
-    --color-surface-offset: #1d1c1a; --color-surface-dynamic: #2d2c2a;
-    --color-divider: #2a2927; --color-border: #393836;
-    --color-text: #cdccca; --color-text-muted: #8a8986; --color-text-faint: #5a5957;
-    --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-light: #1f3335;
-    --color-success: #6daa45; --color-success-bg: #1e2f16;
-    --color-warning: #d4902a; --color-warning-bg: #2a2010;
-    --color-error: #d16060; --color-error-bg: #2e1212;
-    --color-neutral-badge: #797876; --color-neutral-bg: #242321;
-  }
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-font-smoothing: antialiased; }
-body {
-  min-height: 100dvh;
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  color: var(--color-text);
-  background: var(--color-bg);
-  line-height: 1.65;
-}
-img { display: block; max-width: 100%; height: auto; }
-p, li { text-wrap: pretty; max-width: 72ch; }
-h1,h2,h3,h4 { text-wrap: balance; line-height: 1.15; font-family: var(--font-display); }
-a, button { transition: color var(--transition), background var(--transition), box-shadow var(--transition); }
-button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
-::selection { background: oklch(from var(--color-primary) l c h / .2); }
-:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
-
-/* LAYOUT */
-.container { max-width: var(--content-default); margin-inline: auto; padding-inline: var(--space-6); }
-.container--wide { max-width: var(--content-wide); margin-inline: auto; padding-inline: var(--space-6); }
-
-/* HEADER */
-.site-header {
-  position: sticky; top: 0; z-index: 50;
-  background: oklch(from var(--color-bg) l c h / .92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--color-divider);
-  transition: box-shadow var(--transition);
-}
-.site-header.scrolled { box-shadow: var(--shadow-sm); }
-.header-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-block: var(--space-3);
-}
-.logo {
-  display: flex; align-items: center; gap: var(--space-3);
-  text-decoration: none; color: var(--color-text);
-}
-.logo-mark {
-  width: 36px; height: 36px; flex-shrink: 0;
-}
-.logo-text { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); letter-spacing: -.01em; }
-.logo-sub { font-size: var(--text-xs); color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400; }
-
-.header-nav { display: flex; align-items: center; gap: var(--space-6); }
-.header-nav a {
-  font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none; font-weight: 500;
-}
-.header-nav a:hover { color: var(--color-text); }
-.theme-toggle {
-  width: 36px; height: 36px; display: grid; place-items: center;
-  border-radius: var(--radius-md); color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
-}
-.theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
-
-/* HERO */
-.hero {
-  padding-block: clamp(var(--space-16), 10vw, var(--space-24));
-  border-bottom: 1px solid var(--color-divider);
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  font-size: var(--text-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--color-primary); margin-bottom: var(--space-5);
-}
-.hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary); }
-.hero h1 {
-  font-size: var(--text-2xl); font-weight: 700; letter-spacing: -.02em;
-  color: var(--color-text); margin-bottom: var(--space-5); line-height: 1.1;
-}
-.hero-lead {
-  font-size: var(--text-lg); color: var(--color-text-muted); max-width: 58ch; line-height: 1.6;
-  margin-bottom: var(--space-8);
-}
-.hero-meta {
-  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4);
-  font-size: var(--text-xs); color: var(--color-text-faint);
-}
-.hero-meta span { display: flex; align-items: center; gap: var(--space-2); }
-
-/* STATUS BADGES */
-.badge {
-  display: inline-flex; align-items: center; gap: .35rem;
-  font-size: var(--text-xs); font-weight: 600; padding: .2rem .6rem;
-  border-radius: var(--radius-full, 9999px); line-height: 1.4;
-}
-.badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.badge--done   { background: var(--color-success-bg); color: var(--color-success); }
-.badge--done   .badge-dot { background: var(--color-success); }
-.badge--partial { background: var(--color-warning-bg); color: var(--color-warning); }
-.badge--partial .badge-dot { background: var(--color-warning); }
-.badge--open   { background: var(--color-error-bg); color: var(--color-error); }
-.badge--open   .badge-dot { background: var(--color-error); }
-.badge--info   { background: var(--color-primary-light); color: var(--color-primary); }
-.badge--info   .badge-dot { background: var(--color-primary); }
-.badge--neutral{ background: var(--color-neutral-bg); color: var(--color-neutral-badge); }
-
-/* SECTION LAYOUT */
-.section { padding-block: clamp(var(--space-12), 8vw, var(--space-20)); }
-.section + .section { border-top: 1px solid var(--color-divider); }
-.section-header { margin-bottom: var(--space-10); }
-.section-label {
-  font-size: var(--text-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--color-primary); margin-bottom: var(--space-3);
-}
-.section-title { font-size: var(--text-xl); font-weight: 700; letter-spacing: -.01em; margin-bottom: var(--space-3); }
-.section-desc { font-size: var(--text-base); color: var(--color-text-muted); max-width: 60ch; }
-
-/* CARDS */
-.card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
-}
-.card-title { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-2); font-family: var(--font-display); }
-.card-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
-
-/* STATUS GRID */
-.status-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-  gap: var(--space-4);
-}
-.status-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  display: flex; flex-direction: column; gap: var(--space-3);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition);
-}
-.status-card:hover { box-shadow: var(--shadow-md); }
-.status-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-2); }
-.status-card-title { font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display); line-height: 1.3; }
-.status-card-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; }
-
-/* DONE LIST */
-.done-list { display: flex; flex-direction: column; gap: var(--space-3); }
-.done-item {
-  display: flex; align-items: flex-start; gap: var(--space-4);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
-}
-.done-icon {
-  width: 28px; height: 28px; border-radius: var(--radius-md);
-  background: var(--color-success-bg); color: var(--color-success);
-  display: grid; place-items: center; flex-shrink: 0; font-size: 14px; margin-top: 2px;
-}
-.done-content { flex: 1; }
-.done-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-1); }
-.done-note { font-size: var(--text-xs); color: var(--color-text-muted); }
-
-/* OPEN LIST */
-.open-list { display: flex; flex-direction: column; gap: var(--space-3); }
-.open-item {
-  display: flex; align-items: flex-start; gap: var(--space-4);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
-}
-.open-icon {
-  width: 28px; height: 28px; border-radius: var(--radius-md);
-  display: grid; place-items: center; flex-shrink: 0; font-size: 14px; margin-top: 2px;
-}
-.open-icon--high  { background: var(--color-error-bg);   color: var(--color-error); }
-.open-icon--med   { background: var(--color-warning-bg); color: var(--color-warning); }
-.open-icon--low   { background: var(--color-neutral-bg); color: var(--color-neutral-badge); }
-.open-content { flex: 1; }
-.open-title { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-1); }
-.open-note { font-size: var(--text-xs); color: var(--color-text-muted); }
-
-/* ROADMAP */
-.roadmap { display: flex; flex-direction: column; gap: 0; }
-.roadmap-item {
-  display: grid; grid-template-columns: 80px 1fr;
-  gap: 0 var(--space-6); position: relative;
-}
-.roadmap-item:not(:last-child)::before {
-  content: ''; position: absolute;
-  left: calc(80px + var(--space-6) / 2 - 1px);
-  top: 44px; bottom: -var(--space-4);
-  width: 2px; background: var(--color-divider);
-}
-.roadmap-side {
-  padding-top: var(--space-1); text-align: right;
-  padding-bottom: var(--space-10);
-}
-.roadmap-phase {
-  font-size: var(--text-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--color-primary);
-}
-.roadmap-body {
-  padding-bottom: var(--space-10);
-  border-left: 2px solid var(--color-divider);
-  padding-left: var(--space-6); position: relative;
-}
-.roadmap-body::before {
-  content: ''; position: absolute;
-  left: -7px; top: 8px;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--color-primary); border: 2px solid var(--color-bg);
-}
-.roadmap-title { font-size: var(--text-base); font-weight: 700; font-family: var(--font-display); margin-bottom: var(--space-2); }
-.roadmap-desc { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-3); }
-.roadmap-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-
-/* RISKS */
-.risk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px,100%),1fr)); gap: var(--space-4); }
-.risk-card {
-  padding: var(--space-5); background: var(--color-surface);
-  border: 1px solid var(--color-border); border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-}
-.risk-head { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
-.risk-icon { font-size: 20px; }
-.risk-title { font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display); }
-.risk-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.55; }
-
-/* FEATURE GRID */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px,100%),1fr)); gap: var(--space-4); }
-.feature-card {
-  padding: var(--space-5); background: var(--color-surface);
-  border: 1px solid var(--color-border); border-radius: var(--radius-lg);
-  display: flex; flex-direction: column; gap: var(--space-3);
-  box-shadow: var(--shadow-sm); transition: box-shadow var(--transition);
-}
-.feature-card:hover { box-shadow: var(--shadow-md); }
-.feature-icon { font-size: 22px; }
-.feature-title { font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display); }
-.feature-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.55; flex: 1; }
-
-/* DIVIDER */
-.divider { height: 1px; background: var(--color-divider); border: none; }
-
-/* FOOTER */
-.site-footer {
-  padding-block: var(--space-10);
-  border-top: 1px solid var(--color-divider);
-  color: var(--color-text-faint);
-  font-size: var(--text-xs);
-}
-.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4); }
-
-/* SCROLL REVEAL */
-.fade-in { opacity: 1; }
-@supports (animation-timeline: scroll()) {
-  .fade-in {
-    opacity: 0;
-    animation: reveal-fade linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 70%;
-  }
-  @keyframes reveal-fade { to { opacity: 1; } }
-}
-
-/* PRINT */
-@media print {
-  .site-header, .theme-toggle { display: none !important; }
-  .section { padding-block: var(--space-8); }
-  .status-card, .done-item, .open-item, .feature-card, .risk-card { box-shadow: none; border: 1px solid #ddd; }
-  body { background: white; color: #111; }
-  a { color: inherit; text-decoration: none; }
-  .roadmap-body::before { background: #333; }
-  .roadmap-body { border-left-color: #ccc; }
-}
-
-/* MOBILE */
-@media (max-width: 640px) {
-  html, body { max-width: 100vw; overflow-x: hidden; }
-  .container, .container--wide {
-    width: 100vw;
-    max-width: 100vw;
-    margin-inline: 0;
-    padding-inline: var(--space-4);
-  }
-  .header-nav .nav-links { display: none !important; }
-  .header-inner { gap: var(--space-3); }
-  .header-nav { gap: var(--space-2); }
-  .hero-lead, .section-desc, .status-card-desc, .feature-desc, .open-note, .risk-desc {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-  }
-  .hero-meta span { flex: 1 1 100%; min-width: 0; }
-  .status-grid, .feature-grid, .risk-grid { grid-template-columns: minmax(0, 1fr); }
-  .status-card, .feature-card, .risk-card, .done-item, .open-item { min-width: 0; }
-  .status-card-head { flex-wrap: wrap; }
-  .badge { max-width: 100%; white-space: normal; }
-  .hero h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
-  .roadmap-item { grid-template-columns: 1fr; }
-  .roadmap-side { text-align: left; padding-bottom: var(--space-2); }
-  .roadmap-body::before { display: none; }
-  .roadmap-body { border-left: 2px solid var(--color-divider); }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aktueller Projekt- und Betriebsstand der Echo-Station.">
+  <title>Echo-Station – Projektstatus</title>
+  <style>
+    :root { color-scheme: light; --bg:#f4f1eb; --card:#fffdf9; --text:#202827; --muted:#66706d; --line:#d8d4cc; --brand:#087d83; --brand-dark:#075b60; --ok:#287548; --warn:#9a6610; --info:#315b82; --shadow:0 12px 34px rgba(31,44,42,.08); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    .skip { position:absolute; left:-9999px; }
+    .skip:focus { left:1rem; top:1rem; z-index:20; background:white; padding:.7rem 1rem; border:2px solid var(--brand); }
+    .wrap { width:min(1120px,calc(100% - 2rem)); margin-inline:auto; }
+    header { background:linear-gradient(135deg,#075f64,#0a858b); color:white; padding:3rem 0 2.5rem; }
+    .eyebrow { margin:0 0 .5rem; font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; opacity:.82; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { margin-bottom:.7rem; font-size:clamp(2.2rem,6vw,4.6rem); line-height:1; letter-spacing:-.045em; }
+    h2 { margin-bottom:.5rem; font-size:clamp(1.55rem,3vw,2.35rem); line-height:1.15; }
+    h3 { margin-bottom:.4rem; font-size:1.05rem; }
+    .lead { max-width:760px; margin-bottom:1.3rem; font-size:1.08rem; opacity:.94; }
+    .hero-meta,.nav { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .pill { display:inline-flex; align-items:center; gap:.4rem; padding:.38rem .72rem; border:1px solid rgba(255,255,255,.34); border-radius:999px; font-size:.86rem; background:rgba(255,255,255,.1); }
+    .nav { margin-top:1.5rem; }
+    .nav a { padding:.5rem .75rem; border-radius:.55rem; text-decoration:none; font-weight:700; background:rgba(255,255,255,.12); }
+    .nav a:hover,.nav a:focus-visible { background:white; color:var(--brand-dark); }
+    main { padding:2.2rem 0 4rem; }
+    section { scroll-margin-top:1rem; margin-bottom:3rem; }
+    .section-head { max-width:800px; margin-bottom:1.2rem; }
+    .section-head p { color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+    .card { padding:1.15rem; border:1px solid var(--line); border-radius:1rem; background:var(--card); box-shadow:var(--shadow); }
+    .card p { margin-bottom:0; color:var(--muted); }
+    .badge { display:inline-block; margin-bottom:.65rem; padding:.22rem .58rem; border-radius:999px; font-size:.75rem; font-weight:800; }
+    .ok { color:var(--ok); background:#e5f4eb; }
+    .warn { color:var(--warn); background:#fff1d5; }
+    .info { color:var(--info); background:#e8f0f8; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+    .metric { padding:1.15rem; border-radius:1rem; color:white; background:var(--brand-dark); }
+    .metric strong { display:block; font-size:clamp(1.65rem,4vw,2.4rem); line-height:1.1; }
+    .metric span { font-size:.86rem; opacity:.82; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:1rem; background:var(--card); }
+    table { width:100%; border-collapse:collapse; min-width:670px; }
+    th,td { padding:.85rem 1rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+    tr:last-child td { border-bottom:0; }
+    code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.88em; }
+    .timeline { display:grid; gap:.8rem; counter-reset:step; }
+    .step { position:relative; padding:1rem 1rem 1rem 3.7rem; border:1px solid var(--line); border-radius:1rem; background:var(--card); }
+    .step::before { counter-increment:step; content:counter(step); position:absolute; left:1rem; top:1rem; width:1.8rem; height:1.8rem; display:grid; place-items:center; border-radius:50%; background:var(--brand); color:white; font-weight:800; }
+    .step p { margin:0; color:var(--muted); }
+    .notice { padding:1rem 1.15rem; border-left:5px solid var(--warn); border-radius:.6rem; background:#fff8e9; }
+    footer { padding:1.5rem 0 2.5rem; color:var(--muted); font-size:.86rem; }
+    @media (max-width:850px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:560px) { .grid,.metrics { grid-template-columns:1fr; } header { padding-top:2.2rem; } }
+  </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-  <div class="container">
-    <div class="header-inner">
-      <a class="logo" href="#top">
-        <svg class="logo-mark" viewBox="0 0 36 36" fill="none" aria-label="Echo-Station Logo">
-          <rect width="36" height="36" rx="8" fill="var(--color-primary)"/>
-          <circle cx="18" cy="18" r="8" stroke="white" stroke-width="2" fill="none"/>
-          <circle cx="18" cy="18" r="3" fill="white"/>
-          <path d="M18 6 C10 6 4 11.4 4 18" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".5"/>
-          <path d="M18 30 C26 30 32 24.6 32 18" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".5"/>
-        </svg>
-        <div>
-          <div class="logo-text">Echo-Station</div>
-          <div class="logo-sub">Projektbericht</div>
-        </div>
-      </a>
-      <nav class="header-nav">
-        <div class="nav-links" style="display:flex;gap:var(--space-6)">
-          <a href="#status">Status</a>
-          <a href="#erledigt">Erledigt</a>
-          <a href="#offen">Offen</a>
-          <a href="#fahrplan">Fahrplan</a>
-        </div>
-        <button class="theme-toggle" data-theme-toggle aria-label="Farbschema wechseln">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
+  <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">Projekt- und Betriebsstatus</p>
+      <h1>Echo-Station</h1>
+      <p class="lead">V2 läuft produktiv auf dem Raspberry Pi. Der neue Katalog arbeitet ohne dauerhafte Audio-Zwischenspeicherung auf der SSD und wird automatisch auf Änderungen geprüft.</p>
+      <div class="hero-meta">
+        <span class="pill">Stand: 21. August 2026</span>
+        <span class="pill">V2 produktiv</span>
+        <span class="pill">Automatik aktiv · 15 Minuten</span>
+        <span class="pill">V1 als Rückfallpfad aktiv</span>
+      </div>
+      <nav class="nav" aria-label="Seitennavigation">
+        <a href="#betrieb">Betrieb</a><a href="#katalog">Katalog</a><a href="#technik">Technik</a><a href="#version-1">Version 1.0</a><a href="#offen">Offen</a>
       </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- HERO -->
-<main id="top">
-<section class="hero">
-  <div class="container">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span>
-      Interner Projektbericht
-    </div>
-    <h1>Echo-Station</h1>
-    <p class="hero-lead">
-      Eine stationäre Such- und Kopierstation für Predigten und andere Audiobeiträge der Gemeinde. Besucher suchen, filtern und kopieren Inhalte am Touchscreen auf einen USB-Stick – ohne technische Vorkenntnisse.
-    </p>
-    <div class="hero-meta">
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Stand: 11. Juli 2026
-      </span>
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        v0.6.0-beta.1 · Backend/Kiosk aktiv · V2-Richtung festgelegt
-      </span>
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-        Altbetrieb unverändert · EchoStation-Struktur noch nicht freigegeben
-      </span>
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Andreas Driss
-      </span>
-    </div>
-  </div>
-</section>
+  <main id="inhalt" class="wrap">
+    <section id="betrieb">
+      <div class="section-head"><p class="eyebrow">Aktueller Stand</p><h2>V2 ist produktiv in Betrieb</h2><p>Die beiden Stabilitätsreleases sind ausgerollt. Migration, Backup, Healthcheck, Katalogautomation und der flüchtige RAM-Pfad laufen auf dem Pi.</p></div>
+      <div class="grid">
+        <article class="card"><span class="badge ok">Produktiv</span><h3>V2-Runtime</h3><p>Der Pi läuft auf Runtime <code>a6b3f6c…</code>. Der produktive Stand bleibt bewusst von nachfolgenden reinen Dokumentationsänderungen getrennt.</p></article>
+        <article class="card"><span class="badge ok">Aktiv</span><h3>State und Backup</h3><p>Migration <code>002</code> ist angewendet. Das private State-Backup läuft täglich mit Integritätsprüfung und Rotation.</p></article>
+        <article class="card"><span class="badge ok">0 Fehler</span><h3>Healthcheck</h3><p>Service, Port, Mount, Datenbanken, Backup, Operationsjournal und RAM-Pfad werden geprüft. Zwei SMART-Berechtigungswarnungen sind nicht betriebsblockierend; die Hardwarewerte wurden separat gesund bestätigt.</p></article>
+        <article class="card"><span class="badge ok">Ohne SSD-Audiocache</span><h3>Temporäre Sammlung</h3><p>Audio wird ausschließlich vorübergehend im begrenzten RAM-Pfad vorbereitet. Das Limit beträgt 2 GiB; aktuell ist der Pfad leer.</p></article>
+        <article class="card"><span class="badge ok">Intakt</span><h3>Rückfallpfad</h3><p>V1 bleibt unverändert und aktiv. Private Rollback-Sicherungen sind vorhanden und wurden beim V2-Rollout nicht entfernt.</p></article>
+        <article class="card"><span class="badge info">Abgeschlossen</span><h3>Wartungsfenster</h3><p>Die Produktivsetzung wurde abgeschlossen, das Wartungsfenster beendet und die dafür verwendete SSH-Sitzung geschlossen.</p></article>
+      </div>
+    </section>
 
-<!-- STATUS OVERVIEW -->
-<section class="section" id="status">
-  <div class="container--wide">
-    <div class="section-header">
-      <div class="section-label">Aktueller Stand</div>
-      <h2 class="section-title">Funktionsübersicht</h2>
-      <p class="section-desc">Der Besucher-MVP läuft weiter unverändert auf der bestehenden Altquelle. EchoStation ist als einzige künftige Audioquelle beschlossen; Tontechnik und IT finalisieren jedoch zuerst die reale Ordnerstruktur. Bis zu deren Freigabe gibt es keinen Mountwechsel und keine V2-Implementierung aus Annahmen.</p>
-    </div>
+    <section id="katalog">
+      <div class="section-head"><p class="eyebrow">Katalog</p><h2>Automatische Aktualisierung läuft</h2><p>Die Quelle wird alle 15 Minuten read-only geprüft. Stabile Änderungen können automatisch veröffentlicht werden; bei Bedarf bleibt der geschützte manuelle Vollscan erhalten.</p></div>
+      <div class="metrics">
+        <div class="metric"><strong>182</strong><span>Ereignisse</span></div>
+        <div class="metric"><strong>3.148</strong><span>sichtbare Aufnahmen</span></div>
+        <div class="metric"><strong>3.148</strong><span>FTS-Einträge</span></div>
+        <div class="metric"><strong>0</strong><span>Quarantäne</span></div>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card"><span class="badge ok">Erfolgreich</span><h3>Erste Aktualisierung</h3><p>Die erste automatische Katalogaktualisierung wurde atomar veröffentlicht und anschließend vollständig geprüft.</p></article>
+        <article class="card"><span class="badge ok">Stabil</span><h3>No-change-Zyklen</h3><p>Danach liefen zwei vollständige Zyklen ohne Änderungen. Es blieben keine fehlgeschlagenen oder laufenden Operationen zurück.</p></article>
+        <article class="card"><span class="badge info">Sicherer Fallback</span><h3>Manueller Vollscan</h3><p>Absichtliche größere Änderungen können weiterhin kontrolliert über den vorhandenen manuellen Vollscan übernommen werden.</p></article>
+      </div>
+    </section>
 
-    <div class="status-grid">
+    <section id="technik">
+      <div class="section-head"><p class="eyebrow">Release-Nachweis</p><h2>Getrennte, nachvollziehbare Stände</h2><p>Runtime, Main-Integration und Dokumentation sind bewusst getrennt ausgewiesen. Bewegliche Branches ersetzen keinen produktiven Release-Nachweis.</p></div>
+      <div class="table-wrap"><table><thead><tr><th>Ebene</th><th>Stand</th><th>Bedeutung</th></tr></thead><tbody>
+        <tr><td>Release 1</td><td><code>d70b063…</code></td><td>Main/V2-Konsolidierung, PIN-Schutz, Migration 002, State-Backup und Healthcheck.</td></tr>
+        <tr><td>Pi-Runtime</td><td><code>a6b3f6c…</code></td><td>Aktive Katalogautomation im 15-Minuten-Takt; Zustand aktiv und idle.</td></tr>
+        <tr><td>Dokumentation</td><td><code>422465d</code></td><td>Vollständiger interner Betriebsnachweis und aktualisierte Runbooks.</td></tr>
+        <tr><td>V1-Fallback</td><td>unverändert</td><td>Weiterhin aktiver Rückweg; kein Purge durchgeführt.</td></tr>
+      </tbody></table></div>
+    </section>
 
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">📋 Inhaltsliste anzeigen</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
-        </div>
-        <div class="status-card-desc">Besucher sehen eine vollständige Liste verfügbarer Audiobeiträge mit Titel, Sprecher, Kategorie und Datum.</div>
+    <section id="version-1">
+      <div class="section-head"><p class="eyebrow">Nächster Produktabschnitt</p><h2>Echo-Station 1.0</h2><p>Die technische V2-Basis ist produktiv. Als Nächstes wird die Besucherführung vereinfacht und anschließend der harte Betriebs-Cutover separat vorbereitet.</p></div>
+      <div class="timeline">
+        <article class="step"><h3>Klickbaren Sites-Prototyp abnehmen</h3><p>Der neue Besucherweg wird zunächst isoliert mit synthetischen Daten und mindestens 15 Jahren geprüft. Er erhält keine Verbindung zu Pi, NAS oder Produktions-APIs.</p></article>
+        <article class="step"><h3>Besucherführung in React umsetzen</h3><p>Neutraler Produktkopf, prominente Suche, verständliche Bereiche, zwölf direkte Jahre plus „Weitere Jahre“, klare Wochenaktion, reduzierte Sammlung und zugänglicher Adminzugang.</p></article>
+        <article class="step"><h3>Alle vierstelligen Aufnahmejahre unterstützen</h3><p>Katalog, Suche und API behalten sämtliche gültigen Jahre. Nur die direkte Darstellung wird auf die zwölf neuesten Jahre begrenzt.</p></article>
+        <article class="step"><h3>Version 1.0.0 veröffentlichen</h3><p>Release 2 wird zuerst in main integriert. Danach werden Versionsangaben konsistent auf 1.0.0 gesetzt und der geprüfte Merge-Commit unveränderlich markiert.</p></article>
+        <article class="step"><h3>Harten Cutover separat freigeben</h3><p>V1-Dienste und der alte Mount werden erst nach stabiler Inventur kontrolliert deaktiviert. V1 bleibt danach 30 Tage als kalte Rückfallkapsel erhalten.</p></article>
       </div>
+    </section>
 
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🔍 Suche &amp; Filter</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
-        </div>
-        <div class="status-card-desc">Suchfeld, Backend-Volltextsuche, Kategorie-Filter und Sortierung sind im Besucher-Frontend aktiv. Das Suchfenster scrollt jetzt auch per Finger-/Pointer-Drag auf dem Kiosk-Panel.</div>
+    <section id="offen">
+      <div class="section-head"><p class="eyebrow">Bewusst nicht ausgeführt</p><h2>Klare Grenzen des aktuellen Stands</h2></div>
+      <div class="notice"><strong>Noch offen:</strong> Der harte Mount-Cutover und ein späterer V1-Purge sind separate Vorhaben und wurden nicht ausgeführt. Die interne Candidate-Unit, der Checkout und Port 3001 bleiben während der Rückfallfrist bestehen. V1 wird nach 30 Tagen nicht automatisch gelöscht.</div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card"><span class="badge warn">Separates Gate</span><h3>Harter Cutover</h3><p>Er benötigt zwei identische Inventuren, Katalogparität, null nichtterminale Operationen, private Sicherungen und einen getesteten Rückweg.</p></article>
+        <article class="card"><span class="badge warn">Nicht geplant</span><h3>Automatischer Purge</h3><p>V1-Daten, Backups, Units und Konfiguration werden nicht automatisch entfernt oder umbenannt.</p></article>
+        <article class="card"><span class="badge info">Bestehende Abnahmen</span><h3>Hardwaretests</h3><p>Allgemeine Scan-, Restore-, Touch-, USB- und Reboot-Prüfungen werden nicht ohne konkreten neuen Befund wiederholt.</p></article>
       </div>
+    </section>
+  </main>
 
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🤖 KI-Unterstützung</div>
-          <span class="badge badge--info"><span class="badge-dot"></span>Geplanter Case</span>
-        </div>
-        <div class="status-card-desc">Mögliche spätere Verbesserung für Suche und Admin-Assistenz. Sie ist kein aktuelles V2-Gate und darf die Strukturinventur, den direkten USB-Export oder den Cutover nicht verzögern.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">💾 USB-Stick kopieren</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>MVP + Abziehfall abgenommen</span>
-        </div>
-        <div class="status-card-desc">USB-Export ist grün: echter Stick bereit, Einzel- und Mehrfachkopie, wiederholtes Kopieren mit konfliktfreien Dateinamen, Abziehen während der Kopie sowie externe Datei- und Abspielprüfung sind bestanden.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🔄 Daten-Synchronisation</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>V1 läuft · V2 wartet</span>
-        </div>
-        <div class="status-card-desc">Der bestehende V1-Sync bleibt bis zum harten Cutover unverändert. Weitere Timer-, Event-Sync- oder Cache-Erweiterungen sind nicht Teil der aktuellen V2-Vorbereitung.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🗄️ NAS als Quelle</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Struktur ausstehend</span>
-        </div>
-        <div class="status-card-desc">EchoStation wird die einzige künftige Audioquelle. Tontechnik und IT legen zuerst den endgültigen Arbeitsablauf und die Ordnerstruktur fest; danach folgt eine vollständige read-only Inventur.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🏷️ Inhaltstypen</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
-        </div>
-        <div class="status-card-desc">Predigt, Lied, Bibelarbeit, Zeugnis, Moderation und weitere werden automatisch erkannt und in der Datenbank gespeichert.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🔐 Admin-Bereich</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>NAS + Sperre live</span>
-        </div>
-        <div class="status-card-desc">PIN-basierte Admin-Auth ist am echten Kiosk in Betrieb. Kiosk-Unlock trennt jetzt Freigabe und Admin-Session; NAS-Status, Event-Liste, DB-Backup, Dry-Run, produktive Ein-Event-Freigabe, Admin-Lock und Freigabe-Buttons sind live.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🖥️ FullHD-Kiosk &amp; Touch</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
-        </div>
-        <div class="status-card-desc">FullHD-Galerie, betonte Sammelleiste, Overlay-Scrolling und die finalen Lock-Screen-/Service-Scroll-Fixes sind auf dem Pi deployt. Kiosk-Flags, labwc/getty-Hardening und Fernzugriff sind abgeschlossen.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🪟 Chromium-Fensterkontrolle</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Gehärtet</span>
-        </div>
-        <div class="status-card-desc">Der Kiosk startet mit dediziertem Chromium-Profil als App-Fenster. Chromium läuft mit Keychain-/Sync-Schutz; labwc/getty-Hardening ist live, rebootfest geprüft und ohne Desktop, Panel oder tty1-Autologin.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">📅 Kalender &amp; Kiosk-Freigabe</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Sperre live</span>
-        </div>
-        <div class="status-card-desc">Resolver und Statusanzeige laufen am echten Kiosk. Der öffentliche Status bleibt ohne Auth erreichbar; Simple-Lock, Admin-Lock und /api/v1/kiosk/unlock sind deployt. Diese Funktion bleibt beim V2-Umbau erhalten.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🧭 V2-Neuausrichtung</div>
-          <span class="badge badge--partial"><span class="badge-dot"></span>Gate 0</span>
-        </div>
-        <div class="status-card-desc">Greenfield-SQLite/FTS, kein permanenter Pi-Audiocache und direkter NAS-zu-USB-Export sind beschlossen. Parser und Datenmodell entstehen erst aus der freigegebenen realen Struktur.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">🔧 Wartung &amp; Fernzugriff</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
-        </div>
-        <div class="status-card-desc">Fernzugriff für Wartung ist eingerichtet und intern dokumentiert. Doku-only Pulls funktionieren; sensible Verbindungsdetails stehen bewusst nicht auf der öffentlichen Statusseite.</div>
-      </div>
-
-      <div class="status-card fade-in">
-        <div class="status-card-head">
-          <div class="status-card-title">💿 Backup</div>
-          <span class="badge badge--done"><span class="badge-dot"></span>Fertig</span>
-        </div>
-        <div class="status-card-desc">Automatisches Backup der Datenbank per Script und Timer ist eingerichtet. Wiederherstellung nach Fehler ist möglich.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="section" id="features">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Features</div>
-      <h2 class="section-title">Was das System kann</h2>
-      <p class="section-desc">Übersicht der vorhandenen und geplanten Funktionen in Kurzform.</p>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🗂️</div>
-        <div class="feature-title">Medienkatalog</div>
-        <div class="feature-desc">Alle Audiodateien werden automatisch eingelesen. Titel, Sprecher, Datum, Dauer und Kategorie werden aus den Datei-Informationen ausgelesen und gespeichert.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🔎</div>
-        <div class="feature-title">Volltextsuche</div>
-        <div class="feature-desc">Schnelle Suche über Titel und Sprecher. Das Suchfeld nutzt die Backend-Volltextsuche, inklusive On-Screen-Tastatur und korrigiertem Finger-/Pointer-Scroll im Suchfenster.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">📂</div>
-        <div class="feature-title">Kategorien &amp; Filter</div>
-        <div class="feature-desc">Predigt, Lied, Bibelarbeit, Zeugnis, Moderation, Geschichte, Gedicht, Einleitung, Familienvortrag. Kategoriefilter im Frontend bereits nutzbar.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Aktiv</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🤖</div>
-        <div class="feature-title">KI-Unterstützung</div>
-        <div class="feature-desc">Geplanter Folge-Case für bessere Suche, automatische Vorschläge, Kategorisierungshilfe und spätere Admin-Assistenz. Nicht Teil des abgenommenen USB-Besucher-MVP.</div>
-        <span class="badge badge--info"><span class="badge-dot"></span>Geplant</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">📅</div>
-        <div class="feature-title">Kalender-Zeitsteuerung</div>
-        <div class="feature-desc">Reguläre Gottesdienste steuern, wann der Kiosk freigegeben oder gesperrt ist. Resolver, öffentlicher Status-Endpunkt, Simple-Lock, Admin-Lock und Admin-Statusanzeige sind am Pi verifiziert.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Sperre live</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🔐</div>
-        <div class="feature-title">Admin-Auth</div>
-        <div class="feature-desc">Lokales First-Run-Setup, signiertes HttpOnly-Session-Cookie, Rate-Limit und PIN-Wechsel sind im laufenden V1-System implementiert. Die genaue V2-Auth-Konfiguration wird im Greenfield-Vertrag übernommen und getestet.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Touch abgenommen</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">📤</div>
-        <div class="feature-title">USB-Export</div>
-        <div class="feature-desc">Besucher wählen Beiträge aus und kopieren sie auf ihren USB-Stick. Einzelkopie, Mehrfachkopie, Namenskollisionen, externe Datei-/Abspielprüfung und Auswahl-Limit-Fehlerfall sind am echten Pi bestanden.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>MVP abgenommen</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🖥️</div>
-        <div class="feature-title">Kiosk-Probebetrieb</div>
-        <div class="feature-desc">FullHD-Layout, Sammelleiste, Suche, Sammlung und Chromium-Fensterkontrolle sind am Pi verifiziert. Der Stand ist als v0.6.0-beta.1 für Geräte- und Bedienprüfung markiert.</div>
-        <span class="badge badge--done"><span class="badge-dot"></span>Beta live</span>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🔗</div>
-        <div class="feature-title">NAS-Integration</div>
-        <div class="feature-desc">Die bestehende V1-Anbindung bleibt bis zum Cutover in Betrieb. EchoStation wird danach alleinige Quelle; die technische Umsetzung wartet auf die von Tontechnik und IT freigegebene Ordnerstruktur.</div>
-        <span class="badge badge--partial"><span class="badge-dot"></span>Übergang geplant</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DONE -->
-<section class="section" id="erledigt">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Erledigte Arbeiten</div>
-      <h2 class="section-title">Was bisher umgesetzt wurde</h2>
-      <p class="section-desc">Alle abgeschlossenen Arbeitsschritte seit Projektbeginn – chronologisch und sachlich.</p>
-    </div>
-    <div class="done-list">
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Projektstruktur angelegt</div>
-          <div class="done-note">Backend, Frontend, Infrastruktur und Dokumentation klar getrennt. Qualitätsregeln eingerichtet (TypeScript, Linting, Tests, Git-Hooks).</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Backend aufgebaut</div>
-          <div class="done-note">API-Server mit Fehlerbehandlung, Logging und Validierung. Läuft stabil auf dem Raspberry Pi.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Datenbank erstellt</div>
-          <div class="done-note">SQLite mit Migrationen für Grundmodell, Volltextsuche, Cache-Felder und Inhaltstypen. Automatisches Backup eingerichtet.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Synchronisation implementiert</div>
-          <div class="done-note">Audiodateien aus lokalem Ordner und NAS werden eingelesen, analysiert und in der Datenbank gespeichert. Duplikate werden erkannt.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">NAS-Anbindung produktiv verifiziert</div>
-          <div class="done-note">Verbindung zur echten NAS auf dem Pi geprüft und der lokale Katalog/Cache produktiv aufgebaut. Kontrollierte Event- und Batch-Syncs sind produktiv gelaufen; breite Jahres- und Root-Pfade bleiben bewusst kein pauschal freigegebener Sync-Pfad.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Inhaltstypen (v1) eingeführt</div>
-          <div class="done-note">Fachliche Zuordnung festgelegt und umgesetzt: Predigt, Lied, Bibelarbeit, Zeugnis, Moderation, Geschichte, Gedicht, Einleitung, Familienvortrag. Mit Tests abgesichert.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Frontend-Basis umgesetzt</div>
-          <div class="done-note">Inhaltsliste mit Suchfeld, On-Screen-Tastatur, Kategoriefilter, Sortierung und Kategorieanzeige. Filter-Verhalten stabilisiert und verifiziert.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Kiosk-Betrieb eingerichtet</div>
-          <div class="done-note">Raspberry Pi startet automatisch in den Vollbild-Kiosk-Modus. Systemd-Konfigurationen versioniert und dokumentiert.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Deployment-Ablauf definiert</div>
-          <div class="done-note">Klarer Prozess für Updates: Entwicklung auf Mac → Git Push → Pull und Build auf dem Pi → Neustart. Übergabedokumentation gepflegt.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Projektdokumentation aufgebaut</div>
-          <div class="done-note">Backlog, Architektur, Handover, NAS-Analyse und Mapping-Entscheidungen als eigene Dokumente gepflegt.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">USB-Export-Flow umgesetzt</div>
-          <div class="done-note">Backend-Job-API, Mehrfachauswahl, Speicherprüfung und Fortschritt per Polling im Repo umgesetzt. Musik hören am Kiosk ist bewusst aus dem MVP gestrichen.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">USB-Auswahl-Bug behoben</div>
-          <div class="done-note">Das USB-Status-Polling setzte die Beitragsauswahl wiederholt zurück, solange kein Stick steckte. Behoben per Flanken-Logik: Die Auswahl wird nur noch beim tatsächlichen Abziehen des Sticks geleert. Build, Lint und Format-Check sind grün.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Cache-Abruf erweitert (Backend)</div>
-          <div class="done-note">Logik zum gezielten Abrufen und zum Bulk-Cachen aller Remote-Einträge ergänzt, deployed und mit Tests abgesichert.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Lokalen Katalog aufgebaut</div>
-          <div class="done-note">Der historische V1-Katalog und lokale Cache wurden produktiv aufgebaut. Diese Bestandszahlen bleiben V1-Historie und definieren weder V2-Datenmodell noch EchoStation-Struktur.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Kiosk-Zeitstatus und Sperre live</div>
-          <div class="done-note">Resolver, öffentlicher Status-Endpunkt, Admin-Statusanzeige, Simple-Lock und Admin-Lock sind auf dem echten Kiosk deployt. Die neuen Statusfelder lockMode, lockedAt, scheduleActive und scheduleActiveUntil sind live.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Admin-Auth C2 abgenommen</div>
-          <div class="done-note">First-Run-PIN-Setup, Login, Statusansicht und PIN-Wechsel sind am echten Kiosk-Touchscreen erfolgreich durchgeführt. Session-Cookie, Rate-Limit und Migration 008 sind auf dem Pi aktiv.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">USB-Export MVP abgenommen</div>
-          <div class="done-note">Echter Stick am Pi erkannt, Einzelkopie und Mehrfachkopie bestanden, wiederholtes Kopieren erzeugt konfliktfreie Dateinamen, MP3-Dateien sind extern vorhanden und abspielbar. Abziehen während der Kopie ist mehrfach geprüft: Der Kopiervorgang stoppt, der Zustand wird auf den Stand vor dem Kopierstart zurückgesetzt, die Sammelliste kann erneut gestartet werden und es werden nur noch fehlende Dateien kopiert. Der Auswahl-Limit-Fehlerfall ist geprüft; die Grenze liegt nun bei 700 Einträgen und die Fehlermeldung ist per OK-Button schließbar.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">FullHD-Kiosk-Design auf dem Pi geprüft</div>
-          <div class="done-note">Galerie-Maske, Floating-Pfeile, neutrale Jahresauswahl, vereinfachte Demnächst-Karten und die deutlichere Sammelleiste sind auf dem FullHD-Kiosk deployt.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Overlay-Scroll und Chromium-Fensterkontrolle stabilisiert</div>
-          <div class="done-note">Suche und Sammlung scrollen auf dem Kiosk per Pointer-Drag. Das Kiosk-Skript bereinigt verwaiste Chromium-Reste; live geprüft ist ein sichtbares App-Fenster mit aktivem kiosk.service.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">NAS-Event-Sync kontrolliert abgeschlossen</div>
-          <div class="done-note">Admin-API akzeptiert gezielte eventRelativeRoots und sperrt produktive Läufe ohne exakt einen geplanten Event. Nach Backup und Dry-Run wurde 2026_MP3/GD_260527_Mi_mp3_a produktiv synchronisiert: Run 99, scanned=8, updated=8, missing=0, Event-State synced.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Admin-NAS-UX mit DB-Backup-Gate deployt</div>
-          <div class="done-note">App-Code 2033583 ist auf dem Pi gebaut und Backend/Kiosk wurden neu gestartet. Die UI zeigt NAS-Status, Filter, Event-Auswahl, DB-Backup, Dry-Run-Ergebnis, produktive Ein-Event-Freigabe, Scheduler-Status und Run-History.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Kiosk-Sperre mit Simple/Admin-Modus deployt</div>
-          <div class="done-note">App-Code 359e19d ist auf dem Pi gebaut. Der dezente Button „Bildschirm sperren" im Admin-Login-Dialog, Simple-Lock, Sperrbildschirm, Admin-Freigabe und „Administrativ sperren" sind am echten Touchscreen bestanden.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Kiosk-Sicherheits-/UI-Fix deployt</div>
-          <div class="done-note">Die Kiosk-Sicherheitslinie ist technisch auf dem Pi: /api/v1/kiosk/unlock trennt Kiosk-Freigabe und Admin-Session, Lock-Screen und Service-Scroll sind stabilisiert, Hardening-Referenzen sind versioniert.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Kiosk-Hardening rebootfest aktiviert</div>
-          <div class="done-note">Chromium läuft mit --use-mock-keychain und --disable-sync; labwc startet nach Reboot nur Environment-Import und kanshi. pcmanfm, wf-panel-pi, lxsession-xdg-autostart und tty1-Autologin bleiben aus.</div>
-        </div>
-      </div>
-      <div class="done-item fade-in">
-        <div class="done-icon">✓</div>
-        <div class="done-content">
-          <div class="done-title">Release 0.6.0-beta.1 live</div>
-          <div class="done-note">Version 0.6.0-beta.1 ist auf dem Pi live. Backend-Health meldet die Version, Backend/Kiosk sind aktiv, Migration 011 ist angewendet und die Admin-Auth bleibt configured=true.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- OPEN -->
-<section class="section" id="offen">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Aktuelle Abhängigkeit</div>
-      <h2 class="section-title">Was jetzt wirklich als Nächstes kommt</h2>
-      <p class="section-desc">Die Reihenfolge ist verbindlich. Der bestehende Kiosk bleibt bis zum geprüften V2-Cutover unverändert.</p>
-    </div>
-    <div class="open-list">
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">1</div>
-        <div class="open-content">
-          <div class="open-title">EchoStation-Struktur fertigstellen</div>
-          <div class="open-note">Tontechnik und IT legen ihren tatsächlichen Ablageablauf, Ordnernamen und Verantwortlichkeiten fest und geben die Struktur anschließend ausdrücklich frei.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">2</div>
-        <div class="open-content">
-          <div class="open-title">Vollständig read-only inventarisieren</div>
-          <div class="open-note">Erst nach Freigabe werden mehrere Jahre, alle Hierarchieebenen, vollständige MP3-Pfade, ID3-/Datumsquellen, Sonderzeichen, Berechtigungen und Abweichungen untersucht.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--high">3</div>
-        <div class="open-content">
-          <div class="open-title">V2-Vertrag aus dem Befund ableiten</div>
-          <div class="open-note">Die reale Struktur bestimmt Parser, SQLite-Schema, Indexer, dynamische Navigation, Suche, Verfügbarkeitsanzeige und NAS-zu-USB-Export. Vermutete Zwischenebenen werden nicht implementiert.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">4</div>
-        <div class="open-content">
-          <div class="open-title">Greenfield-V2 bauen und als Candidate prüfen</div>
-          <div class="open-note">Neue SQLite-/FTS-Datenbank, kein permanenter MP3-Cache, direkter speicherbegrenzter USB-Export sowie vollständige Backend-, Frontend-, Backup-, Reboot- und Hardwaretests.</div>
-        </div>
-      </div>
-      <div class="open-item fade-in">
-        <div class="open-icon open-icon--med">5</div>
-        <div class="open-content">
-          <div class="open-title">Erst danach harter Cutover</div>
-          <div class="open-note">EchoStation wird ohne produktiven Parallelbetrieb zur einzigen Quelle. Alte Datenbank, Backups und Cache werden nur nach Candidate-Abnahme und separater Purge-Manifestfreigabe entfernt.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ROADMAP -->
-<section class="section" id="fahrplan">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">V2-Fahrplan</div>
-      <h2 class="section-title">Von der realen Ordnerstruktur zum harten Cutover</h2>
-      <p class="section-desc">Keine feste Terminannahme: Tontechnik und IT schließen zuerst Gate 0. Die Technik folgt dem realen Befund.</p>
-    </div>
-
-    <div class="roadmap">
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Gate 0</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Arbeitsablauf und Ordnerstruktur freigeben</div>
-          <div class="roadmap-desc">EchoStation wird von Tontechnik und IT fertig eingerichtet und für die technische Bestandsaufnahme eingefroren. Bis dahin kein Mountwechsel und keine strukturbasierte Implementierung.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--partial"><span class="badge-dot"></span>Wartet auf Tontechnik/IT</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Gate 1</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Read-only Inventur</div>
-          <div class="roadmap-desc">Reale Jahre, Pfade, Kategorien, MP3-Dateien, ID3-Felder, Datumsquellen, Sonderfälle, Mengen und Rechte erfassen. Nur anonymisierte Fixtures gelangen ins Repo.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Read-only</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Gate 2</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">V2-Verträge festschreiben</div>
-          <div class="roadmap-desc">Pfadidentität, Datum, autoritativer Scan, SQLite/FTS, API, Navigation, Verfügbarkeit, USB-Preflight und Zielnamen werden auf Basis der Inventur verbindlich.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Vertrag</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Gate 3</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Greenfield-V2 implementieren</div>
-          <div class="roadmap-desc">Neue Datenbank und Indexer, dynamisches Frontend, direkter NAS-zu-USB-Export, Adminstatus, Backup/Restore und systemd – ohne permanenten Pi-Audiocache.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Implementierung</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Gate 4</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Candidate vollständig abnehmen</div>
-          <div class="roadmap-desc">Autoritativer Vollindex, FTS, Stichproben, Touch, USB-Canary, Restore-Smoke, Last- und Reboot-Test müssen grün sein.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Abnahme</span>
-          </div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-side">
-          <div class="roadmap-phase">Gate 5</div>
-        </div>
-        <div class="roadmap-body fade-in">
-          <div class="roadmap-title">Harter Cutover und kontrollierter Purge</div>
-          <div class="roadmap-desc">EchoStation wird alleinige Quelle. Erst nach erfolgreichem Produktions- und Backup-Smoke darf ein separat bestätigtes Allowlist-Manifest V1-Daten und Cache entfernen.</div>
-          <div class="roadmap-tags">
-            <span class="badge badge--neutral"><span class="badge-dot"></span>Kein Parallelbetrieb</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RISKS -->
-<section class="section" id="risiken">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Risiken</div>
-      <h2 class="section-title">Was die Reihenfolge absichert</h2>
-      <p class="section-desc">Die wichtigsten Risiken liegen derzeit nicht im Programmcode, sondern in verfrühten Annahmen und einem zu frühen Cutover.</p>
-    </div>
-    <div class="risk-grid">
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Ordnerstruktur noch nicht final</div>
-        </div>
-        <div class="risk-desc">Ein Parser gegen den heutigen Zwischenstand würde den späteren Arbeitsablauf der Tontechnik möglicherweise falsch abbilden. Deshalb beginnt die Implementierung erst nach ausdrücklicher Freigabe.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Unbekannte Datumsquelle</div>
-        </div>
-        <div class="risk-desc">Ordnernamen, Dateinamen und ID3-Felder müssen an echten vollständigen Pfaden geprüft werden. Das NAS-Änderungsdatum wird nicht als Aufnahmedatum geraten.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Vorzeitiger Mountwechsel</div>
-        </div>
-        <div class="risk-desc">Der bestehende Kiosk bleibt auf der Altquelle, bis V2 als Candidate vollständig geprüft ist. Ein früher Wechsel könnte Katalog, Suche und USB-Export gleichzeitig unterbrechen.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Irreversibler V1-Purge</div>
-        </div>
-        <div class="risk-desc">Alte Datenbank, Backups und Cache werden erst nach Candidate-, Restore-, Reboot- und USB-Abnahme über ein separat bestätigtes Allowlist-Manifest entfernt.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">Stand-Drift</div>
-        </div>
-        <div class="risk-desc">Produktrepo, GitHub, Pi-Checkout, laufende Dienste und öffentliche Statusseite sind getrennte Stände. Jede Übergabe muss diese Ebenen ausdrücklich auseinanderhalten.</div>
-      </div>
-      <div class="risk-card fade-in">
-        <div class="risk-head">
-          <div class="risk-icon">⚠️</div>
-          <div class="risk-title">USB- und NAS-Verfügbarkeit</div>
-        </div>
-        <div class="risk-desc">V2 kopiert direkt von EchoStation. Deshalb müssen Rootidentität, Quellen, echter USB-Mount, freier Platz und Dateiversion vor der ersten USB-Mutation vollständig geprüft werden.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NOT IN SCOPE -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Bewusst ausgeklammert</div>
-      <h2 class="section-title">Nicht Teil des Projekts</h2>
-      <p class="section-desc">Folgende Punkte sind kein Ziel – jetzt und auf absehbare Zeit nicht.</p>
-    </div>
-    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(min(260px,100%),1fr)); gap: var(--space-3);">
-      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
-        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Online-Streaming</strong>
-        Inhalte bleiben lokal. Kein Cloud-Zugriff, kein öffentlicher Stream.
-      </div>
-      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
-        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Benutzerkonten</strong>
-        Für einen lokalen Kiosk nicht nötig. Keine Logins für Besucher.
-      </div>
-      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
-        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Cloud-Synchronisation</strong>
-        Die NAS bleibt die einzige Quelle. Kein Sync mit externen Diensten.
-      </div>
-      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
-        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Mobile App</strong>
-        Keine separate App. Alles läuft am stationären Kiosk-Touchscreen.
-      </div>
-      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
-        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Musik hören am Kiosk</strong>
-        Direktes Abspielen, Player und Streaming-Endpunkte sind aus dem MVP gestrichen.
-      </div>
-      <div style="padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-sm); color: var(--color-text-muted);">
-        <strong style="color: var(--color-text); display: block; margin-bottom: var(--space-1);">Video-Inhalte</strong>
-        Ausschließlich Audio. Keine Video-Dateien oder -Streams geplant.
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div>Echo-Station Projektbericht &middot; Andreas Driss &middot; Stand 11. Juli 2026 &middot; v0.6.0-beta.1</div>
-      <div>Internes Dokument &middot; Nicht zur Veröffentlichung</div>
-    </div>
-  </div>
-</footer>
-
-<script>
-(function(){
-  const t = document.querySelector('[data-theme-toggle]');
-  const r = document.documentElement;
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  let d = mq.matches ? 'dark' : 'light';
-  r.setAttribute('data-theme', d);
-  function setIcon(mode) {
-    if (!t) return;
-    t.innerHTML = mode === 'dark'
-      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
-      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    t.setAttribute('aria-label', 'Wechseln zu ' + (mode === 'dark' ? 'hellem' : 'dunklem') + ' Modus');
-  }
-  setIcon(d);
-  t && t.addEventListener('click', () => {
-    d = d === 'dark' ? 'light' : 'dark';
-    r.setAttribute('data-theme', d);
-    setIcon(d);
-  });
-
-  // Sticky header shadow
-  const h = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    h && h.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
-})();
-</script>
-
+  <footer><div class="wrap">Echo-Station Projektstatus · Stand 21. August 2026 · Statusseite ohne Live-API und ohne Betriebsgeheimnisse</div></footer>
 </body>
 </html>
