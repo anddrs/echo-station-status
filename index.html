@@ -3,139 +3,125 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Aktueller Projekt- und Betriebsstand der Echo-Station.">
+  <meta name="description" content="Verständlicher Projektstatus und bisherige Meilensteine der Echo-Station.">
   <title>Echo-Station – Projektstatus</title>
   <style>
-    :root { color-scheme: light; --bg:#f4f1eb; --card:#fffdf9; --text:#202827; --muted:#66706d; --line:#d8d4cc; --brand:#087d83; --brand-dark:#075b60; --ok:#287548; --warn:#9a6610; --info:#315b82; --shadow:0 12px 34px rgba(31,44,42,.08); }
+    :root { color-scheme:light; --bg:#f4f1eb; --surface:#fffdf9; --text:#202827; --muted:#65706d; --line:#d8d4cc; --brand:#087d83; --brand-dark:#075b60; --ok:#287548; --next:#9a6610; --shadow:0 12px 34px rgba(31,44,42,.08); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-    a { color:inherit; }
+    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--text); background:var(--bg); line-height:1.65; }
     .skip { position:absolute; left:-9999px; }
-    .skip:focus { left:1rem; top:1rem; z-index:20; background:white; padding:.7rem 1rem; border:2px solid var(--brand); }
+    .skip:focus { left:1rem; top:1rem; z-index:10; padding:.7rem 1rem; background:white; border:2px solid var(--brand); }
     .wrap { width:min(1120px,calc(100% - 2rem)); margin-inline:auto; }
-    header { background:linear-gradient(135deg,#075f64,#0a858b); color:white; padding:3rem 0 2.5rem; }
-    .eyebrow { margin:0 0 .5rem; font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; opacity:.82; }
+    header { padding:3.2rem 0 2.6rem; color:white; background:linear-gradient(135deg,#075b60,#09878d); }
     h1,h2,h3,p { margin-top:0; }
-    h1 { margin-bottom:.7rem; font-size:clamp(2.2rem,6vw,4.6rem); line-height:1; letter-spacing:-.045em; }
-    h2 { margin-bottom:.5rem; font-size:clamp(1.55rem,3vw,2.35rem); line-height:1.15; }
-    h3 { margin-bottom:.4rem; font-size:1.05rem; }
-    .lead { max-width:760px; margin-bottom:1.3rem; font-size:1.08rem; opacity:.94; }
-    .hero-meta,.nav { display:flex; flex-wrap:wrap; gap:.6rem; }
-    .pill { display:inline-flex; align-items:center; gap:.4rem; padding:.38rem .72rem; border:1px solid rgba(255,255,255,.34); border-radius:999px; font-size:.86rem; background:rgba(255,255,255,.1); }
+    h1 { margin-bottom:.75rem; font-size:clamp(2.4rem,7vw,4.8rem); line-height:1; letter-spacing:-.045em; }
+    h2 { margin-bottom:.55rem; font-size:clamp(1.6rem,3.5vw,2.45rem); line-height:1.15; }
+    h3 { margin-bottom:.4rem; font-size:1.08rem; }
+    .eyebrow { margin-bottom:.55rem; font-size:.78rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; opacity:.8; }
+    .lead { max-width:780px; font-size:1.12rem; opacity:.95; }
+    .pills,.nav { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .pill { padding:.38rem .7rem; border:1px solid rgba(255,255,255,.35); border-radius:999px; background:rgba(255,255,255,.1); font-size:.86rem; }
     .nav { margin-top:1.5rem; }
-    .nav a { padding:.5rem .75rem; border-radius:.55rem; text-decoration:none; font-weight:700; background:rgba(255,255,255,.12); }
-    .nav a:hover,.nav a:focus-visible { background:white; color:var(--brand-dark); }
-    main { padding:2.2rem 0 4rem; }
-    section { scroll-margin-top:1rem; margin-bottom:3rem; }
-    .section-head { max-width:800px; margin-bottom:1.2rem; }
+    .nav a { padding:.48rem .72rem; border-radius:.55rem; color:white; background:rgba(255,255,255,.13); text-decoration:none; font-weight:750; }
+    .nav a:hover,.nav a:focus-visible { color:var(--brand-dark); background:white; }
+    main { padding:2.4rem 0 4rem; }
+    section { margin-bottom:3.2rem; scroll-margin-top:1rem; }
+    .section-head { max-width:820px; margin-bottom:1.25rem; }
     .section-head p { color:var(--muted); }
     .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
-    .card { padding:1.15rem; border:1px solid var(--line); border-radius:1rem; background:var(--card); box-shadow:var(--shadow); }
+    .card { padding:1.15rem; border:1px solid var(--line); border-radius:1rem; background:var(--surface); box-shadow:var(--shadow); }
     .card p { margin-bottom:0; color:var(--muted); }
-    .badge { display:inline-block; margin-bottom:.65rem; padding:.22rem .58rem; border-radius:999px; font-size:.75rem; font-weight:800; }
-    .ok { color:var(--ok); background:#e5f4eb; }
-    .warn { color:var(--warn); background:#fff1d5; }
-    .info { color:var(--info); background:#e8f0f8; }
-    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
-    .metric { padding:1.15rem; border-radius:1rem; color:white; background:var(--brand-dark); }
-    .metric strong { display:block; font-size:clamp(1.65rem,4vw,2.4rem); line-height:1.1; }
-    .metric span { font-size:.86rem; opacity:.82; }
-    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:1rem; background:var(--card); }
-    table { width:100%; border-collapse:collapse; min-width:670px; }
-    th,td { padding:.85rem 1rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
-    th { font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
-    tr:last-child td { border-bottom:0; }
-    code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.88em; }
-    .timeline { display:grid; gap:.8rem; counter-reset:step; }
-    .step { position:relative; padding:1rem 1rem 1rem 3.7rem; border:1px solid var(--line); border-radius:1rem; background:var(--card); }
-    .step::before { counter-increment:step; content:counter(step); position:absolute; left:1rem; top:1rem; width:1.8rem; height:1.8rem; display:grid; place-items:center; border-radius:50%; background:var(--brand); color:white; font-weight:800; }
-    .step p { margin:0; color:var(--muted); }
-    .notice { padding:1rem 1.15rem; border-left:5px solid var(--warn); border-radius:.6rem; background:#fff8e9; }
-    footer { padding:1.5rem 0 2.5rem; color:var(--muted); font-size:.86rem; }
-    @media (max-width:850px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:560px) { .grid,.metrics { grid-template-columns:1fr; } header { padding-top:2.2rem; } }
+    .badge { display:inline-block; margin-bottom:.7rem; padding:.22rem .58rem; border-radius:999px; font-size:.75rem; font-weight:850; }
+    .done { color:var(--ok); background:#e5f4eb; }
+    .active { color:var(--brand-dark); background:#dff3f3; }
+    .planned { color:var(--next); background:#fff0d2; }
+    .history { position:relative; display:grid; gap:.85rem; }
+    .history::before { content:""; position:absolute; left:1rem; top:1rem; bottom:1rem; width:2px; background:var(--line); }
+    .milestone { position:relative; margin-left:2.7rem; padding:1rem 1.1rem; border:1px solid var(--line); border-radius:1rem; background:var(--surface); }
+    .milestone::before { content:"✓"; position:absolute; left:-2.55rem; top:1rem; width:1.8rem; height:1.8rem; display:grid; place-items:center; border-radius:50%; color:white; background:var(--ok); font-weight:900; }
+    .milestone p { margin-bottom:0; color:var(--muted); }
+    .steps { display:grid; gap:.8rem; counter-reset:step; }
+    .step { position:relative; padding:1rem 1rem 1rem 3.7rem; border:1px solid var(--line); border-radius:1rem; background:var(--surface); }
+    .step::before { counter-increment:step; content:counter(step); position:absolute; left:1rem; top:1rem; width:1.85rem; height:1.85rem; display:grid; place-items:center; border-radius:50%; color:white; background:var(--brand); font-weight:850; }
+    .step p { margin-bottom:0; color:var(--muted); }
+    .note { padding:1rem 1.15rem; border-left:5px solid var(--next); border-radius:.65rem; background:#fff8e8; }
+    footer { padding:1.5rem 0 2.6rem; color:var(--muted); font-size:.86rem; }
+    @media (max-width:850px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:560px) { .grid { grid-template-columns:1fr; } header { padding-top:2.3rem; } }
   </style>
 </head>
 <body>
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
   <header>
     <div class="wrap">
-      <p class="eyebrow">Projekt- und Betriebsstatus</p>
+      <p class="eyebrow">Projektstatus für das Team</p>
       <h1>Echo-Station</h1>
-      <p class="lead">V2 läuft produktiv auf dem Raspberry Pi. Der neue Katalog arbeitet ohne dauerhafte Audio-Zwischenspeicherung auf der SSD und wird automatisch auf Änderungen geprüft.</p>
-      <div class="hero-meta">
-        <span class="pill">Stand: 21. August 2026</span>
-        <span class="pill">V2 produktiv</span>
-        <span class="pill">Automatik aktiv · 15 Minuten</span>
-        <span class="pill">V1 als Rückfallpfad aktiv</span>
+      <p class="lead">Die neue technische Grundlage ist im täglichen Betrieb angekommen. Gleichzeitig bewahren wir sichtbar, was auf dem Weg dorthin bereits aufgebaut, getestet und verbessert wurde.</p>
+      <div class="pills">
+        <span class="pill">Neue Version im Betrieb</span>
+        <span class="pill">Katalog wird automatisch geprüft</span>
+        <span class="pill">Bewährter Rückfallweg bleibt erhalten</span>
       </div>
       <nav class="nav" aria-label="Seitennavigation">
-        <a href="#betrieb">Betrieb</a><a href="#katalog">Katalog</a><a href="#technik">Technik</a><a href="#version-1">Version 1.0</a><a href="#offen">Offen</a>
+        <a href="#heute">Heute</a><a href="#erreicht">Erreicht</a><a href="#entwicklung">Entwicklung</a><a href="#naechstes">Als Nächstes</a>
       </nav>
     </div>
   </header>
 
   <main id="inhalt" class="wrap">
-    <section id="betrieb">
-      <div class="section-head"><p class="eyebrow">Aktueller Stand</p><h2>V2 ist produktiv in Betrieb</h2><p>Die beiden Stabilitätsreleases sind ausgerollt. Migration, Backup, Healthcheck, Katalogautomation und der flüchtige RAM-Pfad laufen auf dem Pi.</p></div>
+    <section id="heute">
+      <div class="section-head"><p class="eyebrow">Wo wir heute stehen</p><h2>Die Echo-Station läuft auf der neuen Grundlage</h2><p>Die wichtigsten Aufgaben für Besucher und Betrieb funktionieren. Die neue Lösung vermeidet dauerhafte Audio-Kopien auf dem Gerät und hält den Katalog selbstständig aktuell.</p></div>
       <div class="grid">
-        <article class="card"><span class="badge ok">Produktiv</span><h3>V2-Runtime</h3><p>Der Pi läuft auf Runtime <code>a6b3f6c…</code>. Der produktive Stand bleibt bewusst von nachfolgenden reinen Dokumentationsänderungen getrennt.</p></article>
-        <article class="card"><span class="badge ok">Aktiv</span><h3>State und Backup</h3><p>Migration <code>002</code> ist angewendet. Das private State-Backup läuft täglich mit Integritätsprüfung und Rotation.</p></article>
-        <article class="card"><span class="badge ok">0 Fehler</span><h3>Healthcheck</h3><p>Service, Port, Mount, Datenbanken, Backup, Operationsjournal und RAM-Pfad werden geprüft. Zwei SMART-Berechtigungswarnungen sind nicht betriebsblockierend; die Hardwarewerte wurden separat gesund bestätigt.</p></article>
-        <article class="card"><span class="badge ok">Ohne SSD-Audiocache</span><h3>Temporäre Sammlung</h3><p>Audio wird ausschließlich vorübergehend im begrenzten RAM-Pfad vorbereitet. Das Limit beträgt 2 GiB; aktuell ist der Pfad leer.</p></article>
-        <article class="card"><span class="badge ok">Intakt</span><h3>Rückfallpfad</h3><p>V1 bleibt unverändert und aktiv. Private Rollback-Sicherungen sind vorhanden und wurden beim V2-Rollout nicht entfernt.</p></article>
-        <article class="card"><span class="badge info">Abgeschlossen</span><h3>Wartungsfenster</h3><p>Die Produktivsetzung wurde abgeschlossen, das Wartungsfenster beendet und die dafür verwendete SSH-Sitzung geschlossen.</p></article>
+        <article class="card"><span class="badge active">Im Betrieb</span><h3>Aufnahmen finden</h3><p>Besucher können nach Aufnahmen suchen, zwischen Gemeinde und Vereinigung wählen und durch Jahre, Monate und Wochen navigieren.</p></article>
+        <article class="card"><span class="badge active">Im Betrieb</span><h3>Sammlung zusammenstellen</h3><p>Einzelne Aufnahmen oder ganze Veranstaltungen können ausgewählt, geprüft und gemeinsam vorbereitet werden.</p></article>
+        <article class="card"><span class="badge active">Im Betrieb</span><h3>Auf USB kopieren</h3><p>Ausgewählte Aufnahmen werden kontrolliert auf einen USB-Stick übertragen. Fortschritt und verständliche Rückmeldungen werden direkt angezeigt.</p></article>
+        <article class="card"><span class="badge active">Automatisch</span><h3>Katalog aktuell halten</h3><p>Die zentrale Sammlung wird regelmäßig auf sichere Änderungen geprüft. Bei Bedarf kann zusätzlich ein manueller Vollscan gestartet werden.</p></article>
+        <article class="card"><span class="badge active">Speicherschonend</span><h3>Keine dauerhaften Audio-Kopien</h3><p>Aufnahmen werden nur vorübergehend im Arbeitsspeicher vorbereitet. Auf der internen SSD entsteht kein dauerhafter Audio-Zwischenspeicher.</p></article>
+        <article class="card"><span class="badge active">Abgesichert</span><h3>Wartung und Rückweg</h3><p>Backups und automatische Zustandsprüfungen unterstützen den Betrieb. Die bisherige Version bleibt vorerst als sicherer Rückweg erhalten.</p></article>
       </div>
     </section>
 
-    <section id="katalog">
-      <div class="section-head"><p class="eyebrow">Katalog</p><h2>Automatische Aktualisierung läuft</h2><p>Die Quelle wird alle 15 Minuten read-only geprüft. Stabile Änderungen können automatisch veröffentlicht werden; bei Bedarf bleibt der geschützte manuelle Vollscan erhalten.</p></div>
-      <div class="metrics">
-        <div class="metric"><strong>182</strong><span>Ereignisse</span></div>
-        <div class="metric"><strong>3.148</strong><span>sichtbare Aufnahmen</span></div>
-        <div class="metric"><strong>3.148</strong><span>FTS-Einträge</span></div>
-        <div class="metric"><strong>0</strong><span>Quarantäne</span></div>
-      </div>
-      <div class="grid" style="margin-top:1rem">
-        <article class="card"><span class="badge ok">Erfolgreich</span><h3>Erste Aktualisierung</h3><p>Die erste automatische Katalogaktualisierung wurde atomar veröffentlicht und anschließend vollständig geprüft.</p></article>
-        <article class="card"><span class="badge ok">Stabil</span><h3>No-change-Zyklen</h3><p>Danach liefen zwei vollständige Zyklen ohne Änderungen. Es blieben keine fehlgeschlagenen oder laufenden Operationen zurück.</p></article>
-        <article class="card"><span class="badge info">Sicherer Fallback</span><h3>Manueller Vollscan</h3><p>Absichtliche größere Änderungen können weiterhin kontrolliert über den vorhandenen manuellen Vollscan übernommen werden.</p></article>
-      </div>
-    </section>
-
-    <section id="technik">
-      <div class="section-head"><p class="eyebrow">Release-Nachweis</p><h2>Getrennte, nachvollziehbare Stände</h2><p>Runtime, Main-Integration und Dokumentation sind bewusst getrennt ausgewiesen. Bewegliche Branches ersetzen keinen produktiven Release-Nachweis.</p></div>
-      <div class="table-wrap"><table><thead><tr><th>Ebene</th><th>Stand</th><th>Bedeutung</th></tr></thead><tbody>
-        <tr><td>Release 1</td><td><code>d70b063…</code></td><td>Main/V2-Konsolidierung, PIN-Schutz, Migration 002, State-Backup und Healthcheck.</td></tr>
-        <tr><td>Pi-Runtime</td><td><code>a6b3f6c…</code></td><td>Aktive Katalogautomation im 15-Minuten-Takt; Zustand aktiv und idle.</td></tr>
-        <tr><td>Dokumentation</td><td><code>422465d</code></td><td>Vollständiger interner Betriebsnachweis und aktualisierte Runbooks.</td></tr>
-        <tr><td>V1-Fallback</td><td>unverändert</td><td>Weiterhin aktiver Rückweg; kein Purge durchgeführt.</td></tr>
-      </tbody></table></div>
-    </section>
-
-    <section id="version-1">
-      <div class="section-head"><p class="eyebrow">Nächster Produktabschnitt</p><h2>Echo-Station 1.0</h2><p>Die technische V2-Basis ist produktiv. Als Nächstes wird die Besucherführung vereinfacht und anschließend der harte Betriebs-Cutover separat vorbereitet.</p></div>
-      <div class="timeline">
-        <article class="step"><h3>Klickbaren Sites-Prototyp abnehmen</h3><p>Der neue Besucherweg wird zunächst isoliert mit synthetischen Daten und mindestens 15 Jahren geprüft. Er erhält keine Verbindung zu Pi, NAS oder Produktions-APIs.</p></article>
-        <article class="step"><h3>Besucherführung in React umsetzen</h3><p>Neutraler Produktkopf, prominente Suche, verständliche Bereiche, zwölf direkte Jahre plus „Weitere Jahre“, klare Wochenaktion, reduzierte Sammlung und zugänglicher Adminzugang.</p></article>
-        <article class="step"><h3>Alle vierstelligen Aufnahmejahre unterstützen</h3><p>Katalog, Suche und API behalten sämtliche gültigen Jahre. Nur die direkte Darstellung wird auf die zwölf neuesten Jahre begrenzt.</p></article>
-        <article class="step"><h3>Version 1.0.0 veröffentlichen</h3><p>Release 2 wird zuerst in main integriert. Danach werden Versionsangaben konsistent auf 1.0.0 gesetzt und der geprüfte Merge-Commit unveränderlich markiert.</p></article>
-        <article class="step"><h3>Harten Cutover separat freigeben</h3><p>V1-Dienste und der alte Mount werden erst nach stabiler Inventur kontrolliert deaktiviert. V1 bleibt danach 30 Tage als kalte Rückfallkapsel erhalten.</p></article>
+    <section id="erreicht">
+      <div class="section-head"><p class="eyebrow">Was wir bereits erreicht haben</p><h2>Die bisherigen Meilensteine bleiben sichtbar</h2><p>Die neue Version baut auf vielen abgeschlossenen Schritten auf. Diese Arbeiten gehören weiterhin zur Geschichte und zum Fundament der Echo-Station.</p></div>
+      <div class="grid">
+        <article class="card"><span class="badge done">Erledigt</span><h3>Grundsystem auf dem Raspberry Pi</h3><p>Backend, Datenbank, Weboberfläche und Kiosk-Modus wurden eingerichtet und als dauerhaft laufendes lokales System aufgebaut.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Besucheroberfläche</h3><p>Eine für den Touchscreen geeignete Oberfläche mit großer Schrift, klaren Schaltflächen und verständlicher Navigation wurde entwickelt.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Suche und Sortierung</h3><p>Aufnahmen können nach Titel, Mitwirkenden, Art, Bereich und Zeitraum gefunden und sinnvoll sortiert werden.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>USB-Export</h3><p>Einzel- und Mehrfachauswahl, Speicherprüfung, Fortschrittsanzeige und sichere Dateinamen wurden umgesetzt und praktisch erprobt.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Geschützter Adminbereich</h3><p>Ein lokaler Zugang mit PIN, Anmeldung, PIN-Wechsel und geschützten Verwaltungsfunktionen wurde eingerichtet.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Kalender und Sperrzeiten</h3><p>Regelmäßige Gottesdienstzeiten, Sonderzeiten und eine kontrollierte Bildschirmfreigabe wurden in den Kiosk-Betrieb eingebunden.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Anbindung der zentralen Sammlung</h3><p>Der Zugriff auf die zentrale Ablage wurde schrittweise geprüft, abgesichert und für den Aufbau des Katalogs nutzbar gemacht.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Datensicherung und Zustandsprüfung</h3><p>Wichtige Einstellungen werden regelmäßig gesichert. Der Zustand der Dienste, Datenbanken und Speicherbereiche wird automatisch überwacht.</p></article>
+        <article class="card"><span class="badge done">Erledigt</span><h3>Stabiler Wartungsweg</h3><p>Fernwartung, Neustartverhalten, Fehlerprotokollierung und sichere Rückfallmöglichkeiten wurden für den laufenden Betrieb vorbereitet.</p></article>
       </div>
     </section>
 
-    <section id="offen">
-      <div class="section-head"><p class="eyebrow">Bewusst nicht ausgeführt</p><h2>Klare Grenzen des aktuellen Stands</h2></div>
-      <div class="notice"><strong>Noch offen:</strong> Der harte Mount-Cutover und ein späterer V1-Purge sind separate Vorhaben und wurden nicht ausgeführt. Die interne Candidate-Unit, der Checkout und Port 3001 bleiben während der Rückfallfrist bestehen. V1 wird nach 30 Tagen nicht automatisch gelöscht.</div>
-      <div class="grid" style="margin-top:1rem">
-        <article class="card"><span class="badge warn">Separates Gate</span><h3>Harter Cutover</h3><p>Er benötigt zwei identische Inventuren, Katalogparität, null nichtterminale Operationen, private Sicherungen und einen getesteten Rückweg.</p></article>
-        <article class="card"><span class="badge warn">Nicht geplant</span><h3>Automatischer Purge</h3><p>V1-Daten, Backups, Units und Konfiguration werden nicht automatisch entfernt oder umbenannt.</p></article>
-        <article class="card"><span class="badge info">Bestehende Abnahmen</span><h3>Hardwaretests</h3><p>Allgemeine Scan-, Restore-, Touch-, USB- und Reboot-Prüfungen werden nicht ohne konkreten neuen Befund wiederholt.</p></article>
+    <section id="entwicklung">
+      <div class="section-head"><p class="eyebrow">Unser Weg</p><h2>Von der ersten Idee zur neuen Version</h2><p>Die Entwicklung erfolgte bewusst in kleinen, prüfbaren Schritten.</p></div>
+      <div class="history">
+        <article class="milestone"><h3>Lokales Grundgerüst</h3><p>Die Echo-Station erhielt eine eigene Datenbank, Suche und eine lokal laufende Besucheroberfläche.</p></article>
+        <article class="milestone"><h3>Besucher- und USB-Ablauf</h3><p>Aus Suche, Auswahl und Kopieren entstand ein vollständiger Ablauf für den Touchscreen-Kiosk.</p></article>
+        <article class="milestone"><h3>Admin- und Betriebsfunktionen</h3><p>PIN-Schutz, Zeitsteuerung, Sperrfunktionen, Backups und Wartungswerkzeuge machten den Betrieb verlässlicher.</p></article>
+        <article class="milestone"><h3>Zentrale Sammlung eingebunden</h3><p>Aufnahmen aus der gemeinsamen Ablage wurden eingelesen, geordnet und für Suche sowie USB-Export verfügbar gemacht.</p></article>
+        <article class="milestone"><h3>Neue Kataloggrundlage</h3><p>Die zweite Generation trennte Katalog, Einstellungen und Audiodateien sauber voneinander und entfernte den dauerhaften Audio-Zwischenspeicher.</p></article>
+        <article class="milestone"><h3>Automatische Aktualisierung</h3><p>Die Echo-Station erkennt sichere Änderungen an der Sammlung selbstständig und hält den veröffentlichten Katalog aktuell.</p></article>
       </div>
+    </section>
+
+    <section id="naechstes">
+      <div class="section-head"><p class="eyebrow">Als Nächstes</p><h2>Der Weg zu Echo-Station 1.0</h2><p>Die technische Grundlage steht. Der nächste Schwerpunkt liegt auf einer noch einfacheren Besucherführung und einem kontrollierten Abschluss des Übergangs.</p></div>
+      <div class="steps">
+        <article class="step"><h3>Neue Besucherführung als Prototyp prüfen</h3><p>Die geplante Bedienung wird zunächst unabhängig vom laufenden Kiosk mit Beispieldaten gezeigt und gemeinsam bewertet.</p></article>
+        <article class="step"><h3>Bedienung im bestehenden Frontend vereinfachen</h3><p>Suche, Jahresauswahl, Wochenansicht, Sammlung und Adminzugang werden klarer und ruhiger angeordnet.</p></article>
+        <article class="step"><h3>Ältere Aufnahmejahre vollständig erreichbar machen</h3><p>Die neuesten Jahre bleiben direkt sichtbar. Weitere Jahre können bei Bedarf einfach eingeblendet werden.</p></article>
+        <article class="step"><h3>Echo-Station 1.0 freigeben</h3><p>Nach gemeinsamer Prüfung werden Produktname, Anzeige und Betriebsdokumentation auf den ersten vollständigen Produktstand gebracht.</p></article>
+        <article class="step"><h3>Alten Parallelbetrieb kontrolliert beenden</h3><p>Dieser Schritt erhält eine eigene Freigabe und einen klaren Rückweg. Die alte Version wird nicht automatisch gelöscht.</p></article>
+      </div>
+      <div class="note" style="margin-top:1rem"><strong>Wichtig:</strong> Der harte Wechsel und eine spätere Bereinigung alter Bestände bleiben eigenständige Entscheidungen. Bis dahin bleibt der bewährte Rückfallweg erhalten.</div>
     </section>
   </main>
 
-  <footer><div class="wrap">Echo-Station Projektstatus · Stand 21. August 2026 · Statusseite ohne Live-API und ohne Betriebsgeheimnisse</div></footer>
+  <footer><div class="wrap">Echo-Station · Verständlicher Projektstatus für das Team · Zuletzt grundlegend überarbeitet im August 2026</div></footer>
 </body>
 </html>
